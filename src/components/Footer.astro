@@ -1,5 +1,5 @@
 ---
-import { tr, type Lang } from "../i18n/utils";
+import { localizeHref, tr, type Lang } from "../i18n/utils";
 
 const lang = (Astro.currentLocale ?? "ca") as Lang;
 const t = tr(lang);
@@ -134,9 +134,7 @@ const internalLink = t({
                     <a href="https://boicoticl.org/fgc/">Campanya FGC</a>
                 </li>
                 <li>
-                    <a href={lang === "en" ? "/en/intern/" : "/intern/"}>
-                        {internalLink}
-                    </a>
+                    <a href={localizeHref(lang, "/intern/")}>{internalLink}</a>
                 </li>
             </ul>
         </div>
