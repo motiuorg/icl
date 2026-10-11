@@ -1,10 +1,11 @@
-# Boicot ICL — estat de la lluita (prototip)
+# Boicot ICL — estat de la lluita (prototip experimental de Motiu)
 
-Sistema de coneixement i coordinació de la campanya **Boicot ICL** — complement
-de [boicoticl.org](https://boicoticl.org). Un prototip per discutir amb la
-campanya: visualització de l'estat de la lluita (aigua, runams, trens FGC,
-laboral, diners públics), biblioteca de recerca, cronologia, actors i una
-capa interna de coordinació (demo).
+**Prototip experimental de [Motiu](https://motiu.org)** (cooperativa d'infraestructura per
+la regeneració territorial), fet per discutir amb la campanya **Boicot ICL**.
+No és un espai oficial de la campanya: complementa [boicoticl.org](https://boicoticl.org)
+amb una eina visual de l'estat de la lluita (aigua, runams, trens FGC, laboral,
+diners públics), biblioteca de recerca, cronologia, actors i una capa interna
+de coordinació (demo).
 
 ## Executar
 

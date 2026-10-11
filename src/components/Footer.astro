@@ -9,22 +9,33 @@ const slogan = t({
     en: "Stop the genocide, stop the ecocide",
 });
 const about = t({
-    ca: "Campanya del Bages contra la multinacional ICL, en el marc del BDS. Complement de boicoticl.org.",
-    en: "Campaign from Bages against the ICL multinational, within the BDS framework. Complement to boicoticl.org.",
+    ca: "Prototip experimental de Motiu per a la campanya Boicot ICL. Complement del web oficial de la campanya:",
+    en: "Experimental prototype by Motiu for the Boicot ICL campaign. Complement to the campaign's official website:",
 });
-const contactTitle = t({ ca: "Contacte", en: "Contact" });
+const aboutLink = t({ ca: "boicoticl.org", en: "boicoticl.org" });
+const madeByTitle = t({ ca: "Fet per Motiu", en: "Made by Motiu" });
+const madeByText = t({
+    ca: "Motiu és una cooperativa que construeix infraestructura per a la regeneració territorial. Aquest prototip és una proposta per discutir amb la campanya, no un espai oficial de Boicot ICL.",
+    en: "Motiu is a cooperative building infrastructure for territorial regeneration. This prototype is a proposal to discuss with the campaign — not an official Boicot ICL space.",
+});
+const motiuSite = t({ ca: "motiu.org", en: "motiu.org" });
+const motiuContact = t({ ca: "Contacte amb Motiu", en: "Contact Motiu" });
 const linksTitle = t({ ca: "Enllaços", en: "Links" });
 const researchLink = t({
-    ca: "Investigació (web actual)",
-    en: "Research (current site)",
+    ca: "Investigació (web de la campanya)",
+    en: "Research (campaign website)",
 });
-const meta = t({
-    ca: "Prototip de sistema de coneixement i coordinació — versió per discutir amb la campanya.",
-    en: "Prototype of a knowledge & coordination system — version to discuss with the campaign.",
+const fgcLink = t({
+    ca: "Campanya FGC (web de la campanya)",
+    en: "FGC campaign (campaign website)",
 });
 const internalLink = t({
     ca: "Capa interna (demo)",
     en: "Internal layer (demo)",
+});
+const meta = t({
+    ca: "Prototip experimental de Motiu — versió per discutir amb la campanya Boicot ICL.",
+    en: "Experimental prototype by Motiu — version to discuss with the Boicot ICL campaign.",
 });
 ---
 
@@ -93,32 +104,30 @@ const internalLink = t({
         margin-top: var(--space-2);
         text-align: center;
     }
+    .foot a {
+        color: #fff;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+    }
 </style>
 
 <footer class="foot">
     <div class="foot-grid">
         <div>
             <h3>Boicot ICL</h3>
-            <p style="font-size: 0.92rem; margin: 0">{about}</p>
+            <p style="font-size: 0.92rem; margin: 0">
+                {about} <a href="https://boicoticl.org">{aboutLink}</a>.
+            </p>
         </div>
         <div>
-            <h3>{contactTitle}</h3>
+            <h3>{madeByTitle}</h3>
+            <p style="font-size: 0.92rem; margin: 0 0 0.7em">{madeByText}</p>
             <ul>
                 <li>
-                    ✉️{" "}
-                    <a href="mailto:boicoticl@proton.me">boicoticl@proton.me</a>
+                    🌍 <a href="https://motiu.org">{motiuSite}</a>
                 </li>
                 <li>
-                    𝕏 <a href="https://x.com/boicotIcl">@boicotIcl</a>
-                </li>
-                <li>
-                    📷{" "}
-                    <a href="https://www.instagram.com/boicot_icl">
-                        @boicot_icl
-                    </a>
-                </li>
-                <li>
-                    ✈️ <a href="https://t.me/BoicotICL">@BoicotICL</a>
+                    ✉️ <a href="https://motiu.org/contact">{motiuContact}</a>
                 </li>
             </ul>
         </div>
@@ -131,7 +140,7 @@ const internalLink = t({
                     </a>
                 </li>
                 <li>
-                    <a href="https://boicoticl.org/fgc/">Campanya FGC</a>
+                    <a href="https://boicoticl.org/fgc/">{fgcLink}</a>
                 </li>
                 <li>
                     <a href={localizeHref(lang, "/intern/")}>{internalLink}</a>
