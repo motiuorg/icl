@@ -1,0 +1,61 @@
+---
+// Metàfora visual: piscines olímpiques per dia (quadrícula de rectangles).
+import { water } from "../../data/indicators";
+import { tr, type Lang } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const cap = t({
+    ca: `≈ ${water.pools_per_day} piscines olímpiques al dia (~2.500 m³ cadascuna) [derivat]`,
+    en: `≈ ${water.pools_per_day} Olympic pools a day (~2,500 m³ each) [derived]`,
+});
+
+const PER_ROW = 5;
+const CELL = 46;
+const GAP = 8;
+const PAD = 14;
+const rows = Math.ceil(water.pools_per_day / PER_ROW);
+const W = PAD * 2 + PER_ROW * CELL + (PER_ROW - 1) * GAP;
+const H = PAD * 2 + rows * CELL + (rows - 1) * GAP;
+const poolColor = "var(--navy)";
+---
+
+<div class="pools">
+    <svg
+        viewBox={`0 0 ${W} ${H}`}
+        role="img"
+        style="max-width:320px;width:100%;height:auto"
+    >
+        {Array.from({ length: water.pools_per_day }).map((_, i) => {
+            const r = Math.floor(i / PER_ROW);
+            const c = i % PER_ROW;
+            return (
+                <rect
+                    x={PAD + c * (CELL + GAP)}
+                    y={PAD + r * (CELL + GAP)}
+                    width={CELL}
+                    height={CELL}
+                    rx="10"
+                    fill={poolColor}
+                />
+            );
+        })}
+    </svg>
+    <p class="pools__cap">{cap}</p>
+</div>
+
+<style>
+    .pools {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+    }
+    .pools__cap {
+        font-size: 0.82rem;
+        color: rgba(0, 0, 0, 0.6);
+        text-align: center;
+        margin: 0;
+    }
+</style>

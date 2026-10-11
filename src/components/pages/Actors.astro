@@ -1,0 +1,74 @@
+---
+import Base from "../../layouts/Base.astro";
+import { lluita, objectiu } from "../../data/actors";
+import { tr, type Lang, type Bilingual } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const heroPill: Bilingual = { ca: "Qui és qui", en: "Who's who" };
+const pageTitle: Bilingual = { ca: "Actors", en: "Actors" };
+const h1: Bilingual = {
+  ca: "Actors: la xarxa de la lluita i les complicitats",
+  en: "Actors: the support network and the complicities",
+};
+const lede: Bilingual = {
+  ca: "Les organitzacions i col·lectius que sostenen la campanya, i l'entramat corporatiu i institucional que la denúncia documenta. Font: web de la campanya, dossier i cicle de xerrades.",
+  en: "The organisations and collectives sustaining the campaign, and the corporate and institutional web documented by the denunciation. Source: campaign website, dossier and talk series.",
+};
+const struggleTitle: Bilingual = { ca: "La lluita", en: "The struggle" };
+const targetTitle: Bilingual = { ca: "L'objectiu i les complicitats", en: "The target & the complicities" };
+const note: Bilingual = {
+  ca: "En una propera versió: un mapa de relacions (qui denuncia, qui finança, qui transporta) i la geolocalització de les instal·lacions denunciades.",
+  en: "Next version: a relationship map (who denounces, who funds, who transports) and geolocation of the denounced facilities.",
+};
+---
+
+<Base title={t(pageTitle)}>
+  <section>
+    <span class="pill pill--ghost">{t(heroPill)}</span>
+    <h1>{t(h1)}</h1>
+    <p class="lede">{t(lede)}</p>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>{t(struggleTitle)}</h2>
+      <span class="eyebrow">{lluita.length} actors</span>
+    </div>
+    <div class="grid grid--2">
+      {lluita.map((a) => (
+        <div class="card actor">
+          <h3 style="margin:0 0 .15em">{a.name}</h3>
+          <span class="tag">{t(a.type)}</span>
+          <p style="margin:.7em 0 0;font-size:.93rem">{t(a.role)}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>{t(targetTitle)}</h2>
+      <span class="eyebrow">{objectiu.length} actors</span>
+    </div>
+    <div class="grid grid--2">
+      {objectiu.map((a) => (
+        <div class="card actor" style="background:var(--paper-2)">
+          <h3 style="margin:0 0 .15em">{a.name}</h3>
+          <span class="tag tag--red">{t(a.type)}</span>
+          <p style="margin:.7em 0 0;font-size:.93rem">{t(a.role)}</p>
+        </div>
+      ))}
+    </div>
+    <div class="note-box note-box--warn" style="margin-top:var(--space-3)">
+      {t(note)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lede { max-width: 52rem; font-size: 1.05rem; }
+  .actor { display: flex; flex-direction: column; }
+  .actor p { flex: 1; }
+</style>

@@ -1,0 +1,288 @@
+@import "./tokens.css";
+@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--red-page);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+h3 { font-size: 1.3rem; }
+
+p { margin: 0 0 1em; }
+a { color: inherit; }
+small { font-size: 0.82em; }
+
+/* ---------- Estructura ---------- */
+.page {
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2.5rem) var(--space-5);
+}
+
+.card {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.4rem, 3.5vw, 2.6rem);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.13);
+}
+
+.section {
+  margin-top: var(--space-4);
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--navy);
+}
+
+.eyebrow.on-red { color: #fff; opacity: 0.85; }
+
+/* ---------- Píndoles / chips ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.28em 0.9em;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--sky);
+  color: var(--ink);
+  border: none;
+  text-decoration: none;
+  line-height: 1.6;
+}
+.pill--dark { background: var(--ink); color: #fff; }
+.pill--navy { background: var(--navy); color: #fff; }
+.pill--soft { background: var(--red-soft); color: #000; }
+.pill--ghost { background: rgba(255, 255, 255, 0.16); color: #fff; }
+
+/* ---------- Botons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn--soft { background: var(--red-soft); color: #000; }
+
+/* ---------- Graella ---------- */
+.grid {
+  display: grid;
+  gap: var(--space-3);
+}
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* ---------- Estadístiques ---------- */
+.stat {
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  padding: 1.3rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.stat__value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat__label { font-size: 0.95rem; font-weight: 600; }
+.stat__note { font-size: 0.8rem; color: rgba(0, 0, 0, 0.62); line-height: 1.4; }
+
+/* ---------- Taules ---------- */
+.table-wrap { overflow-x: auto; }
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+table.data th {
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5em 0.8em;
+  border-bottom: 2px solid var(--ink);
+}
+table.data td {
+  padding: 0.55em 0.8em;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+/* ---------- Fonts de dades (subtils) ---------- */
+.src {
+  font-size: 0.72rem;
+  color: rgba(0, 0, 0, 0.38);
+  display: block;
+  margin-top: 0.6rem;
+  font-style: italic;
+}
+
+.derived {
+  font-size: 0.78rem;
+  background: var(--red-soft);
+  display: inline-block;
+  padding: 0.15em 0.7em;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+.derived::before { content: "càlcul derivat "; }
+
+.note-box {
+  background: var(--paper-2);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  border-left: 4px solid var(--red-soft);
+}
+.note-box--warn { border-left-color: var(--navy); }
+
+/* ---------- Línies de separació amb traçat ---------- */
+.rule {
+  border: none;
+  border-top: 2px dashed var(--ink);
+  opacity: 0.35;
+  margin: var(--space-3) 0;
+}
+
+/* ---------- Interna ---------- */
+.gate {
+  text-align: center;
+  padding: var(--space-5) 0;
+}
+.gate form {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+.gate input {
+  font: inherit;
+  padding: 0.7em 1.2em;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink);
+  background: #fff;
+  min-width: 240px;
+}
+.gate-error { color: #fff; font-weight: 700; min-height: 1.4em; }
+
+.demo-banner {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 0.5em 1.2em;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.kanban { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-2); }
+.kanban__col {
+  background: var(--paper-2);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+.kanban__col h4 { margin-bottom: 0.8rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.kanban__item {
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.12);
+}
+.kanban__item strong { display: block; font-family: var(--font-display); }
+
+.tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.15em 0.6em; border-radius: var(--radius-pill); background: var(--sky); }
+.tag--red { background: var(--red-soft); }
+.tag--navy { background: var(--navy); color: #fff; }
+.tag--green { background: #b8d8be; }
+
+/* ---------- Cronologia ---------- */
+.tl { position: relative; margin-left: 1.1rem; padding-left: 1.6rem; border-left: 3px solid var(--ink); }
+.tl__item { margin-bottom: var(--space-3); position: relative; }
+.tl__item::before {
+  content: "";
+  position: absolute;
+  left: -2.15rem;
+  top: 0.4rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+}
+.tl__item--lluita::before { background: var(--red-soft); }
+.tl__item--danys::before { background: var(--sky); }
+.tl__item--corporatiu::before { background: var(--ink); }
+.tl__item--institucional::before { background: #b8d8be; }
+.tl__year { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; }
+
+/* ---------- Peu ---------- */
+.footer {
+  background: var(--navy);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) clamp(1rem, 4vw, 2.5rem);
+  margin-top: var(--space-5);
+}
+.footer a { color: #fff; opacity: 0.85; }
+.footer .pill { color: var(--navy); }
+
+/* ---------- Misc ---------- */
+.muted { color: rgba(0, 0, 0, 0.6); }
+.mono { font-family: ui-monospace, "Cascadia Mono", monospace; font-size: 0.85em; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }

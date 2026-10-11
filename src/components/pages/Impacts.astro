@@ -1,0 +1,509 @@
+---
+import Base from "../../layouts/Base.astro";
+import Bars from "../../components/charts/Bars.astro";
+import Pools from "../../components/charts/Pools.astro";
+import Discrepancy from "../../components/Discrepancy.astro";
+import {
+    water,
+    runams,
+    fgc,
+    publicMoney,
+    discrepancies,
+} from "../../data/indicators";
+import { tr, type Lang, type Bilingual } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const heroPill: Bilingual = {
+    ca: "Visualitzacions",
+    en: "Visualisations",
+};
+const pageTitle: Bilingual = { ca: "Danys", en: "Impacts" };
+const h1: Bilingual = {
+    ca: "Els danys, en xifres",
+    en: "The impacts, in figures",
+};
+const lede: Bilingual = {
+    ca: "Aigua, runams salins, trens de la complicitat, precarietat laboral i diners públics: l'impacte d'ICL al territori, explicat amb gràfics. Els càlculs propis van marcats com a derivats.",
+    en: "Water, salt dumps, the trains of complicity, labour precarity and public money: ICL's impact on the territory, told through charts. Our own calculations are flagged as derived.",
+};
+
+/* ---- AIGUA ---- */
+const aguaTitle: Bilingual = { ca: "L'aigua", en: "Water" };
+const aguaEyebrow: Bilingual = {
+    ca: "Concessió, potabilització i deute",
+    en: "Concession, treatment and debt",
+};
+const aguaH3: Bilingual = {
+    ca: "12,8 milions de m³ cada any",
+    en: "12.8 million m³ every year",
+};
+const aguaP1: Bilingual = {
+    ca: "La concessió de l'ACA a ICL (12,8 M m³/any) inclou 6,8 M m³ d'aigua ja tractada de la depuradora de Manresa que, en comptes de tornar al riu, aniria a mans d'ICL. La campanya ho resumeix: <strong>2,5 cops el consum de tota Manresa</strong>, més del que gasta anualment una ciutat de 233.000 habitants com Terrassa. <span class=\"derived\">consum de Manresa ≈ 5,1 M m³/any a partir de la proporció del manifest</span>.",
+    en: "The ACA's concession to ICL (12.8 Mm³/year) includes 6.8 Mm³ of already-treated water from the Manresa treatment plant that, instead of returning to the river, would go to ICL. The campaign sums it up: <strong>2.5 times the total consumption of Manresa</strong>, more than what a 233,000-inhabitant city like Terrassa uses every year. <span class=\"derived\">Manresa's consumption ≈ 5.1 Mm³/year from the manifesto ratio</span>.",
+};
+const aguaBars = {
+    a: t({
+        ca: {
+            label: "Concessió ACA a ICL",
+            note: "inclou els 6,8 M m³ de la depuradora",
+        },
+        en: {
+            label: "ACA concession to ICL",
+            note: "includes the 6.8 Mm³ from the treatment plant",
+        },
+    }),
+    b: t({
+        ca: { label: "Consum de Manresa", note: "càlcul derivat (12,8 ÷ 2,5)" },
+        en: { label: "Manresa's consumption", note: "derived (12.8 ÷ 2.5)" },
+    }),
+    c: t({
+        ca: {
+            label: "Depuradora de Manresa",
+            note: "aigua tractada desviada cap a ICL (dins de la concessió total)",
+        },
+        en: {
+            label: "Manresa treatment plant",
+            note: "treated water diverted to ICL (inside the total concession)",
+        },
+    }),
+};
+const phoenixTitle: Bilingual = {
+    ca: "I la restauració dels runams?",
+    en: "And restoring the salt dumps?",
+};
+const phoenixP: Bilingual = {
+    ca: `Requeriria <strong>${water.phoenix_baells} pantans sencers de la Baells</strong> (o ${water.phoenix_llosa} de la Llosa del Cavall), segons el dossier i el manifest del web. Mentrestant, la major part de l'aigua concedida s'usa per mantenir l'extracció.`,
+    en: `It would require <strong>${water.phoenix_baells} full Baells reservoirs</strong> (or ${water.phoenix_llosa} of La Llosa del Cavall), according to the dossier and the website's manifesto. Meanwhile, most of the granted water is used to keep extraction going.`,
+};
+const costsA: Bilingual = {
+    ca: "osmosi inversa a Abrera i Sant Joan Despí (2009) per dessalar el Llobregat",
+    en: "reverse osmosis at Abrera and Sant Joan Despí (2009) to desalinate the Llobregat",
+};
+const costsB: Bilingual = {
+    ca: "deute estimat de la salinització amb l'administració catalana",
+    en: "estimated salinisation debt to the Catalan administration",
+};
+const costsC: Bilingual = {
+    ca: "cada any: manteniment de la rasa i gestió de la salmorra",
+    en: "every year: ditch maintenance and brine management",
+};
+const aguaSrc: Bilingual = {
+    ca: "Dossier §Ús de l'aigua, §Potabilitzadores, §Runams · Manifest de boicoticl.org",
+    en: "Dossier §Water use, §Treatment plants, §Salt dumps · boicoticl.org manifesto",
+};
+
+/* ---- RUNAMS ---- */
+const runTitle: Bilingual = {
+    ca: "Les muntanyes de sal",
+    en: "The salt mountains",
+};
+const runEyebrow: Bilingual = {
+    ca: "Runams salins del Bages",
+    en: "Salt dumps of Bages",
+};
+const runH3: Bilingual = {
+    ca: "80 milions de tones exposades",
+    en: "80 million tonnes exposed",
+};
+const runP: Bilingual = {
+    ca: `ICL és responsable de <strong>${runams.count} runams</strong>. El Fusteret de Súria <strong>encara creix</strong>: rep permisos d'ampliació malgrat l'ordre penal de neutralitzar-lo. La sentència penal del <strong>${runams.sentence_year}</strong> va enviar a presó tres dirigents d'ICL i ordenava aturar l'abocament al Cogulló (Sallent) i restaurar-lo. Els runams continuen creixent.`,
+    en: `ICL is responsible for <strong>${runams.count} salt dumps</strong>. Súria's Fusteret <strong>still grows</strong>: it keeps receiving expansion permits despite the criminal order to neutralise it. The <strong>${runams.sentence_year}</strong> criminal ruling sent three ICL executives to prison and ordered dumping at Cogulló (Sallent) to stop and the dump to be restored. The dumps keep growing.`,
+};
+const runH4: Bilingual = {
+    ca: "Quant de temps falta per treure'ls?",
+    en: "How long until they're gone?",
+};
+const runBarsA: Bilingual = {
+    ca: { label: "Pla proposat", note: "retirada completa (proposta actual)" },
+    en: { label: "Proposed plan", note: "full removal (current proposal)" },
+};
+const runBarsB: Bilingual = {
+    ca: {
+        label: "Ritme real (Botjosa)",
+        note: "al ritme actual de restauració",
+    },
+    en: {
+        label: "Real pace (Botjosa)",
+        note: "at the current restoration pace",
+    },
+};
+const runNote: Bilingual = {
+    ca: `La fiança de ${runams.fianca_meur} M€ si no restaura és una «petitíssima part» del cost públic de retirar-ho més endavant, diu el dossier.`,
+    en: `The €${runams.fianca_meur}M bond if it fails to restore is a 'tiny fraction' of the future public cost of removal, says the dossier.`,
+};
+const runCostA: Bilingual = {
+    ca: "col·lector de salmorres (1988): portar la sal al mar",
+    en: "brine collector (1988): taking the salt to the sea",
+};
+const runCostB: Bilingual = {
+    ca: "nou col·lector previst funcional des del Cogulló, amb diners públics",
+    en: "new collector planned operational from Cogulló, with public money",
+};
+const runCostC: Bilingual = {
+    ca: "vessament del col·lector a Sant Joan de Vilatorrada",
+    en: "collector spill at Sant Joan de Vilatorrada",
+};
+
+/* ---- TRANSPORT ---- */
+const trTitle: Bilingual = {
+    ca: "Els trens de la complicitat",
+    en: "The trains of complicity",
+};
+const trEyebrow: Bilingual = {
+    ca: "FGC transporta la potassa cap al Port de Barcelona",
+    en: "FGC carries the potash to the Port of Barcelona",
+};
+const trBarsA: Bilingual = {
+    ca: { label: "2023", note: "any de l'escalada del genocidi" },
+    en: { label: "2023", note: "year of the genocide escalation" },
+};
+const trBarsB: Bilingual = {
+    ca: {
+        label: "2025",
+        note: "+45% segons la campanya (exacte: +49% [derivat])",
+    },
+    en: {
+        label: "2025",
+        note: "+45% per the campaign (exact: +49% [derived])",
+    },
+};
+const trH3: Bilingual = {
+    ca: "Un contracte de 30 anys amb una empresa pública",
+    en: "A 30-year contract with a public company",
+};
+const trP: Bilingual = {
+    ca: `Renovat el <strong>${fgc.contract_renewed}</strong> per <strong>${fgc.contract_years} anys</strong>: ${fgc.trains_per_day} trens diaris de ${fgc.wagons_per_train} vagons, 7 dies/setmana. FGC hi ha posat <strong>${fgc.investment_meur} M€</strong> en 5 locomotores i 66 vagons nous (en servei el 2023). La campanya anomena el recorregut <strong>«Línia Còmplice del Genocidi»</strong>: els trens de mercaderies comparteixen vies amb els passatgers de la línia Manresa–Barcelona.`,
+    en: `Renewed in <strong>${fgc.contract_renewed}</strong> for <strong>${fgc.contract_years} years</strong>: ${fgc.trains_per_day} daily trains of ${fgc.wagons_per_train} wagons, 7 days a week. FGC put <strong>€${fgc.investment_meur}M</strong> into 5 new locomotives and 66 wagons (in service in 2023). The campaign calls the route the <strong>'Genocide Complicity Line'</strong>: freight trains share tracks with passengers on the Manresa–Barcelona line.`,
+};
+const trP2: Bilingual = {
+    ca: "El 2020 ICL també va inaugurar la seva terminal al Port de Barcelona (7 ha, 14 m de calat), passant la capacitat de càrrega de vaixells de <strong>800.000 a 4 milions de tones</strong>.",
+    en: "In 2020 ICL also opened its own terminal at the Port of Barcelona (7 ha, 14 m draught), raising vessel loading capacity from <strong>800,000 to 4 million tonnes</strong>.",
+};
+const trSrc: Bilingual = {
+    ca: "Web /fgc/ · Dossier §ICL Iberia Barcelona Port",
+    en: "Web /fgc/ · Dossier §ICL Iberia Barcelona Port",
+};
+
+/* ---- LABORAL ---- */
+const labTitle: Bilingual = {
+    ca: "Laboral: morts i precarització",
+    en: "Labour: deaths & precarisation",
+};
+const labEyebrow: Bilingual = {
+    ca: "El xantatge de la plantilla",
+    en: "The workforce blackmail",
+};
+const labP: Bilingual = {
+    ca: "La campanya denuncia el sistema de <strong>primes de productivitat i subcontractacions</strong> com a eina de xantatge: la precarietat i la sinistralitat són el preu per mantenir els llocs de treball. Entre les demandes: preservació de la feina (plantilla i subcontractades) amb <strong>supervisió sindical</strong> de tot el procés de sortida d'ICL.",
+    en: "The campaign denounces the system of <strong>productivity bonuses and subcontracting</strong> as a tool of blackmail: precarity and injuries are the price of keeping the jobs. Among the demands: preserving employment (staff and subcontracted workers) with <strong>union oversight</strong> of the whole exit process.",
+};
+const labSrc: Bilingual = {
+    ca: "Dossier §Demandes · Manifest de boicoticl.org",
+    en: "Dossier §Demands · boicoticl.org manifesto",
+};
+
+/* ---- DINERS ---- */
+const moneyTitle: Bilingual = {
+    ca: "Els diners públics del desastre",
+    en: "Public money for the disaster",
+};
+const moneyEyebrow: Bilingual = {
+    ca: "Qui paga els residus d'ICL",
+    en: "Who pays for ICL's waste",
+};
+const moneyNote: Bilingual = {
+    ca: "A aquests 523 M€ caldria sumar-hi la despesa recurrent de la salmorra i el cost futur de la restauració si ICL marxa sense complir. El dossier també documenta els <strong>18 M€ del PERTE</strong> (projecte de bateries a Sallent, abandonat el desembre de 2025).",
+    en: "To these €523M you'd add the recurring brine cost and the future restoration bill if ICL leaves without complying. The dossier also documents the <strong>€18M PERTE grant</strong> (Sallent battery project, abandoned in December 2025).",
+};
+const moneySrc: Bilingual = {
+    ca: "Dossier §Potabilitzadores, §Runams, §Bateries · Web /fgc/",
+    en: "Dossier §Treatment plants, §Salt dumps, §Batteries · Web /fgc/",
+};
+
+/* ---- RECONCILE ---- */
+const recTitle: Bilingual = {
+    ca: "Xifres a reconciliar",
+    en: "Figures to reconcile",
+};
+const recEyebrow: Bilingual = {
+    ca: "Discrepàncies documentades",
+    en: "Documented discrepancies",
+};
+const stat10: Bilingual = {
+    ca: "morts laborals en 8 anys",
+    en: "workplace deaths in 8 years",
+};
+const stat10note: Bilingual = {
+    ca: "Manifest de boicoticl.org — el dossier parla de «diversos accidents mortals en les últimes dècades»",
+    en: "boicoticl.org manifesto — the dossier speaks of 'several fatal accidents in recent decades'",
+};
+const stat879: Bilingual = {
+    ca: "treballadors d'ICL Iberia (2024)",
+    en: "ICL Iberia workers (2024)",
+};
+const stat879note: Bilingual = {
+    ca: "segons el seu propi informe de responsabilitat corporativa",
+    en: "per its own corporate responsibility report",
+};
+const stat332: Bilingual = {
+    ca: "facturació a l'estat espanyol (2023)",
+    en: "billed in Spain (2023)",
+};
+const stat332note: Bilingual = {
+    ca: "l'empresa que més factura del Bages",
+    en: "the company billing the most in Bages",
+};
+---
+
+<Base title={t(pageTitle)}>
+    <section>
+        <span class="pill pill--ghost">{t(heroPill)}</span>
+        <h1>{t(h1)}</h1>
+        <p class="lede" set:html={t(lede)} />
+    </section>
+
+    <!-- AIGUA -->
+    <section class="section" id="aigua">
+        <div class="section-title">
+            <h2>{t(aguaTitle)}</h2>
+            <span class="eyebrow">{t(aguaEyebrow)}</span>
+        </div>
+        <div class="card">
+            <h3>{t(aguaH3)}</h3>
+            <p set:html={t(aguaP1)} />
+            <Bars
+                bars={[
+                    {
+                        label: aguaBars.a.label,
+                        value: water.icl_hm3,
+                        display: "12,8 M m³/any",
+                        note: aguaBars.a.note,
+                    },
+                    {
+                        label: aguaBars.b.label,
+                        value: 5.1,
+                        display: "≈ 5,1 M m³/any",
+                        note: aguaBars.b.note,
+                    },
+                    {
+                        label: aguaBars.c.label,
+                        value: water.depuradora_hm3,
+                        display: "6,8 M m³/any",
+                        note: aguaBars.c.note,
+                    },
+                ]}
+            />
+            <div style="display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center;margin-top:.8rem">
+                <Pools />
+                <div style="flex:1;min-width:260px">
+                    <h4 style="margin-top:0">{t(phoenixTitle)}</h4>
+                    <p set:html={t(phoenixP)} />
+                </div>
+            </div>
+            <div class="costs">
+                <div>
+                    <strong>122,7 M€</strong>
+                    <span>{t(costsA)}</span>
+                </div>
+                <div>
+                    <strong>&gt; 300 M€</strong>
+                    <span>{t(costsB)}</span>
+                </div>
+                <div>
+                    <strong>30–40 M€</strong>
+                    <span>{t(costsC)}</span>
+                </div>
+            </div>
+            <p class="src">{t(aguaSrc)}</p>
+        </div>
+    </section>
+
+    <!-- RUNAMS -->
+    <section class="section" id="runams">
+        <div class="section-title">
+            <h2>{t(runTitle)}</h2>
+            <span class="eyebrow">{t(runEyebrow)}</span>
+        </div>
+        <div class="card">
+            <div class="grid grid--2" style="align-items:center">
+                <div>
+                    <h3>{t(runH3)}</h3>
+                    <p set:html={t(runP)} />
+                </div>
+                <div>
+                    <h4>{t(runH4)}</h4>
+                    <Bars
+                        bars={[
+                            {
+                                label: t(runBarsA).label,
+                                value: runams.restoration_plan_years,
+                                display: `${runams.restoration_plan_years} anys`,
+                                note: t(runBarsA).note,
+                            },
+                            {
+                                label: t(runBarsB).label,
+                                value: runams.restoration_real_years,
+                                display: `${runams.restoration_real_years} anys`,
+                                note: t(runBarsB).note,
+                            },
+                        ]}
+                    />
+                    <p
+                        class="muted"
+                        style="font-size:.85rem"
+                        set:html={t(runNote)}
+                    />
+                </div>
+            </div>
+            <div class="costs">
+                <div>
+                    <strong>{runams.collector_km} km</strong>
+                    <span>{t(runCostA)}</span>
+                </div>
+                <div>
+                    <strong>{runams.new_collector_year}</strong>
+                    <span>{t(runCostB)}</span>
+                </div>
+                <div>
+                    <strong>2023</strong>
+                    <span>{t(runCostC)}</span>
+                </div>
+            </div>
+            <p class="src">
+                {t(runams.sources[0])} · {t(runams.sources[1])}
+            </p>
+        </div>
+    </section>
+
+    <!-- TRANSPORT -->
+    <section class="section" id="transit">
+        <div class="section-title">
+            <h2>{t(trTitle)}</h2>
+            <span class="eyebrow">{t(trEyebrow)}</span>
+        </div>
+        <div class="card">
+            <div class="grid grid--2" style="align-items:center">
+                <div>
+                    <Bars
+                        bars={[
+                            {
+                                label: t(trBarsA).label,
+                                value: 745,
+                                display: "745 trens/any",
+                                note: t(trBarsA).note,
+                            },
+                            {
+                                label: t(trBarsB).label,
+                                value: 1110,
+                                display: "1110 trens/any",
+                                note: t(trBarsB).note,
+                            },
+                        ]}
+                    />
+                </div>
+                <div>
+                    <h3>{t(trH3)}</h3>
+                    <p set:html={t(trP)} />
+                    <p set:html={t(trP2)} />
+                </div>
+            </div>
+            <p class="src">{t(trSrc)}</p>
+        </div>
+    </section>
+
+    <!-- LABORAL -->
+    <section class="section" id="laboral">
+        <div class="section-title">
+            <h2>{t(labTitle)}</h2>
+            <span class="eyebrow">{t(labEyebrow)}</span>
+        </div>
+        <div class="card">
+            <div class="grid grid--3">
+                <div class="stat">
+                    <span class="stat__value">10</span>
+                    <span class="stat__label">{t(stat10)}</span>
+                    <span class="stat__note">{t(stat10note)}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__value">879</span>
+                    <span class="stat__label">{t(stat879)}</span>
+                    <span class="stat__note">{t(stat879note)}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__value">332 M€</span>
+                    <span class="stat__label">{t(stat332)}</span>
+                    <span class="stat__note">{t(stat332note)}</span>
+                </div>
+            </div>
+            <p set:html={t(labP)} />
+            <p class="src">{t(labSrc)}</p>
+        </div>
+    </section>
+
+    <!-- DINERS PUBLICS -->
+    <section class="section" id="diners">
+        <div class="section-title">
+            <h2>{t(moneyTitle)}</h2>
+            <span class="eyebrow">{t(moneyEyebrow)}</span>
+        </div>
+        <div class="card">
+            <Bars
+                bars={publicMoney.map((m) => ({
+                    label: t(m.label),
+                    value: m.amount,
+                    display: `${m.amount} M€`,
+                    note: t(m.note),
+                }))}
+            />
+            <p class="muted" style="font-size:.88rem" set:html={t(moneyNote)} />
+            <p class="src">{t(moneySrc)}</p>
+        </div>
+    </section>
+
+    <!-- DISCREPÀNCIES -->
+    <section class="section">
+        <div class="section-title">
+            <h2>{t(recTitle)}</h2>
+            <span class="eyebrow">{t(recEyebrow)}</span>
+        </div>
+        {discrepancies.map((d) => (
+            <Discrepancy
+                title={t(d.topic)}
+                versions={d.versions.map((v) => ({
+                    value: t(v.value),
+                    source: v.source,
+                }))}
+                action={t(d.action)}
+            />
+        ))}
+    </section>
+</Base>
+
+<style>
+    .lede {
+        max-width: 52rem;
+        font-size: 1.05rem;
+    }
+    .costs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.4rem;
+    }
+    .costs div {
+        background: var(--paper-2);
+        border-radius: var(--radius-sm);
+        padding: 0.9rem 1.1rem;
+    }
+    .costs strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+    }
+    .costs span {
+        font-size: 0.85rem;
+        color: rgba(0, 0, 0, 0.65);
+    }
+</style>

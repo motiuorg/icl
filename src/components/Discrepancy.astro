@@ -1,0 +1,30 @@
+---
+// Caixa de discrepància / pendent — transparència de dades.
+interface Props { title: string; versions: { value: string; source: string }[]; action: string }
+const { title, versions, action } = Astro.props;
+---
+
+<div class="disc">
+  <h3>⚠ {title}</h3>
+  <ul>
+    {versions.map((v) => (
+      <li><strong>{v.value}</strong> <em>({v.source})</em></li>
+    ))}
+  </ul>
+  <p class="disc__action">{action}</p>
+</div>
+
+<style>
+  .disc {
+    background: var(--paper-2);
+    border: 2px dashed var(--ink);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.3rem;
+    margin-top: var(--space-2);
+    font-size: 0.92rem;
+  }
+  .disc h3 { font-size: 0.95rem; margin: 0 0 0.4em; }
+  .disc ul { margin: 0 0 0.5em; padding-left: 1.2em; }
+  .disc li { margin-bottom: 0.3em; }
+  .disc__action { margin: 0; font-size: 0.85rem; color: rgba(0,0,0,.7); }
+</style>

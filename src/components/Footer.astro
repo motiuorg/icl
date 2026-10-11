@@ -1,0 +1,148 @@
+---
+import { tr, type Lang } from "../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const slogan = t({
+    ca: "Aturem el genocidi, aturem l'ecocidi",
+    en: "Stop the genocide, stop the ecocide",
+});
+const about = t({
+    ca: "Campanya del Bages contra la multinacional ICL, en el marc del BDS. Complement de boicoticl.org.",
+    en: "Campaign from Bages against the ICL multinational, within the BDS framework. Complement to boicoticl.org.",
+});
+const contactTitle = t({ ca: "Contacte", en: "Contact" });
+const linksTitle = t({ ca: "Enllaços", en: "Links" });
+const researchLink = t({
+    ca: "Investigació (web actual)",
+    en: "Research (current site)",
+});
+const meta = t({
+    ca: "Prototip de sistema de coneixement i coordinació — versió per discutir amb la campanya.",
+    en: "Prototype of a knowledge & coordination system — version to discuss with the campaign.",
+});
+const internalLink = t({
+    ca: "Capa interna (demo)",
+    en: "Internal layer (demo)",
+});
+---
+
+<style>
+    .foot {
+        background: var(--navy);
+        color: #fff;
+        border-radius: var(--radius-lg);
+        max-width: var(--content);
+        margin: var(--space-5) auto var(--space-4);
+        padding: var(--space-4) clamp(1rem, 4vw, 2.5rem);
+        position: relative;
+        overflow: hidden;
+    }
+    .foot::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse 60% 45% at 80% 110%,
+                rgba(255, 255, 255, 0.14),
+                transparent 70%
+            ),
+            radial-gradient(
+                ellipse 40% 30% at 15% 120%,
+                rgba(255, 255, 255, 0.1),
+                transparent 70%
+            );
+        pointer-events: none;
+    }
+    .foot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: var(--space-3);
+        position: relative;
+        z-index: 1;
+    }
+    .foot h3 {
+        color: #fff;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+    .foot ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0.9rem;
+    }
+    .foot li {
+        margin-bottom: 0.45em;
+    }
+    .foot .slogan {
+        margin-top: var(--space-3);
+        text-align: center;
+    }
+    .foot .pill {
+        color: var(--navy);
+        background: #fff;
+        font-size: 0.85rem;
+    }
+    .foot .meta {
+        font-size: 0.78rem;
+        opacity: 0.65;
+        margin-top: var(--space-2);
+        text-align: center;
+    }
+</style>
+
+<footer class="foot">
+    <div class="foot-grid">
+        <div>
+            <h3>Boicot ICL</h3>
+            <p style="font-size: 0.92rem; margin: 0">{about}</p>
+        </div>
+        <div>
+            <h3>{contactTitle}</h3>
+            <ul>
+                <li>
+                    ✉️{" "}
+                    <a href="mailto:boicoticl@proton.me">boicoticl@proton.me</a>
+                </li>
+                <li>
+                    𝕏 <a href="https://x.com/boicotIcl">@boicotIcl</a>
+                </li>
+                <li>
+                    📷{" "}
+                    <a href="https://www.instagram.com/boicot_icl">
+                        @boicot_icl
+                    </a>
+                </li>
+                <li>
+                    ✈️ <a href="https://t.me/BoicotICL">@BoicotICL</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3>{linksTitle}</h3>
+            <ul>
+                <li>
+                    <a href="https://boicoticl.org/investigacio/">
+                        {researchLink}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://boicoticl.org/fgc/">Campanya FGC</a>
+                </li>
+                <li>
+                    <a href={lang === "en" ? "/en/intern/" : "/intern/"}>
+                        {internalLink}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="slogan">
+        <span class="pill">{slogan}</span>
+    </div>
+    <p class="meta">{meta}</p>
+</footer>

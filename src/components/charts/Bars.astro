@@ -1,0 +1,32 @@
+---
+// Barres comparatives amb escala (SVG estàtic, sense JS).
+// width: amplada del gràfic (treballa amb viewBox 0 0 600 H).
+interface Bar { label: string; value: number; display: string; note?: string; muted?: boolean }
+interface Props { bars: Bar[]; unit?: string; highlight?: number; }
+
+const { bars, unit = "", highlight } = Astro.props;
+const W = 600;
+const max = Math.max(...bars.map((b) => b.value));
+const rowH = 62;
+const H = bars.length * rowH + 20;
+const chartW = 360;
+const x0 = 150;
+
+function barW(v: number) { return (v / max) * chartW; }
+---
+
+<svg viewBox={`0 0 ${W} ${H}`} role="img" style="width:100%;height:auto" class="chart">
+  {bars.map((b, i) => {
+    const y = i * rowH + 10;
+    return (
+      <>
+        <text x={x0 - 10} y={y + 12} text-anchor="end" font-size="13" font-weight="700" font-family="inherit">{b.label}</text>
+        <rect x={x0} y={y} width={barW(b.value)} height={26} rx="7" fill={i === highlight ? "var(--red-bright)" : "var(--sky)"} stroke="var(--ink)" stroke-width="1.6" />
+        <text x={x0 + barW(b.value) + 8} y={y + 19} font-size="13" font-weight="800" font-family="inherit">
+          {b.display}{unit}
+        </text>
+        {b.note && <text x={x0} y={y + 44} font-size="10.5" fill="rgba(0,0,0,.6)">{b.note}</text>}
+      </>
+    );
+  })}
+</svg>

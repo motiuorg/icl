@@ -1,0 +1,28 @@
+/* Tokens — sistema de disseny inspirat en boicoticl.org (tema Koinonia) */
+:root {
+  --red-page: #ff3535;
+  --red-bright: #ff0000;
+  --red-soft: #ff7272;
+  --navy: #003857;
+  --sky: #d1deeb;
+  --paper: #fbfbfb;
+  --paper-2: #f5f2f2;
+  --ink: #000000;
+  --line: rgba(0, 0, 0, 0.16);
+
+  --radius-lg: 35px;
+  --radius-md: 25px;
+  --radius-sm: 14px;
+  --radius-pill: 100px;
+
+  --font-display: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Figtree Variable", Figtree, system-ui, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+
+  --content: 1120px;
+}

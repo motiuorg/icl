@@ -1,0 +1,36 @@
+---
+// Interruptor de llengua (CA | EN) — cantonada superior dreta de la navegació.
+import { otherLocaleHref, type Lang } from "../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const other = lang === "ca" ? "en" : "ca";
+const href = otherLocaleHref(lang, Astro.url.pathname);
+---
+
+<div class="toggle" role="group" aria-label="Idioma / Language">
+  <a href={lang === "en" ? href : undefined} class:list={{ "is-off": lang === "en", "is-current": lang === "ca" }} aria-current={lang === "ca" ? "true" : undefined}>CA</a>
+  <a href={lang === "ca" ? href : undefined} class:list={{ "is-off": lang === "ca", "is-current": lang === "en" }} aria-current={lang === "en" ? "true" : undefined}>EN</a>
+</div>
+
+<style>
+  .toggle {
+    display: inline-flex;
+    border-radius: var(--radius-pill);
+    background: rgba(0, 0, 0, 0.08);
+    padding: 3px;
+    margin-left: 0.4rem;
+  }
+  .toggle a {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 0.34em 0.95em;
+    border-radius: var(--radius-pill);
+    color: var(--ink);
+  }
+  .toggle a.is-current { background: var(--ink); color: #fff; }
+  .toggle a.is-off { opacity: 0.55; }
+  .toggle a.is-off:hover { opacity: 1; background: rgba(0, 0, 0, 0.09); }
+</style>

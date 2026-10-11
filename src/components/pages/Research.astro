@@ -1,0 +1,135 @@
+---
+import Base from "../../layouts/Base.astro";
+import { documents, dossiersSources } from "../../data/documents";
+import { tr, type Lang, type Bilingual } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const heroPill: Bilingual = {
+    ca: "Biblioteca de la campanya",
+    en: "The campaign library",
+};
+const pageTitle: Bilingual = { ca: "Recerca", en: "Research" };
+const h1: Bilingual = {
+    ca: "La recerca, a un clic",
+    en: "The research, one click away",
+};
+const lede: Bilingual = {
+    ca: 'Els documents que sostenen el boicot, registrats amb el seu contingut i el seu estat. Els originals es descarreguen des de <a href="https://boicoticl.org/investigacio/">boicoticl.org/investigacio</a>.',
+    en: 'The documents behind the boycott, registered with their content and status. Originals download from <a href="https://boicoticl.org/investigacio/">boicoticl.org/investigacio</a>.',
+};
+const fullTag: Bilingual = {
+    ca: "text complet a la KB",
+    en: "full text in the KB",
+};
+const pendingTag: Bilingual = { ca: "text pendent", en: "text pending" };
+const downloadCta: Bilingual = {
+    ca: "Descarregar-lo des del web actual →",
+    en: "Download it from the current website →",
+};
+const otherTitle: Bilingual = {
+    ca: "Altres materials documentats",
+    en: "Other documented materials",
+};
+const otherItems: Bilingual[] = [
+    {
+        ca: "<strong>Carta a FGC</strong> amb les 4 exigències (campanya FGC) + cartells icl-fgc1 / icl-fgc2 / V2",
+        en: "<strong>Letter to FGC</strong> with the 4 demands (FGC campaign) + posters icl-fgc1 / icl-fgc2 / V2",
+    },
+    {
+        ca: "<strong>Documental «Sal a la ferida»</strong> — 40′, direcció Lee Beritutti, amb suport d'El Salto",
+        en: "<strong>Documentary 'Salt in the wound'</strong> — 40′, directed by Lee Beritutti, supported by El Salto",
+    },
+    {
+        ca: "<strong>Cançó «Boicot ICL»</strong> — INCENDI KIF",
+        en: "<strong>'Boicot ICL' song</strong> — INCENDI KIF",
+    },
+    {
+        ca: "<strong>Fonts del dossier</strong>:",
+        en: "<strong>Dossier sources</strong>:",
+    },
+];
+const readerNote: Bilingual = {
+    ca: "El lector en línia del dossier (text complet cercable) arriba en una propera versió del prototip.",
+    en: "The online reader for the dossier (full searchable text) arrives in a future version of the prototype.",
+};
+---
+
+<Base title={t(pageTitle)}>
+    <section>
+        <span class="pill pill--ghost">{t(heroPill)}</span>
+        <h1>{t(h1)}</h1>
+        <p class="lede" set:html={t(lede)} />
+    </section>
+
+    <section class="section">
+        <div class="grid grid--2">
+            {documents.map((d) => (
+                <article class="card doc">
+                    <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center">
+                        <span class="tag tag--navy">{t(d.type)}</span>
+                        <span class="tag">{d.lang}</span>
+                        {d.status === "full" ? (
+                            <span class="tag tag--green">{t(fullTag)}</span>
+                        ) : (
+                            <span class="tag tag--red">{t(pendingTag)}</span>
+                        )}
+                    </div>
+                    <h2 style="font-size:1.25rem;margin:.7em 0 .3em">
+                        {d.title}
+                    </h2>
+                    <p
+                        class="muted"
+                        style="font-size:.85rem;margin-bottom:.8em"
+                    >
+                        {d.author} · {d.year} · {d.lang}
+                    </p>
+                    <p>{t(d.summary)}</p>
+                    <div class="note-box">{t(d.statusNote)}</div>
+                    <p style="margin-top:1em">
+                        <a
+                            class="btn btn--soft"
+                            href={d.link}
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            {t(downloadCta)}
+                        </a>
+                    </p>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <h2>{t(otherTitle)}</h2>
+            <ul>
+                {otherItems.map((item) => (
+                    <li set:html={t(item)} />
+                ))}
+            </ul>
+            <p class="muted" style="font-size:.85rem;margin:0">
+                {t(readerNote)}
+            </p>
+        </div>
+    </section>
+</Base>
+
+<style>
+    .lede {
+        max-width: 52rem;
+        font-size: 1.05rem;
+    }
+    .doc {
+        display: flex;
+        flex-direction: column;
+    }
+    .doc p {
+        font-size: 0.95rem;
+    }
+    .doc .note-box {
+        font-size: 0.85rem;
+    }
+</style>

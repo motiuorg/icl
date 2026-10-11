@@ -1,0 +1,361 @@
+---
+import Base from "../../layouts/Base.astro";
+import StatGrid from "../../components/StatGrid.astro";
+import TimelineStrip from "../../components/charts/TimelineStrip.astro";
+import Discrepancy from "../../components/Discrepancy.astro";
+import { kpis, discrepancies } from "../../data/indicators";
+import { campaigns } from "../../data/campaigns";
+import { localizeHref, tr, type Lang, type Bilingual } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const heroPill: Bilingual = {
+    ca: "Aturem el genocidi, aturem l'ecocidi",
+    en: "Stop the genocide, stop the ecocide",
+};
+const h1a: Bilingual = {
+    ca: "L'estat de la lluita,",
+    en: "The state of the fight,",
+};
+const h1b: Bilingual = {
+    ca: "en dades",
+    en: "in data",
+};
+const lede: Bilingual = {
+    ca: "Des del Bages, dècades de lluita contra la mineria de potassa d'ICL: el riu Llobregat salinitzat, les muntanyes de sal que creixen, una comarca que es defensa. Aquest prototip complementa <a href=\"https://boicoticl.org\">boicoticl.org</a>: una mirada visual a l'estat de la lluita — i un espai intern per coordinar-la.",
+    en: 'From Bages, decades of struggle against ICL\'s potash mining: a salinised Llobregat river, salt mountains that keep growing, a region that defends itself. This prototype complements <a href="https://boicoticl.org">boicoticl.org</a>: a visual look at the state of the fight — and an internal space to coordinate it.',
+};
+const cta: Bilingual = {
+    ca: ["Veure els danys", "La recerca", "🔒 Capa interna"],
+    en: ["See the impacts", "The research", "🔒 Internal layer"],
+};
+const kpiTitle: Bilingual = {
+    ca: "Les xifres del conflicte",
+    en: "The figures of the conflict",
+};
+const kpiEyebrow: Bilingual = {
+    ca: "6 indicadors clau",
+    en: "6 key indicators",
+};
+const kpiSrc: Bilingual = {
+    ca: "Dades: dossier de la campanya (nov. 2025) i boicoticl.org.",
+    en: "Data: campaign dossier (Nov 2025) and boicoticl.org.",
+};
+const frontsTitle: Bilingual = {
+    ca: "Els fronts de la lluita",
+    en: "The fronts of the struggle",
+};
+const frontsEyebrow: Bilingual = {
+    ca: "4 fronts · una sola empresa",
+    en: "4 fronts · one single company",
+};
+const fronts: {
+    tag: Bilingual;
+    title: Bilingual;
+    text: Bilingual;
+    link: Bilingual;
+    href: string;
+}[] = [
+    {
+        tag: { ca: "Territori", en: "Territory" },
+        title: { ca: "Rius i runams", en: "Rivers & salt dumps" },
+        text: {
+            ca: "4 runams salins, >80 milions de tones exposades. El Fusteret creix malgrat l'ordre penal. El Llobregat abeura Barcelona: la salinització és un problema de país.",
+            en: "4 salt dumps, over 80 million tonnes exposed. Fusteret keeps growing despite the criminal order. The Llobregat supplies Barcelona: salinisation is a country-scale problem.",
+        },
+        link: { ca: "Les dades →", en: "The data →" },
+        href: "/danys/#runams",
+    },
+    {
+        tag: { ca: "Aigua", en: "Water" },
+        title: { ca: "L'acaparament", en: "The water grab" },
+        text: {
+            ca: "12,8 M m³/any concedits per l'ACA — 2,5 cops el consum de Manresa, més que el de Terrassa. La restauració dels runams costaria 3 pantans de la Baells.",
+            en: "12.8 Mm³/year granted by the ACA — 2.5 times Manresa's consumption, more than Terrassa's. Restoring the dumps would cost 3 Baells reservoirs.",
+        },
+        link: { ca: "Les dades →", en: "The data →" },
+        href: "/danys/#aigua",
+    },
+    {
+        tag: { ca: "Laboral", en: "Labour" },
+        title: { ca: "Morts i precarietat", en: "Deaths & precarity" },
+        text: {
+            ca: "10 morts laborals en 8 anys. Subcontractació i primes de productivitat com a xantatge: les treballadores, ostatges del model.",
+            en: "10 workplace deaths in 8 years. Subcontracting and productivity bonuses used as blackmail: workers held hostage by the model.",
+        },
+        link: { ca: "Les dades →", en: "The data →" },
+        href: "/danys/#laboral",
+    },
+    {
+        tag: { ca: "Palestina", en: "Palestine" },
+        title: { ca: "La complicitat", en: "The complicity" },
+        text: {
+            ca: "ICL aporta l'1,2% del PIB israelià, «adopta» regiments, comercialitza fòsfor blanc (filial EUA). FGC hi posa els trens: 745 → 1110.",
+            en: "ICL provides 1.2% of Israel's GDP, 'adopts' regiments, trades white phosphorus (US subsidiary). FGC provides the trains: 745 → 1,110.",
+        },
+        link: { ca: "Les dades →", en: "The data →" },
+        href: "/danys/#transit",
+    },
+];
+const winsTitle: Bilingual = {
+    ca: "La lluita avança",
+    en: "The fight is advancing",
+};
+const winsEyebrow: Bilingual = {
+    ca: "Victòries documentades (2024–2025)",
+    en: "Documented wins (2024–2025)",
+};
+const wins: Bilingual[] = [
+    {
+        ca: "🎭 <strong>Teatre Kursaal de Manresa</strong> — talla vincles amb ICL",
+        en: "🎭 <strong>Teatre Kursaal de Manresa</strong> — cuts ties with ICL",
+    },
+    {
+        ca: "🎓 <strong>UManresa</strong> (Universitat de Vic) — talla vincles amb ICL",
+        en: "🎓 <strong>UManresa</strong> (Vic University) — cuts ties with ICL",
+    },
+    {
+        ca: "🌉 <strong>Barcelona–Tel-Aviv</strong> — s'ha trencat l'agermanament",
+        en: "🌉 <strong>Barcelona–Tel Aviv</strong> — twinning broken",
+    },
+    {
+        ca: "🏛️ <strong>Departament d'Acció de la Generalitat</strong> — oficines tancades a Israel",
+        en: "🏛️ <strong>Generalitat's Action Department</strong> — office closed in Israel",
+    },
+    {
+        ca: "📄 <strong>ICL admet el risc del boicot</strong> al seu informe financer de 2022",
+        en: "📄 <strong>ICL admits boycott risk</strong> in its 2022 financial report",
+    },
+];
+const winsMuted: Bilingual = {
+    ca: "Manifestació a Manresa, setembre 2025 · Concentració davant el Kursaal, març 2025.",
+    en: "Demonstration in Manresa, September 2025 · Rally outside the Kursaal, March 2025.",
+};
+const winsSrc: Bilingual = {
+    ca: "Font: Dossier informatiu Boicot ICL (nov. 2025)",
+    en: "Source: Boicot ICL info dossier (Nov 2025)",
+};
+const timelineCta: Bilingual = {
+    ca: "Cronologia completa",
+    en: "Full timeline",
+};
+const discTitle: Bilingual = {
+    ca: "Transparència de dades",
+    en: "Data transparency",
+};
+const discEyebrow: Bilingual = {
+    ca: "Xifres a reconciliar amb la campanya",
+    en: "Figures to reconcile with the campaign",
+};
+const campTitle: Bilingual = {
+    ca: "Campanyes en curs",
+    en: "Ongoing campaigns",
+};
+const campEyebrow: Bilingual = {
+    ca: "Estat i demandes",
+    en: "Status & demands",
+};
+const campMore: Bilingual = {
+    ca: "Veure la campanya →",
+    en: "See the campaign →",
+};
+const intTitle: Bilingual = {
+    ca: "Per a qui coordina la lluita: la capa interna",
+    en: "For those coordinating the fight: the internal layer",
+};
+const intText: Bilingual = {
+    ca: "Tauler d'accions, cua de revisió d'evidències, agenda i registre de distribuïdores — pensat per als actors de confiança. Aquest prototip és una demo amb porta fictícia; l'accés real es decidirà amb la campanya.",
+    en: "Action board, evidence review queue, agenda and distributor registry — designed for trusted actors. This prototype is a demo with a fake gate; real access will be decided with the campaign.",
+};
+const intCta: Bilingual = { ca: "Entrar a la demo →", en: "Enter the demo →" };
+const pageTitle: Bilingual = {
+    ca: "Estat de la lluita",
+    en: "The state of the fight",
+};
+---
+
+<Base title={t(pageTitle)}>
+    <!-- Hero -->
+    <section class="hero">
+        <span class="pill pill--ghost">{t(heroPill)}</span>
+        <h1>
+            {t(h1a)} <em>{t(h1b)}</em>
+        </h1>
+        <p class="hero__lede" set:html={t(lede)} />
+        <div class="hero__cta">
+            <a class="btn btn--soft" href={localizeHref(lang, "/danys/")}>
+                {t(cta)[0]}
+            </a>
+            <a class="btn" href={localizeHref(lang, "/recerca/")}>
+                {t(cta)[1]}
+            </a>
+            <a
+                class="btn"
+                href={localizeHref(lang, "/intern/")}
+                style="background:var(--sky);color:var(--ink)"
+            >
+                {t(cta)[2]}
+            </a>
+        </div>
+    </section>
+
+    <!-- KPIs -->
+    <section class="section">
+        <div class="section-title">
+            <h2>{t(kpiTitle)}</h2>
+            <span class="eyebrow">{t(kpiEyebrow)}</span>
+        </div>
+        <StatGrid stats={kpis} />
+        <p class="src">{t(kpiSrc)}</p>
+    </section>
+
+    <!-- Fronts -->
+    <section class="section">
+        <div class="section-title">
+            <h2>{t(frontsTitle)}</h2>
+            <span class="eyebrow">{t(frontsEyebrow)}</span>
+        </div>
+        <div class="grid grid--4">
+            {fronts.map((f) => (
+                <div class="card front">
+                    <span class="tag tag--red">{t(f.tag)}</span>
+                    <h3>{t(f.title)}</h3>
+                    <p>{t(f.text)}</p>
+                    <a href={localizeHref(lang, f.href)}>{t(f.link)}</a>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Victòries + línia del temps -->
+    <section class="section">
+        <div class="section-title">
+            <h2>{t(winsTitle)}</h2>
+            <span class="eyebrow">{t(winsEyebrow)}</span>
+        </div>
+        <div class="card">
+            <ul class="wins">
+                {wins.map((w) => (
+                    <li set:html={t(w)} />
+                ))}
+            </ul>
+            <hr class="rule" />
+            <p class="muted" style="margin-bottom:.4em">
+                {t(winsMuted)}
+            </p>
+            <p class="src">{t(winsSrc)}</p>
+        </div>
+        <TimelineStrip />
+        <p>
+            <a class="btn btn--soft" href={localizeHref(lang, "/cronologia/")}>
+                {t(timelineCta)}
+            </a>
+        </p>
+    </section>
+
+    <!-- Discrepàncies -->
+    <section class="section">
+        <div class="section-title">
+            <h2>{t(discTitle)}</h2>
+            <span class="eyebrow">{t(discEyebrow)}</span>
+        </div>
+        <div class="grid grid--2">
+            {discrepancies.map((d) => (
+                <Discrepancy
+                    title={t(d.topic)}
+                    versions={d.versions.map((v) => ({
+                        value: t(v.value),
+                        source: v.source,
+                    }))}
+                    action={t(d.action)}
+                />
+            ))}
+        </div>
+    </section>
+
+    <!-- Campanyes teaser -->
+    <section class="section">
+        <div class="section-title">
+            <h2>{t(campTitle)}</h2>
+            <span class="eyebrow">{t(campEyebrow)}</span>
+        </div>
+        <div class="grid grid--2">
+            {campaigns.map((c) => (
+                <div class="card">
+                    <span class="pill">{t(c.status)}</span>
+                    <h3 style="margin-top:.6em">{c.name}</h3>
+                    <p>{t(c.tagline)}</p>
+                    <a href={localizeHref(lang, "/campanyes/")}>
+                        {t(campMore)}
+                    </a>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- CTA interna -->
+    <section class="section">
+        <div class="card" style="background:var(--ink);color:#fff">
+            <h2 style="color:#fff">{t(intTitle)}</h2>
+            <p style="opacity:.85">{t(intText)}</p>
+            <a class="btn btn--soft" href={localizeHref(lang, "/intern/")}>
+                {t(intCta)}
+            </a>
+        </div>
+    </section>
+</Base>
+
+<style>
+    .hero {
+        padding: var(--space-3) 0 var(--space-2);
+        color: #fff;
+    }
+    .hero h1 {
+        color: #fff;
+        margin: 0.5em 0 0.4em;
+    }
+    .hero h1 em {
+        font-style: italic;
+        color: var(--red-soft);
+    }
+    .hero__lede {
+        max-width: 46rem;
+        font-size: 1.12rem;
+        opacity: 0.95;
+    }
+    .hero__lede a {
+        color: #fff;
+        font-weight: 700;
+    }
+    .hero__cta {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        margin-top: var(--space-3);
+    }
+    .front {
+        display: flex;
+        flex-direction: column;
+    }
+    .front h3 {
+        margin: 0.6em 0 0.3em;
+    }
+    .front p {
+        font-size: 0.92rem;
+        flex: 1;
+    }
+    .wins {
+        margin: 0 0 0.4em;
+        padding: 0;
+        list-style: none;
+    }
+    .wins li {
+        padding: 0.45em 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 1.02rem;
+    }
+    .wins li:last-child {
+        border-bottom: none;
+    }
+</style>

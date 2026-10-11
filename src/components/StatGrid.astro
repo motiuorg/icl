@@ -1,0 +1,22 @@
+---
+import type { Stat } from "../data/indicators";
+import { kpis } from "../data/indicators";
+import { tr, type Lang } from "../i18n/utils";
+
+interface Props {
+    stats?: Stat[];
+}
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+const items = Astro.props.stats ?? kpis;
+---
+
+<div class="grid grid--3">
+    {items.map((s) => (
+        <div class="stat">
+            <span class="stat__value">{s.value}</span>
+            <span class="stat__label">{t(s.label)}</span>
+            <span class="stat__note">{t(s.note)}</span>
+        </div>
+    ))}
+</div>

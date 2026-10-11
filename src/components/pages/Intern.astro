@@ -1,0 +1,325 @@
+---
+import Base from "../../layouts/Base.astro";
+import {
+    actions,
+    evidenceQueue,
+    distributors,
+    agenda,
+} from "../../data/intern";
+import { tr, type Lang, type Bilingual } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const gatePill: Bilingual = {
+    ca: "🔒 Capa interna — demo",
+    en: "🔒 Internal layer — demo",
+};
+const gateH1: Bilingual = {
+    ca: "Coordinació de la campanya",
+    en: "Campaign coordination",
+};
+const gateText: Bilingual = {
+    ca: "Aquest prototip mostra com funcionaria l'espai intern per als actors de confiança. És una demo: la contrasenya és pública i la seguretat real es decidirà amb la campanya.",
+    en: "This prototype shows what the internal space for trusted actors could look like. It's a demo: the password is public and real security will be decided with the campaign.",
+};
+const gatePh: Bilingual = {
+    ca: "Contrasenya de demo: icl-2026",
+    en: "Demo password: icl-2026",
+};
+const gateBtn: Bilingual = { ca: "Entrar", en: "Enter" };
+const gateErr: Bilingual = {
+    ca: "Contrasenya incorrecta — prova amb la de demo.",
+    en: "Wrong password — try the demo one.",
+};
+const gateHint: Bilingual = {
+    ca: "(contrasenya de demo: ",
+    en: "(demo password: ",
+};
+
+const openPill: Bilingual = {
+    ca: "🔓 Espai intern — demo",
+    en: "🔓 Internal space — demo",
+};
+const openTitle: Bilingual = { ca: "Coordinació", en: "Coordination" };
+const demoBanner: Bilingual = { ca: "DADES DE DEMOSTRACIÓ", en: "DEMO DATA" };
+const demoNote: Bilingual = {
+    ca: "cap dada d'aquesta pàgina és real; només il·lustra la forma del sistema. L'accés real i les dades veritables es definiran amb la campanya.",
+    en: "no data on this page is real; it only illustrates the system's shape. Real access and real data will be defined with the campaign.",
+};
+
+const agendaTitle: Bilingual = { ca: "Agenda", en: "Agenda" };
+const agendaEyebrow: Bilingual = {
+    ca: "Pròximes convocatòries",
+    en: "Upcoming calls",
+};
+const agendaH = [
+    t({ ca: "Data", en: "Date" }),
+    t({ ca: "Què", en: "What" }),
+    t({ ca: "On", en: "Where" }),
+];
+
+const boardTitle: Bilingual = { ca: "Tauler d'accions", en: "Action board" };
+const boardEyebrow: Bilingual = {
+    ca: "Per campanya, amb responsable",
+    en: "By campaign, with owner",
+};
+const boardCols: Bilingual[] = [
+    { ca: "En curs", en: "In progress" },
+    { ca: "Fetes", en: "Done" },
+    { ca: "Bloquejades", en: "Blocked" },
+];
+
+const evTitle: Bilingual = {
+    ca: "Cua de revisió d'evidències",
+    en: "Evidence review queue",
+};
+const evEyebrow: Bilingual = {
+    ca: "De la font a la publicació",
+    en: "From source to publication",
+};
+const evIntro: Bilingual = {
+    ca: "Cada afirmació que la campanya vol publicar passa per aquest circuit: nova → en revisió → publicada. Així les xifres del web sempre tenen una font verificada per algú del grup.",
+    en: "Every claim the campaign wants to publish goes through this circuit: new → under review → published. That way the website's figures always have a source verified by someone in the group.",
+};
+const evH = [
+    t({ ca: "Afirmació", en: "Claim" }),
+    t({ ca: "Font", en: "Source" }),
+    t({ ca: "Estat", en: "Status" }),
+    t({ ca: "Per", en: "By" }),
+];
+const evTags: Record<string, Bilingual> = {
+    publicada: { ca: "Publicada", en: "Published" },
+    revisio: { ca: "En revisió", en: "Under review" },
+    nova: { ca: "Nova", en: "New" },
+};
+
+const distTitle: Bilingual = { ca: "Distribuïdores", en: "Distributors" };
+const distEyebrow: Bilingual = {
+    ca: "Registre de contactes (campanya Distribuïdores)",
+    en: "Contact registry (Distributors campaign)",
+};
+const distIntro: Bilingual = {
+    ca: "La taula del web de la campanya (proposta-distris) quedarà aquí, darrere la porta: telèfons i correus no són públics.",
+    en: "The table from the campaign website (proposta-distris) will live here, behind the gate: phones and emails are not public.",
+};
+const distH = [
+    t({ ca: "Nom", en: "Name" }),
+    t({ ca: "Ciutat", en: "City" }),
+    t({ ca: "Telèfon", en: "Phone" }),
+    t({ ca: "Correu", en: "Email" }),
+    t({ ca: "Nota", en: "Note" }),
+];
+---
+
+<Base
+    title={t({
+        ca: "Intern — coordinació (demo)",
+        en: "Internal — coordination (demo)",
+    })}
+>
+    <!-- Porta de demostració -->
+    <section class="gate" data-gate>
+        <div data-gate-locked>
+            <span class="pill">{t(gatePill)}</span>
+            <h1 style="margin-top:.6em">{t(gateH1)}</h1>
+            <p class="muted" style="max-width:34rem;margin:0 auto">
+                {t(gateText)}
+            </p>
+            <form>
+                <input
+                    type="password"
+                    placeholder={t(gatePh)}
+                    autocomplete="off"
+                />
+                <button class="btn" type="submit">
+                    {t(gateBtn)}
+                </button>
+            </form>
+            <p class="gate-error" data-gate-error data-err={t(gateErr)}></p>
+            <p class="muted" style="font-size:.85rem">
+                {t(gateHint)}
+                <span class="mono">icl-2026</span>)
+            </p>
+        </div>
+    </section>
+
+    <!-- Contingut -->
+    <div data-gated hidden>
+        <section>
+            <span class="pill">{t(openPill)}</span>
+            <h1>{t(openTitle)}</h1>
+            <p class="muted" style="max-width:52rem">
+                <span class="demo-banner">{t(demoBanner)}</span> {t(demoNote)}
+            </p>
+        </section>
+
+        <!-- Agenda -->
+        <section class="section">
+            <div class="section-title">
+                <h2>{t(agendaTitle)}</h2>
+                <span class="eyebrow">{t(agendaEyebrow)}</span>
+            </div>
+            <div class="card">
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>{agendaH[0]}</th>
+                                <th>{agendaH[1]}</th>
+                                <th>{agendaH[2]}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {agenda.map((a) => (
+                                <tr>
+                                    <td>
+                                        <strong>{a.date}</strong>
+                                    </td>
+                                    <td>{t(a.title)}</td>
+                                    <td>{t(a.place)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tauler d'accions -->
+        <section class="section">
+            <div class="section-title">
+                <h2>{t(boardTitle)}</h2>
+                <span class="eyebrow">{t(boardEyebrow)}</span>
+            </div>
+            <div class="kanban">
+                <div class="kanban__col">
+                    <h4>{t(boardCols[0])}</h4>
+                    {actions
+                        .filter((a) => a.status === "en-curs")
+                        .map((a) => (
+                            <div class="kanban__item">
+                                <strong>{t(a.title)}</strong>
+                                <span class="tag tag--red">
+                                    {t(a.campaign)}
+                                </span>{" "}
+                                · {t(a.owner)} · {t(a.due)}
+                            </div>
+                        ))}
+                </div>
+                <div class="kanban__col">
+                    <h4>{t(boardCols[1])}</h4>
+                    {actions
+                        .filter((a) => a.status === "feta")
+                        .map((a) => (
+                            <div class="kanban__item">
+                                <strong>✅ {t(a.title)}</strong>
+                                <span class="tag tag--green">
+                                    {t(a.campaign)}
+                                </span>{" "}
+                                · {t(a.owner)}
+                            </div>
+                        ))}
+                </div>
+                <div class="kanban__col">
+                    <h4>{t(boardCols[2])}</h4>
+                    {actions
+                        .filter((a) => a.status === "bloquejada")
+                        .map((a) => (
+                            <div class="kanban__item">
+                                <strong>⚠ {t(a.title)}</strong>
+                                <span class="tag">{t(a.campaign)}</span> ·{" "}
+                                {t(a.owner)}
+                            </div>
+                        ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Cua d'evidències -->
+        <section class="section">
+            <div class="section-title">
+                <h2>{t(evTitle)}</h2>
+                <span class="eyebrow">{t(evEyebrow)}</span>
+            </div>
+            <div class="card">
+                <p style="font-size:.92rem">{t(evIntro)}</p>
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>{evH[0]}</th>
+                                <th>{evH[1]}</th>
+                                <th>{evH[2]}</th>
+                                <th>{evH[3]}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {evidenceQueue.map((e) => (
+                                <tr>
+                                    <td>{t(e.claim)}</td>
+                                    <td class="muted">{e.source}</td>
+                                    <td>
+                                        {e.status === "publicada" && (
+                                            <span class="tag tag--green">
+                                                {t(evTags.publicada)}
+                                            </span>
+                                        )}
+                                        {e.status === "revisio" && (
+                                            <span class="tag tag--red">
+                                                {t(evTags.revisio)}
+                                            </span>
+                                        )}
+                                        {e.status === "nova" && (
+                                            <span class="tag">
+                                                {t(evTags.nova)}
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td>{t(e.by)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Distribuïdores -->
+        <section class="section">
+            <div class="section-title">
+                <h2>{t(distTitle)}</h2>
+                <span class="eyebrow">{t(distEyebrow)}</span>
+            </div>
+            <div class="card">
+                <p class="muted" style="font-size:.88rem">
+                    {t(distIntro)}
+                </p>
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>{distH[0]}</th>
+                                <th>{distH[1]}</th>
+                                <th>{distH[2]}</th>
+                                <th>{distH[3]}</th>
+                                <th>{distH[4]}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {distributors.map((d) => (
+                                <tr>
+                                    <td>{t(d.name)}</td>
+                                    <td>{t(d.city)}</td>
+                                    <td class="mono">{d.phone}</td>
+                                    <td class="mono">{d.email}</td>
+                                    <td class="muted">{t(d.note)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</Base>

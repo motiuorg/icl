@@ -1,0 +1,109 @@
+---
+import Base from "../../layouts/Base.astro";
+import { campaigns, talks } from "../../data/campaigns";
+import { tr, type Lang, type Bilingual } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const heroPill: Bilingual = { ca: "On som i on anem", en: "Where we are, where we're going" };
+const pageTitle: Bilingual = { ca: "Campanyes", en: "Campaigns" };
+const h1: Bilingual = { ca: "Campanyes en curs", en: "Ongoing campaigns" };
+const lede: Bilingual = {
+  ca: "L'estat de cada campanya, les seves demandes i les victòries documentades. Enllaços al web actual per a materials i convocatòries.",
+  en: "The state of each campaign, its demands and its documented wins. Links to the current website for materials and calls to action.",
+};
+const objectivesH: Bilingual = { ca: "Objectius", en: "Objectives" };
+const dataH: Bilingual = { ca: "Dades clau", en: "Key data" };
+const actionsH: Bilingual = { ca: "Accions", en: "Actions" };
+const winsH: Bilingual = { ca: "Victòries", en: "Wins" };
+const materialsH: Bilingual = { ca: "Materials", en: "Materials" };
+const talksTitle: Bilingual = { ca: "Cicle de xerrades", en: "Talk series" };
+const talksSrc: Bilingual = { ca: "Font: boicoticl.org/xerrades", en: "Source: boicoticl.org/xerrades" };
+---
+
+<Base title={t(pageTitle)}>
+  <section>
+    <span class="pill pill--ghost">{t(heroPill)}</span>
+    <h1>{t(h1)}</h1>
+    <p class="lede">{t(lede)}</p>
+  </section>
+
+  <section class="section">
+    {campaigns.map((c, i) => (
+      <article class="card camp" id={c.slug}>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center">
+          <span class="pill">{t(c.status)}</span>
+          <span class="muted" style="font-size:.85rem">{c.source}</span>
+        </div>
+        <h2 style="margin:.5em 0 .2em">{c.name}</h2>
+        <p class="camp__tagline">{t(c.tagline)}</p>
+
+        <div class="camp__cols">
+          <div>
+            <h4>{t(objectivesH)}</h4>
+            <ul>
+              {c.objectives.map((o) => <li>{t(o)}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h4>{t(dataH)}</h4>
+            <ul>
+              {c.data.map((d) => <li>{t(d)}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        {(c.actions.length > 0 || c.wins.length > 0) && (
+          <div class="camp__cols">
+            {c.actions.length > 0 && (
+              <div>
+                <h4>{t(actionsH)}</h4>
+                <ul>{c.actions.map((a) => <li>{t(a)}</li>)}</ul>
+              </div>
+            )}
+            {c.wins.length > 0 && (
+              <div>
+                <h4>{t(winsH)}</h4>
+                <ul>{c.wins.map((w) => <li>✅ {t(w)}</li>)}</ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        <h4 style="margin-top:1em">{t(materialsH)}</h4>
+        <p style="margin:0">
+          {c.materials.map((m) => (
+            <span class="pill" style="margin:0 .4em .4em 0">{t(m)}</span>
+          ))}
+        </p>
+        {i < campaigns.length - 1 && <hr class="rule" />}
+      </article>
+    ))}
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h2>{t(talksTitle)}</h2>
+      <div class="grid grid--2" style="margin-top:1rem">
+        {talks.map((talk) => (
+          <div>
+            <h3 style="font-size:1.05rem">{t(talk.title)}</h3>
+            <p class="muted" style="font-size:.9rem">{t(talk.speakers)}</p>
+            <p style="font-size:.92rem">{t(talk.topics)}</p>
+          </div>
+        ))}
+      </div>
+      <p class="muted" style="font-size:.85rem;margin:0">{t(talksSrc)}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lede { max-width: 52rem; font-size: 1.05rem; }
+  .camp__tagline { font-size: 1.08rem; font-weight: 600; }
+  .camp__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.6rem 2rem; }
+  .camp__cols h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 1em 0 0.3em; }
+  .camp__cols ul { margin: 0; padding-left: 1.1em; font-size: 0.93rem; }
+  .camp__cols li { margin-bottom: 0.3em; }
+</style>

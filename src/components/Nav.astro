@@ -1,0 +1,147 @@
+---
+import { localizeHref, tr, type Lang } from "../i18n/utils";
+import LangToggle from "./LangToggle.astro";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const links = [
+    { path: "/", label: t({ ca: "Inici", en: "Home" }) },
+    { path: "/danys/", label: t({ ca: "Danys", en: "Impacts" }) },
+    { path: "/recerca/", label: t({ ca: "Recerca", en: "Research" }) },
+    { path: "/cronologia/", label: t({ ca: "Cronologia", en: "Timeline" }) },
+    { path: "/campanyes/", label: t({ ca: "Campanyes", en: "Campaigns" }) },
+    { path: "/actors/", label: t({ ca: "Actors", en: "Actors" }) },
+    {
+        path: "/intern/",
+        label: t({ ca: "Intern", en: "Internal" }),
+        lock: true,
+    },
+];
+
+const current = Astro.url.pathname;
+const demoLabel = t({ ca: "prototip", en: "prototype" });
+---
+
+<style>
+    .nav-wrap {
+        position: sticky;
+        top: 14px;
+        z-index: 50;
+        padding: 0 clamp(1rem, 4vw, 2.5rem);
+        margin: 14px 0 26px;
+    }
+    .nav {
+        max-width: var(--content);
+        margin: 0 auto;
+        background: var(--sky);
+        border-radius: var(--radius-md);
+        padding: 0.55rem 0.9rem 0.55rem 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.18);
+    }
+    .brand {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.15rem;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        white-space: nowrap;
+    }
+    .brand .logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .menu a {
+        font-family: var(--font-display);
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        text-decoration: none;
+        padding: 0.5em 0.8em;
+        border-radius: var(--radius-pill);
+        color: var(--ink);
+    }
+    .menu a:hover {
+        background: rgba(0, 0, 0, 0.08);
+    }
+    .menu a.is-active {
+        background: var(--ink);
+        color: #fff;
+    }
+    .menu a.is-lock {
+        color: var(--navy);
+    }
+    .demo-chip {
+        font-size: 0.68rem;
+        font-weight: 800;
+        background: var(--red-bright);
+        color: #fff;
+        border-radius: var(--radius-pill);
+        padding: 0.2em 0.7em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+</style>
+
+<div class="nav-wrap">
+    <nav class="nav" aria-label="Principal">
+        <a class="brand" href={localizeHref(lang, "/")}>
+            <span class="logo">✊</span>
+            Boicot ICL <span class="demo-chip">{demoLabel}</span>
+        </a>
+        <div class="right">
+            <ul class="menu">
+                {links.map((l) => {
+                    const href = localizeHref(lang, l.path);
+                    const active = current === href;
+                    return (
+                        <li>
+                            <a
+                                href={href}
+                                class:list={{
+                                    "is-active": active,
+                                    "is-lock": l.lock,
+                                }}
+                                aria-current={active ? "page" : undefined}
+                            >
+                                {l.lock ? "🔒 " : ""}
+                                {l.label}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+            <LangToggle />
+        </div>
+    </nav>
+</div>
