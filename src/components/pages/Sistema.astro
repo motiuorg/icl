@@ -4,7 +4,7 @@ import Base from "../../layouts/Base.astro";
 import SystemDiagram from "../charts/SystemDiagram.astro";
 import BeforeAfter from "../charts/BeforeAfter.astro";
 import { PROJECT_NAME, PROJECT_TAGLINE } from "../../config/project";
-import { assetHref, tr, type Lang, type Bilingual } from "../../i18n/utils";
+import { tr, type Lang, type Bilingual } from "../../i18n/utils";
 import homeCa from "../../assets/proof/home-ca.png";
 import homeEn from "../../assets/proof/home-en.png";
 import impactsCa from "../../assets/proof/impacts-ca.png";
@@ -46,7 +46,6 @@ const ctaRead: Bilingual = {
     ca: "Llegeix el resum de dues pàgines",
     en: "Read the two-pager",
 };
-const ctaPdf: Bilingual = { ca: "Descarrega el PDF", en: "Download PDF" };
 const workingName: Bilingual = {
     ca: "Nom de treball",
     en: "Working name",
@@ -398,7 +397,6 @@ const printFoot: Bilingual = {
     ca: "Fet per Motiu · proposta experimental, no oficial de Boicot ICL · motiu.org",
     en: "Made by Motiu · experimental proposal, not an official Boicot ICL space · motiu.org",
 };
-const pdfHref = assetHref(`/downloads/sistema-${lang}.pdf`);
 ---
 
 <Base title={t(pageTitle)} desc={t(pageDesc)}>
@@ -411,7 +409,6 @@ const pdfHref = assetHref(`/downloads/sistema-${lang}.pdf`);
         </p>
         <div class="hero__cta no-print">
             <a class="btn btn--soft" href="#two-pager">{t(ctaRead)}</a>
-            <a class="btn" href={pdfHref} download>{t(ctaPdf)}</a>
         </div>
     </section>
 

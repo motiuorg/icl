@@ -3,7 +3,7 @@
 // Cal executar-ho sense sandbox. Després: npm run build perquè el PDF entri a dist/.
 const { chromium } = require('playwright');
 const BASE = process.env.BASE || 'http://localhost:4321';
-const OUT = process.env.OUT || 'public/downloads';
+const OUT = process.env.OUT || 'public/downloads'; // crear la carpeta abans; els PDF ja no es publiquen
 const pages = { ca: '/sistema/', en: '/en/sistema/' };
 (async () => {
   const b = await chromium.launch();

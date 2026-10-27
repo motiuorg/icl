@@ -31,7 +31,7 @@ Full de ruta: Catalunya / Vall del Bages = primera instància i prova → punt d
 - No s'afirma cap durada de construcció del prototip: els 4 commits van del 2026-10-11 14:03 al 14:25 (+0200), però són dates de *commit*, no de treball real.
 - «14 pàgines» = 7 seccions × 2 llengües (sortida del build abans d'afegir `sistema`; el build actual en dóna 16). El mapa de relacions d'actors **no** existeix encara: la pàgina diu «fitxes d'actors».
 - Captures reals del build a `src/assets/proof/` (CA i EN, generades amb `screens/proof.cjs`). La de la capa interna es fa amb la demo desbloquejada via `sessionStorage`; no hi apareix cap contrasenya.
-- PDF: `public/downloads/sistema-{ca,en}.pdf`, 2 pàgines A4 cadascun (verificat amb `screens/pdfcheck.py`; PyMuPDF no instal·lat, s'usa pypdf). `screens/pdf.cjs` usa el Chromium de Playwright perquè puppeteer no hi és (mateixa API `page.pdf`).
+- **PDF retirat (2026-10-27, a petició de Giulio):** no hi ha botó ni fitxers a `public/downloads/`; es comparteix la pàgina web. L'estil d'impressió (`@media print`, 2 pàgines A4) i `screens/pdf.cjs` es mantenen per si es vol regenerar. Detall tècnic anterior: `public/downloads/sistema-{ca,en}.pdf`, 2 pàgines A4 cadascun (verificat amb `screens/pdfcheck.py`; PyMuPDF no instal·lat, s'usa pypdf). `screens/pdf.cjs` usa el Chromium de Playwright perquè puppeteer no hi és (mateixa API `page.pdf`).
 
 ## 3. Opcions de nom
 
