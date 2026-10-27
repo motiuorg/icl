@@ -7,22 +7,22 @@ const lang = (Astro.currentLocale ?? "ca") as Lang;
 const t = tr(lang);
 
 const L = {
-    beforeTitle: t({ ca: "Dossier en PDF", en: "PDF dossier" }),
+    beforeTitle: t({ ca: "Materials dispersos", en: "Scattered material" }),
     afterTitle: t({
         ca: "Web viu, amb fonts i bilingüe",
         en: "Live, sourced, bilingual site",
     }),
     beforeList: t({
-        ca: ["Un fitxer estàtic", "Difícil d'actualitzar", "Cada idioma, un document"],
-        en: ["One static file", "Hard to keep current", "Each language, a separate file"],
+        ca: ["Documents i dades per separat", "Difícil d'actualitzar", "Cada idioma, un document"],
+        en: ["Documents and data apart", "Hard to keep current", "Each language, a separate file"],
     }),
     afterList: t({
         ca: ["Es corregeix i es publica en minuts", "Cada xifra amb la seva font", "CA i EN al mateix lloc"],
         en: ["Fix and republish in minutes", "Every figure with its source", "CA and EN in one place"],
     }),
     beforeDesc: t({
-        ca: "Esquema genèric d'un document PDF: blocs de text gris i una imatge.",
-        en: "Generic schematic of a PDF document: grey text blocks and one image.",
+        ca: "Esquema genèric d'un document: blocs de text gris i una imatge.",
+        en: "Generic schematic of a document: grey text blocks and one image.",
     }),
     afterDesc: t({
         ca: "Esquema d'un web: gràfic de barres, línia del temps i una etiqueta de font.",
