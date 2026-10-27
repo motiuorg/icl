@@ -30,6 +30,18 @@ const cta: Bilingual = {
     ca: ["Veure els danys", "La recerca", "🔒 Capa interna"],
     en: ["See the impacts", "The research", "🔒 Internal layer"],
 };
+const ctxPill: Bilingual = {
+    ca: "Aquest prototip, en context",
+    en: "This prototype, in context",
+};
+const ctxText: Bilingual = {
+    ca: "Boicot ICL és la primera prova d'una idea més gran: un kit de campanya obert i reutilitzable per a territoris que planten cara a multinacionals. És una proposta de Motiu per recollir opinions, no una iniciativa de la campanya.",
+    en: "Boicot ICL is the first test of a bigger idea: an open, reusable campaign kit for territories fighting multinationals. It is a proposal by Motiu, shared to collect feedback, not a campaign initiative.",
+};
+const ctxCta: Bilingual = {
+    ca: "Llegeix la proposta →",
+    en: "Read the proposal →",
+};
 const kpiTitle: Bilingual = {
     ca: "Les xifres del conflicte",
     en: "The figures of the conflict",
@@ -200,6 +212,13 @@ const pageTitle: Bilingual = {
         </div>
     </section>
 
+    <!-- Aquest prototip, en context -->
+    <section class="ctx">
+        <span class="pill pill--navy">{t(ctxPill)}</span>
+        <p>{t(ctxText)}</p>
+        <a class="btn" href={localizeHref(lang, "/sistema/")}>{t(ctxCta)}</a>
+    </section>
+
     <!-- KPIs -->
     <section class="section">
         <div class="section-title">
@@ -333,6 +352,21 @@ const pageTitle: Bilingual = {
         gap: 0.9rem;
         flex-wrap: wrap;
         margin-top: var(--space-3);
+    }
+    .ctx {
+        background: var(--sky);
+        border-radius: var(--radius-md);
+        padding: 1rem 1.3rem;
+        margin-top: var(--space-3);
+        display: flex;
+        align-items: center;
+        gap: 1rem 1.2rem;
+        flex-wrap: wrap;
+    }
+    .ctx p {
+        flex: 1 1 24rem;
+        margin: 0;
+        font-size: 0.95rem;
     }
     .front {
         display: flex;

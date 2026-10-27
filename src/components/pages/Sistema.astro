@@ -1,0 +1,998 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import SystemDiagram from "../charts/SystemDiagram.astro";
+import BeforeAfter from "../charts/BeforeAfter.astro";
+import { PROJECT_NAME, PROJECT_TAGLINE } from "../../config/project";
+import { assetHref, tr, type Lang, type Bilingual } from "../../i18n/utils";
+import homeCa from "../../assets/proof/home-ca.png";
+import homeEn from "../../assets/proof/home-en.png";
+import impactsCa from "../../assets/proof/impacts-ca.png";
+import impactsEn from "../../assets/proof/impacts-en.png";
+import timelineCa from "../../assets/proof/timeline-ca.png";
+import timelineEn from "../../assets/proof/timeline-en.png";
+import internalCa from "../../assets/proof/internal-ca.png";
+import internalEn from "../../assets/proof/internal-en.png";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const MOTIU = '<a href="https://motiu.org">Motiu</a>';
+const BOICOT = '<a href="https://boicoticl.org">boicoticl.org</a>';
+
+const pageTitle: Bilingual = {
+    ca: "Proposta de sistema",
+    en: "System proposal",
+};
+const pageDesc: Bilingual = {
+    ca: "Proposta experimental de Motiu: un kit de campanya obert i reutilitzable per a territoris que planten cara a multinacionals. Per recollir opinions.",
+    en: "Experimental proposal by Motiu: an open, reusable campaign kit for territories fighting multinationals. Shared to collect feedback.",
+};
+
+// ---------- Hero ----------
+const badge: Bilingual = {
+    ca: "Proposta · de Motiu · no és un espai oficial de la campanya",
+    en: "Proposal · by Motiu · not an official campaign space",
+};
+const h1: Bilingual = {
+    ca: "Del dossier d'una lluita a un kit de campanya que qualsevol territori pot reutilitzar.",
+    en: "From one struggle's dossier to a campaign kit any territory can reuse.",
+};
+const sub: Bilingual = {
+    ca: "Una proposta per convertir el prototip de Boicot ICL en un sistema obert i reutilitzable per a comunitats que planten cara a multinacionals que fan mal al seu territori. La compartim d'hora, per saber què en penseu abans de construir res.",
+    en: "A proposal to turn the Boicot ICL prototype into an open, reusable system for communities fighting multinationals that damage their land. Shared early, to get your feedback before anything is built.",
+};
+const ctaRead: Bilingual = {
+    ca: "Llegeix el resum de dues pàgines",
+    en: "Read the two-pager",
+};
+const ctaPdf: Bilingual = { ca: "Descarrega el PDF", en: "Download PDF" };
+const workingName: Bilingual = {
+    ca: "Nom de treball",
+    en: "Working name",
+};
+
+const honesty: Bilingual = {
+    ca: `<strong>Llegiu això primer.</strong> És una proposta experimental de ${MOTIU}. No és un espai oficial de la campanya i Boicot ICL no l'ha avalada. El web propi de la campanya és ${BOICOT}. Fem servir IA per redactar i muntar; res no es publica sense font i una persona revisa cada xifra. No sabem si ja existeix una eina equivalent: una fase de recerca forma part de la proposta.`,
+    en: `<strong>Read this first.</strong> This is an experimental proposal by ${MOTIU}. It is not an official campaign space and Boicot ICL has not endorsed it. The campaign's own site is ${BOICOT}. AI is used for drafting and assembly; nothing is published without a source, and a person checks every figure. We do not know whether an equivalent tool already exists: a research phase is part of the proposal.`,
+};
+
+// ---------- 1. Problema ----------
+const problemTitle: Bilingual = { ca: "El problema", en: "The problem" };
+const problemEyebrow: Bilingual = { ca: "Per què", en: "Why" };
+const problemText: Bilingual = {
+    ca: "Les lluites llargues contra grans empreses les sostenen persones voluntàries amb PDF, grups de xat i fulls de càlcul. Les proves estan disperses. El relat públic costa de mantenir al dia. I el que un moviment aprèn al llarg dels anys rarament arriba al territori següent.",
+    en: "Long struggles against big companies are fought by volunteers with PDFs, group chats and spreadsheets. Evidence is scattered. The public story is hard to keep current. And what a movement learns over years rarely travels to the next territory.",
+};
+
+// ---------- 2. Prova ----------
+const proofTitle: Bilingual = {
+    ca: "La prova: què ja existeix",
+    en: "The proof: what already exists",
+};
+const proofEyebrow: Bilingual = { ca: "El prototip d'ICL", en: "The ICL prototype" };
+const proofIntro: Bilingual = {
+    ca: `El prototip de Boicot ICL, fet per ${MOTIU} a partir del dossier públic de la campanya. És el que esteu mirant.`,
+    en: `The Boicot ICL prototype, built by ${MOTIU} on top of the campaign's public dossier. It is what you are looking at.`,
+};
+const proofList: Bilingual<string[]> = {
+    ca: [
+        "7 seccions en 2 llengües: 14 pàgines",
+        "Visualitzacions de dades amb font",
+        "Una biblioteca de recerca",
+        "Una cronologia de la lluita",
+        "Fitxes d'actors (el mapa de relacions encara està per fer)",
+        "Una capa interna de coordinació, de demostració i amb dades falses",
+        "Una regla: cada xifra cita la seva font i els càlculs propis es marquen com a derivats",
+    ],
+    en: [
+        "7 sections in 2 languages: 14 pages",
+        "Sourced data visualisations",
+        "A research library",
+        "A struggle timeline",
+        "Actor profiles (the relationship map is still to do)",
+        "A demo internal coordination layer, with fake data",
+        "One rule: every figure cites its source, and our own calculations are marked as derived",
+    ],
+};
+const shots = [
+    {
+        img: { ca: homeCa, en: homeEn },
+        alt: { ca: "Pàgina d'inici del prototip: «L'estat de la lluita, en dades».", en: "Prototype home page: “The state of the fight, in data”." },
+        cap: { ca: "Inici: l'estat de la lluita, en dades.", en: "Home: the state of the fight, in data." },
+    },
+    {
+        img: { ca: impactsCa, en: impactsEn },
+        alt: { ca: "Pàgina de gràfics amb la secció dels runams de sal i una barra comparativa.", en: "Chart page showing the salt dumps section with a comparison bar chart." },
+        cap: { ca: "Gràfics: runams de sal, amb la font sota cada xifra.", en: "Charts: the salt dumps, with the source under each figure." },
+    },
+    {
+        img: { ca: timelineCa, en: timelineEn },
+        alt: { ca: "Pàgina de la cronologia amb esdeveniments per any.", en: "Timeline page listing events by year." },
+        cap: { ca: "Cronologia: només fets documentats.", en: "Timeline: documented facts only." },
+    },
+    {
+        img: { ca: internalCa, en: internalEn },
+        alt: { ca: "Capa interna de demostració amb l'agenda i el tauler d'accions.", en: "Demo internal layer showing the agenda and the action board." },
+        cap: { ca: "Capa interna: dades de demostració, no reals.", en: "Internal layer: demo data, not real." },
+    },
+];
+
+// ---------- 3. Sistema ----------
+const sysTitle: Bilingual = {
+    ca: "El sistema: tres capes",
+    en: "The system: three layers",
+};
+const sysEyebrow: Bilingual = { ca: "La idea", en: "The idea" };
+const sysIntro: Bilingual = {
+    ca: "Un kit obert i reutilitzable que permet a una comunitat passar d'una pila de PDF i grups de xat a un web públic, bilingüe i amb fonts, i a un espai de coordinació intern. Barat, repetible, amb la IA fent el muntatge lent i persones verificant cada afirmació. El més interessant és combinar les dues primeres capes.",
+    en: "A reusable, open kit that lets a community go from a pile of PDFs and group chats to a sourced, bilingual public website and an internal coordination space. Cheap and repeatable, with AI doing the slow assembly and humans verifying every claim. The interesting part is combining the first two layers.",
+};
+const layers: { tag: Bilingual; title: Bilingual; text: Bilingual; status: Bilingual }[] = [
+    {
+        tag: { ca: "Capa 1 · frontend", en: "Layer 1 · frontend" },
+        title: { ca: "Kit públic", en: "Public kit" },
+        text: {
+            ca: "Un web de campanya a mida, ràpid i barat de muntar, que posa l'accent en el que vol cada grup. Visualitzacions de dades, biblioteca de recerca, cronologia de la lluita i mapa d'actors. El prototip d'ICL n'és la primera instància.",
+            en: "A custom campaign website, quick and cheap to set up, that emphasises what each group wants. Data visualisations, a research library, a struggle timeline and actor mapping. The ICL prototype is the first instance.",
+        },
+        status: { ca: "Existeix com a prototip", en: "Exists as a prototype" },
+    },
+    {
+        tag: { ca: "Capa 2 · backend", en: "Layer 2 · backend" },
+        title: { ca: "Capa interna", en: "Internal layer" },
+        text: {
+            ca: "Una plataforma privada de coordinació: tauler d'accions, cua de revisió d'evidències, agenda i contactes. Al prototip és una demo amb dades falses. L'accés real encara s'ha de decidir amb cada campanya.",
+            en: "A private coordination platform: action board, evidence review queue, agenda and contacts. In the prototype it is a demo with fake data. Real access control is still to be decided with each campaign.",
+        },
+        status: { ca: "Demo avui", en: "Demo today" },
+    },
+    {
+        tag: { ca: "Capa 3 · obert", en: "Layer 3 · open" },
+        title: { ca: "Playbook obert", en: "Open playbook" },
+        text: {
+            ca: "El procés, les plantilles i els prompts, documentats i publicats perquè altres grups el puguin reproduir sense Motiu. És el que fa que això sigui més gran que ICL.",
+            en: "The process, templates and prompts, documented and published so other groups can reproduce it without Motiu. This is what makes it bigger than ICL.",
+        },
+        status: { ca: "Per escriure", en: "To be written" },
+    },
+];
+const aiTitle: Bilingual = { ca: "Com hi encaixa la IA", en: "How AI fits" };
+const aiText: Bilingual = {
+    ca: "La IA fa la feina lenta: passar un dossier en PDF a text estructurat, redactar esborranys de pàgines, proposar gràfics. Les persones decideixen. <strong>Res no es publica sense font, i una persona revisa cada xifra.</strong> Per què ara: la pila són sobretot eines que ja existeixen, així que els diners i la feina van a muntar, provar, difondre i documentar. Es podria fer amb eines 100% de codi obert i sense gran tecnològiques; la fase 1 no és puritana a propòsit (vegeu els principis).",
+    en: "AI does the slow work: turning a PDF dossier into structured text, drafting pages, proposing charts. People decide. <strong>Nothing is published without a source, and a person checks every figure.</strong> Why now: the stack is mostly existing tools, so money and work go into assembling, testing, promoting and documenting. It could be done with fully open-source tools and no big tech; phase 1 is deliberately not purist (see the principles).",
+};
+const baTitle: Bilingual = { ca: "Abans i després", en: "Before and after" };
+
+// ---------- 4. Principis ----------
+const prinTitle: Bilingual = { ca: "Principis", en: "Principles" };
+const prinEyebrow: Bilingual = { ca: "Com volem treballar", en: "How we want to work" };
+const principles: { title: Bilingual; text: Bilingual }[] = [
+    {
+        title: { ca: "Obert per defecte", en: "Open by default" },
+        text: {
+            ca: "Proposta, oberta a opinió: codi sota AGPL-3.0; playbook i documentació sota CC BY-SA 4.0. El contingut de cada campanya continua sent de la campanya.",
+            en: "Proposed, open to feedback: code under AGPL-3.0; playbook and docs under CC BY-SA 4.0. Campaign content stays the campaign's.",
+        },
+    },
+    {
+        title: { ca: "Fonts abans que afirmacions", en: "Sources before claims" },
+        text: {
+            ca: "Res no es publica sense font. Els càlculs propis es marquen com a derivats.",
+            en: "Nothing goes up without a source. Our own calculations are marked as derived.",
+        },
+    },
+    {
+        title: { ca: "La campanya decideix què es diu en el seu nom", en: "The campaign decides what is said in its name" },
+        text: {
+            ca: "Nosaltres fem l'eina, no el missatge.",
+            en: "We build the tool, not the message.",
+        },
+    },
+    {
+        title: { ca: "Les dades es queden amb les campanyes", en: "Data stays with the campaigns" },
+        text: {
+            ca: "Cada campanya és propietària de les seves dades i en controla l'ús i l'allotjament.",
+            en: "Each campaign owns its data and controls its use and hosting.",
+        },
+    },
+    {
+        title: { ca: "Primer pragmàtics, després oberts", en: "Pragmatic first, open later" },
+        text: {
+            ca: "A la fase 1 provem amb el que funcioni i anotem cada eina triada. L'objectiu és una pila totalment oberta, amb models de pes obert inclosos, per a qui ho exigeixi.",
+            en: "In phase 1 we test with whatever works and log each tooling choice. The goal is a fully open stack, including open-weight models, for those who require it.",
+        },
+    },
+];
+
+// ---------- 5. Panorama ----------
+const landTitle: Bilingual = {
+    ca: "Què existeix, i què creiem que és nou",
+    en: "What exists, and what we think is new",
+};
+const landEyebrow: Bilingual = { ca: "Panorama honest", en: "An honest landscape" };
+const doesLabel: Bilingual = { ca: "Fa", en: "Does" };
+const notLabel: Bilingual = { ca: "No cobreix", en: "Doesn't cover" };
+const land: { name: string; href: string; does: Bilingual; not: Bilingual }[] = [
+    {
+        name: "EJAtlas",
+        href: "https://ejatlas.org",
+        does: {
+            ca: "Un atles col·laboratiu que documenta i cartografia conflictes ambientals a tot el món.",
+            en: "A collaborative atlas that documents and maps environmental conflicts worldwide.",
+        },
+        not: {
+            ca: "Que sapiguem, no dóna a cada campanya el seu web ni un espai de coordinació.",
+            en: "As far as we know, it gives a campaign neither its own site nor a coordination space.",
+        },
+    },
+    {
+        name: "CiviCRM",
+        href: "https://civicrm.org",
+        does: {
+            ca: "CRM de codi obert (AGPL-3.0) per a grups d'incidència i entitats sense ànim de lucre: contactes, esdeveniments, campanyes, peticions, enviaments.",
+            en: "Open-source (AGPL-3.0) CRM for advocacy and non-profit groups: contacts, events, campaigns, petitions, mailings.",
+        },
+        not: {
+            ca: "No és una biblioteca d'evidències ni un web públic de dades.",
+            en: "Not an evidence library or a public data site.",
+        },
+    },
+    {
+        name: "Mobilizon",
+        href: "https://joinmobilizon.org",
+        does: {
+            ca: "Plataforma federada (AGPL) per organitzar esdeveniments i grups.",
+            en: "Federated platform (AGPL) for organising events and groups.",
+        },
+        not: {
+            ca: "Serveix per trobar-se, no per documentar un conflicte amb fonts.",
+            en: "Built for gathering people, not for documenting a conflict with sources.",
+        },
+    },
+    {
+        name: "Action Network",
+        href: "https://actionnetwork.org",
+        does: {
+            ca: "Eines per correu per a peticions, esdeveniments, recaptació i contacte amb càrrecs electes.",
+            en: "Email-driven tools for petitions, events, fundraising and contacting legislators.",
+        },
+        not: {
+            ca: "Organitza accions; no és un registre públic amb fonts ni una biblioteca de recerca.",
+            en: "Organises actions; not a sourced public record or research library.",
+        },
+    },
+    {
+        name: "Mobilize",
+        href: "https://www.mobilize.us",
+        does: {
+            ca: "Gestió de voluntariat i esdeveniments, feta servir per campanyes polítiques i entitats.",
+            en: "Volunteer and event management used by political campaigns and non-profits.",
+        },
+        not: {
+            ca: "Capta voluntariat; no construeix el relat ni les proves d'una lluita.",
+            en: "Recruits volunteers; does not build a struggle's story or evidence base.",
+        },
+    },
+    {
+        name: "Tech for Palestine",
+        href: "https://techforpalestine.org",
+        does: {
+            ca: "Una coalició que incuba projectes i eines de codi obert per a la solidaritat amb Palestina.",
+            en: "A coalition that incubates open-source projects and tools for Palestine solidarity.",
+        },
+        not: {
+            ca: "Que sapiguem, no és un kit reutilitzable per a una campanya territorial.",
+            en: "As far as we know, not a reusable kit for a territorial campaign.",
+        },
+    },
+];
+const landNote: Bilingual = {
+    ca: "Ho hem revisat només a partir de descripcions públiques; si us hi fixeu, corregiu-nos.",
+    en: "We checked these from public descriptions only. If we got one wrong, tell us.",
+};
+const newText: Bilingual = {
+    ca: "<strong>Què creiem que és nou:</strong> no cap peça sola, sinó la cadena sencera. Un muntatge de punta a punta, assistit per IA, barat i repetible, a mida d'una lluita cada vegada, amb un playbook obert. No sabem si ja existeix res d'equivalent. <strong>Una fase de recerca provaria aquesta creença.</strong>",
+    en: "<strong>What we think is new:</strong> not any single piece, but the whole chain. An end-to-end assembly, AI-assisted, low-cost and repeatable, tailored to one struggle at a time, with an open playbook. We do not know whether an equivalent exists. <strong>A research phase would test that belief.</strong>",
+};
+
+// ---------- 6. Fase 1 ----------
+const phaseTitle: Bilingual = { ca: "Fase 1: abast i demanda", en: "Phase 1: scope and ask" };
+const phaseEyebrow: Bilingual = { ca: "Indicatiu, per discutir", en: "Indicative, for discussion" };
+const budget: Bilingual = {
+    ca: "Uns 5–10 mil €, per discutir",
+    en: "About €5–10k, for discussion",
+};
+const budgetNote: Bilingual = {
+    ca: "Un primer prototip es pot construir amb aquesta xifra. Els diners anirien a Motiu (cooperativa de treball sense ànim de lucre) i, potser, a altres persones, o es custodiarien en un altre contenidor. Encara no està decidit.",
+    en: "A first prototype can be built with this. The money would go to Motiu (a non-profit worker cooperative) and possibly others, or be held in another container. Not decided.",
+};
+const deliverables: Bilingual<string[]> = {
+    ca: [
+        "v1 del kit, amb Catalunya / el Bages com a primera instància",
+        "Base per connectar amb altres lluites contra ICL",
+        "La recerca sobre les eines que ja existeixen",
+        "Playbook v0, amb els passos reals seguits amb ICL: dossier a markdown, base de coneixement, registre de xifres, web, desplegament",
+        "Tot publicat amb llicències obertes",
+    ],
+    en: [
+        "v1 of the kit, run with Catalonia / Bages as first instance",
+        "Groundwork for connecting with other anti-ICL struggles",
+        "The research on existing tools",
+        "Playbook v0, documenting the real steps followed for ICL: dossier to markdown, knowledge base, figures registry, site, deploy",
+        "Everything published under open licences",
+    ],
+};
+const noFunds: Bilingual = {
+    ca: "Cap recaptació oberta. Encara no s'ha decidit qui custodiaria els fons (la cooperativa Motiu o un amfitrió fiscal).",
+    en: "No fundraising is open. Who holds any funds (Motiu cooperative or a fiscal host) is undecided.",
+};
+
+// ---------- 7. Fronts ----------
+const frontsTitle: Bilingual = { ca: "Possibles fronts següents", en: "Possible next fronts" };
+const frontsEyebrow: Bilingual = { ca: "Sense confirmar", en: "Unconfirmed" };
+const fronts: { place: Bilingual; text: Bilingual; link?: string; linkLabel?: Bilingual }[] = [
+    {
+        place: { ca: "Catalunya · Vall del Bages", en: "Catalonia · Vall del Bages" },
+        text: {
+            ca: "La primera instància i la prova.",
+            en: "The first instance and the test.",
+        },
+    },
+    {
+        place: { ca: "Boulby, North York Moors (Regne Unit)", en: "Boulby, North York Moors (UK)" },
+        text: {
+            ca: "La mina de Boulby, que opera Cleveland Potash, filial d'ICL.",
+            en: "The Boulby mine, run by Cleveland Potash, an ICL subsidiary.",
+        },
+        link: "https://en.wikipedia.org/wiki/Boulby_Mine",
+        linkLabel: { ca: "font", en: "source" },
+    },
+    {
+        place: { ca: "Mar Mort (Israel)", en: "Dead Sea (Israel)" },
+        text: {
+            ca: "Segons Reuters, la concessió d'ICL expira el 2030 i el govern planeja una licitació (6 nov. 2025).",
+            en: "Reuters reports ICL's concession expires in 2030, with a government tender planned (6 Nov 2025).",
+        },
+        link: "https://www.kitco.com/news/off-the-wire/2025-11-06/icl-could-lose-dead-sea-concession-2030-under-government-tender-plan",
+        linkLabel: { ca: "font", en: "source" },
+    },
+];
+const frontSlot: Bilingual = {
+    ca: "Segona lluita per definir entre tots",
+    en: "Second struggle to define together",
+};
+const frontsNote: Bilingual = {
+    ca: "No s'impliquen compromisos. Són les persones que hi són sobre el terreny qui ho han de decidir.",
+    en: "No commitments are implied. These are for the people on the ground to decide.",
+};
+
+// ---------- 8. Preguntes ----------
+const askTitle: Bilingual = { ca: "Què necessitem de vosaltres", en: "What we need from you" };
+const askEyebrow: Bilingual = { ca: "Cinc preguntes", en: "Five questions" };
+const questions: Bilingual<string[]> = {
+    ca: [
+        "Us ajudaria això en la vostra lluita? Què hi falta?",
+        "Què us en faria refiar, o no?",
+        "Quina capa primer: kit públic, capa interna o playbook?",
+        "On teniu les línies vermelles sobre IA, allotjament i dades?",
+        "Qui més ho hauria de veure?",
+    ],
+    en: [
+        "Would this help your struggle? What is missing?",
+        "What would make you trust it, or not?",
+        "Which layer first: public kit, internal layer or playbook?",
+        "Where do your red lines sit on AI, hosting and data?",
+        "Who else should see this?",
+    ],
+};
+const contact: Bilingual = {
+    ca: 'Contacte: <a href="https://motiu.org/contact">motiu.org</a>.',
+    en: 'Contact: <a href="https://motiu.org/contact">motiu.org</a>.',
+};
+const nameNote: Bilingual = {
+    ca: `«${PROJECT_NAME}» és un títol de treball. Els suggeriments són benvinguts.`,
+    en: `“${PROJECT_NAME}” is a working title. Suggestions welcome.`,
+};
+const printFoot: Bilingual = {
+    ca: "Fet per Motiu · proposta experimental, no oficial de Boicot ICL · motiu.org",
+    en: "Made by Motiu · experimental proposal, not an official Boicot ICL space · motiu.org",
+};
+const pdfHref = assetHref(`/downloads/sistema-${lang}.pdf`);
+---
+
+<Base title={t(pageTitle)} desc={t(pageDesc)}>
+    <section class="hero">
+        <span class="pill pill--ghost">{t(badge)}</span>
+        <h1>{t(h1)}</h1>
+        <p class="hero__lede">{t(sub)}</p>
+        <p class="hero__name">
+            <strong>{t(workingName)}: {PROJECT_NAME}</strong> · {t(PROJECT_TAGLINE)}
+        </p>
+        <div class="hero__cta no-print">
+            <a class="btn btn--soft" href="#two-pager">{t(ctaRead)}</a>
+            <a class="btn" href={pdfHref} download>{t(ctaPdf)}</a>
+        </div>
+    </section>
+
+    <div id="two-pager">
+        <div class="sp sp-p1">
+            <div class="note-box note-box--warn honesty" set:html={t(honesty)} />
+
+            <section class="section" id="problema">
+                <div class="section-title">
+                    <h2>{t(problemTitle)}</h2>
+                    <span class="eyebrow">{t(problemEyebrow)}</span>
+                </div>
+                <div class="card">
+                    <p class="mb-0">{t(problemText)}</p>
+                </div>
+            </section>
+
+            <section class="section" id="prova">
+                <div class="section-title">
+                    <h2>{t(proofTitle)}</h2>
+                    <span class="eyebrow">{t(proofEyebrow)}</span>
+                </div>
+                <div class="card">
+                    <p set:html={t(proofIntro)} />
+                    <ul class="ticks">
+                        {t(proofList).map((s) => <li>{s}</li>)}
+                    </ul>
+                    <div class="shots">
+                        {shots.map((s) => (
+                            <figure>
+                                <Image
+                                    src={s.img[lang]}
+                                    alt={t(s.alt)}
+                                    width={640}
+                                    format="webp"
+                                    quality={78}
+                                    loading="lazy"
+                                />
+                                <figcaption>{t(s.cap)}</figcaption>
+                            </figure>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="sistema">
+                <div class="section-title">
+                    <h2>{t(sysTitle)}</h2>
+                    <span class="eyebrow">{t(sysEyebrow)}</span>
+                </div>
+                <div class="card">
+                    <p class="sys-intro">{t(sysIntro)}</p>
+                    <SystemDiagram />
+                    <div class="layers">
+                        {layers.map((l) => (
+                            <div class="layer">
+                                <span class="eyebrow">{t(l.tag)}</span>
+                                <h3>{t(l.title)}</h3>
+                                <p>{t(l.text)}</p>
+                                <span class="tag tag--navy">{t(l.status)}</span>
+                            </div>
+                        ))}
+                    </div>
+                    <hr class="rule" />
+                    <div class="ai-ba">
+                        <div>
+                            <h3>{t(aiTitle)}</h3>
+                            <p class="mb-0" set:html={t(aiText)} />
+                        </div>
+                        <div class="ba-wrap">
+                            <h3>{t(baTitle)}</h3>
+                            <BeforeAfter />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="sp sp-p2">
+            <section class="section" id="principis">
+                <div class="section-title">
+                    <h2>{t(prinTitle)}</h2>
+                    <span class="eyebrow">{t(prinEyebrow)}</span>
+                </div>
+                <div class="grid principles">
+                    {principles.map((p, i) => (
+                        <div class="card principle">
+                            <span class="num">{i + 1}</span>
+                            <h3>{t(p.title)}</h3>
+                            <p class="mb-0">{t(p.text)}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <section class="section" id="panorama">
+                <div class="section-title">
+                    <h2>{t(landTitle)}</h2>
+                    <span class="eyebrow">{t(landEyebrow)}</span>
+                </div>
+                <div class="card">
+                    <div class="land">
+                        {land.map((e) => (
+                            <div class="land__item">
+                                <h4><a href={e.href}>{e.name}</a></h4>
+                                <p><strong>{t(doesLabel)}:</strong> {t(e.does)}</p>
+                                <p><strong>{t(notLabel)}:</strong> {t(e.not)}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <p class="muted small-note">{t(landNote)}</p>
+                    <p class="mb-0" set:html={t(newText)} />
+                </div>
+            </section>
+
+            <section class="section" id="fase1">
+                <div class="section-title">
+                    <h2>{t(phaseTitle)}</h2>
+                    <span class="eyebrow">{t(phaseEyebrow)}</span>
+                </div>
+                <div class="card phase">
+                    <div>
+                        <p class="budget">{t(budget)}</p>
+                        <p>{t(budgetNote)}</p>
+                        <p class="mb-0"><strong>{t(noFunds)}</strong></p>
+                    </div>
+                    <ul class="ticks">
+                        {t(deliverables).map((s) => <li>{s}</li>)}
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section" id="fronts">
+                <div class="section-title">
+                    <h2>{t(frontsTitle)}</h2>
+                    <span class="eyebrow">{t(frontsEyebrow)}</span>
+                </div>
+                <div class="card">
+                    <ul class="fronts">
+                        {fronts.map((f) => (
+                            <li>
+                                <strong>{t(f.place)}.</strong> {t(f.text)}
+                                {f.link && <> <a href={f.link}>({t(f.linkLabel!)})</a></>}
+                            </li>
+                        ))}
+                        <li class="slot"><strong>{t(frontSlot)}</strong></li>
+                    </ul>
+                    <p class="muted small-note mb-0">{t(frontsNote)}</p>
+                </div>
+            </section>
+
+            <section class="section" id="preguntes">
+                <div class="section-title">
+                    <h2>{t(askTitle)}</h2>
+                    <span class="eyebrow">{t(askEyebrow)}</span>
+                </div>
+                <div class="card ask">
+                    <ol>
+                        {t(questions).map((q) => <li>{q}</li>)}
+                    </ol>
+                    <p class="mb-0">
+                        <span set:html={t(contact)} /> {t(nameNote)}
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <p class="print-foot">{t(printFoot)}</p>
+</Base>
+
+<style>
+    .hero {
+        padding: var(--space-3) 0 var(--space-2);
+        color: #fff;
+    }
+    .hero h1 {
+        color: #fff;
+        margin: 0.5em 0 0.4em;
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        max-width: 22ch;
+    }
+    .hero__lede {
+        max-width: 46rem;
+        font-size: 1.12rem;
+    }
+    .hero__name {
+        max-width: 46rem;
+        font-size: 0.95rem;
+    }
+    .hero__cta {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        margin-top: var(--space-2);
+    }
+    .honesty {
+        margin-top: var(--space-2);
+        background: var(--paper);
+    }
+    .honesty :global(a) {
+        font-weight: 700;
+    }
+    .ticks {
+        margin: 0 0 var(--space-2);
+        padding: 0;
+        list-style: none;
+    }
+    .ticks li {
+        padding-left: 1.5em;
+        position: relative;
+        margin-bottom: 0.35em;
+    }
+    .ticks li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        font-weight: 800;
+        color: #c40000;
+    }
+    .shots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: var(--space-2);
+    }
+    .shots figure {
+        margin: 0;
+    }
+    .shots :global(img) {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius-sm);
+        border: 2px solid var(--ink);
+        display: block;
+    }
+    .shots figcaption {
+        font-size: 0.85rem;
+        margin-top: 0.4rem;
+    }
+    .layers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: var(--space-2);
+        margin-top: var(--space-3);
+    }
+    .layer {
+        background: var(--paper-2);
+        border-radius: var(--radius-md);
+        padding: 1.2rem 1.3rem;
+    }
+    .layer h3 {
+        margin: 0.2em 0 0.4em;
+    }
+    .layer p {
+        font-size: 0.95rem;
+    }
+    .ai-ba {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+        align-items: start;
+    }
+    @media (max-width: 800px) {
+        .ai-ba {
+            grid-template-columns: 1fr;
+        }
+    }
+    .principles {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: var(--space-2);
+    }
+    .principle {
+        padding: 1.3rem;
+    }
+    .principle h3 {
+        font-size: 1.05rem;
+    }
+    .principle p {
+        font-size: 0.92rem;
+    }
+    .num {
+        display: inline-flex;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: var(--navy);
+        color: #fff;
+        font-family: var(--font-display);
+        font-weight: 800;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.6rem;
+    }
+    .land {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-2) var(--space-3);
+    }
+    .land__item h4 {
+        margin: 0 0 0.2em;
+        font-size: 1.05rem;
+    }
+    .land__item p {
+        font-size: 0.9rem;
+        margin: 0 0 0.3em;
+    }
+    .small-note {
+        font-size: 0.85rem;
+    }
+    .phase {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+    }
+    @media (max-width: 800px) {
+        .phase {
+            grid-template-columns: 1fr;
+        }
+    }
+    .budget {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.8rem;
+        line-height: 1.1;
+        margin-bottom: 0.4em;
+    }
+    .fronts {
+        margin: 0 0 var(--space-2);
+        padding-left: 1.2em;
+    }
+    .fronts li {
+        margin-bottom: 0.4em;
+    }
+    .fronts .slot {
+        list-style: none;
+        margin-left: -1.2em;
+        border: 2px dashed var(--ink);
+        border-radius: var(--radius-sm);
+        padding: 0.6em 1em;
+    }
+    .ask ol {
+        margin: 0 0 var(--space-2);
+        padding-left: 1.3em;
+        font-weight: 600;
+    }
+    .ask li {
+        margin-bottom: 0.3em;
+    }
+    .print-foot {
+        display: none;
+    }
+
+    /* Dues pàgines A4 per llengua: fons blanc, accents vermell i blau marí. */
+    @media print {
+        @page {
+            size: A4;
+            margin: 7mm 10mm;
+        }
+        :global(html),
+        :global(body) {
+            background: #fff !important;
+            font-size: 8.6pt;
+            line-height: 1.3;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        :global(.nav-wrap),
+        :global(footer.foot),
+        .no-print {
+            display: none !important;
+        }
+        :global(.page) {
+            max-width: none;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        .hero {
+            color: var(--ink);
+            padding: 0;
+            border-bottom: 3px solid var(--red-bright);
+            margin-bottom: 2mm;
+        }
+        .hero .pill--ghost {
+            background: var(--red-bright);
+            color: #fff;
+            font-size: 6.5pt;
+        }
+        .hero h1 {
+            color: var(--navy);
+            font-size: 18pt;
+            margin: 0.25em 0;
+            max-width: none;
+        }
+        .hero__lede {
+            font-size: 8.4pt;
+            margin: 0 0 0.3em;
+        }
+        .hero__name {
+            font-size: 8pt;
+            margin: 0 0 0.4em;
+        }
+        .sp-p2 {
+            break-before: page;
+        }
+        .section {
+            margin-top: 2mm;
+            break-inside: avoid;
+        }
+        .section h2 {
+            font-size: 12pt;
+            color: var(--navy);
+            border-bottom: 1.5px solid var(--red-bright);
+            margin: 0 0 0.25em;
+        }
+        .section-title {
+            gap: 0.5rem;
+        }
+        .eyebrow {
+            font-size: 6pt;
+        }
+        .card,
+        .honesty,
+        .layer,
+        .principle {
+            background: #fff !important;
+            box-shadow: none;
+            border: 0.75pt solid #999;
+            border-radius: 8px;
+            padding: 2.2mm 3mm !important;
+        }
+        .layer {
+            background: #f6f6f6 !important;
+            border: 0.75pt solid #bbb;
+        }
+        .honesty {
+            border: 0.75pt solid var(--navy);
+            border-left: 3pt solid var(--red-bright);
+            font-size: 7.6pt;
+            border-radius: 4px;
+            margin: 0;
+        }
+        p {
+            margin: 0 0 0.35em;
+        }
+        h3 {
+            font-size: 9.2pt;
+            margin: 0 0 0.15em;
+        }
+        .shots {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2mm;
+        }
+        .shots figcaption {
+            font-size: 6.4pt;
+            line-height: 1.2;
+        }
+        .shots :global(img) {
+            border-width: 1pt;
+            aspect-ratio: 2 / 1;
+            object-fit: cover;
+            object-position: top;
+        }
+        .ticks {
+            margin: 0 0 0.4em;
+            columns: 2;
+            column-gap: 6mm;
+        }
+        .ticks li {
+            break-inside: avoid;
+            margin-bottom: 0.15em;
+        }
+        .layers {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2mm;
+            margin-top: 1mm;
+        }
+        .sys-intro {
+            display: none;
+        }
+        :global(.sysdiag) {
+            max-width: 70%;
+            margin: 0 auto;
+        }
+        .layer {
+            padding: 1.6mm 2.2mm !important;
+        }
+        .layer p {
+            line-height: 1.25;
+        }
+        .layer p {
+            font-size: 7.6pt;
+            margin-bottom: 0.25em;
+        }
+        .layer .tag {
+            font-size: 6pt;
+        }
+        .rule {
+            margin: 2mm 0;
+        }
+        .ai-ba {
+            grid-template-columns: 1.25fr 1fr;
+            gap: 4mm;
+        }
+        .ai-ba p {
+            font-size: 7.6pt;
+        }
+        .ba-wrap h3 {
+            display: none;
+        }
+        :global(.ba) {
+            gap: 1mm !important;
+        }
+        :global(.ba__side) {
+            padding: 1.5mm !important;
+        }
+        :global(.ba__side svg) {
+            width: 62px !important;
+        }
+        :global(.ba__side h4) {
+            font-size: 7pt !important;
+        }
+        :global(.ba__side ul) {
+            font-size: 6.4pt !important;
+        }
+        :global(.ba__arrow) {
+            font-size: 12pt !important;
+            transform: none !important;
+        }
+        .principles {
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 2mm !important;
+        }
+        .principle h3 {
+            font-size: 8pt;
+        }
+        .principle p {
+            font-size: 7pt !important;
+        }
+        .num {
+            width: 5mm;
+            height: 5mm;
+            font-size: 7pt;
+            margin-bottom: 1mm;
+        }
+        .land {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5mm 5mm;
+        }
+        .land__item h4 {
+            font-size: 8pt;
+        }
+        .land__item p {
+            font-size: 7pt;
+            margin-bottom: 0.1em;
+        }
+        .small-note {
+            font-size: 6.6pt !important;
+        }
+        .phase {
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4mm;
+        }
+        .budget {
+            font-size: 14pt;
+            color: var(--red-bright);
+        }
+        .fronts .slot {
+            padding: 0.3em 0.8em;
+        }
+        .ask ol {
+            margin-bottom: 0.4em;
+        }
+        .print-foot {
+            display: block !important;
+            margin: 3mm 0 0;
+            padding-top: 1.5mm;
+            border-top: 1pt solid var(--navy);
+            font-size: 6.8pt;
+            color: var(--navy);
+        }
+    }
+</style>

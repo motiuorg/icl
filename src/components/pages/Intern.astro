@@ -6,7 +6,7 @@ import {
     distributors,
     agenda,
 } from "../../data/intern";
-import { tr, type Lang, type Bilingual } from "../../i18n/utils";
+import { localizeHref, tr, type Lang, type Bilingual } from "../../i18n/utils";
 
 const lang = (Astro.currentLocale ?? "ca") as Lang;
 const t = tr(lang);
@@ -42,6 +42,11 @@ const openPill: Bilingual = {
     en: "🔓 Internal space — demo",
 };
 const openTitle: Bilingual = { ca: "Coordinació", en: "Coordination" };
+const layerNote: Bilingual = {
+    ca: 'Aquesta és la <strong>capa 2</strong> del sistema que proposem: només dades de demostració. <a href="{href}">Llegeix la proposta →</a>',
+    en: 'This is <strong>layer 2</strong> of the system we propose: demo data only. <a href="{href}">Read the proposal →</a>',
+};
+const layerNoteHtml = t(layerNote).replace("{href}", localizeHref(lang, "/sistema/"));
 const demoBanner: Bilingual = { ca: "DADES DE DEMOSTRACIÓ", en: "DEMO DATA" };
 const demoNote: Bilingual = {
     ca: "cap dada d'aquesta pàgina és real; només il·lustra la forma del sistema. L'accés real i les dades veritables es definiran amb la campanya.",
@@ -152,6 +157,7 @@ const distH = [
             <p class="muted" style="max-width:52rem">
                 <span class="demo-banner">{t(demoBanner)}</span> {t(demoNote)}
             </p>
+            <p class="muted" style="max-width:52rem" set:html={layerNoteHtml} />
         </section>
 
         <!-- Agenda -->

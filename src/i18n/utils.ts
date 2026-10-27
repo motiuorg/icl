@@ -42,3 +42,8 @@ export function stripLocale(lang: Lang, pathname: string): string {
     : pathname;
   return lang === "en" ? stripped.replace(/^\/en/, "") || "/" : stripped;
 }
+
+/** Ruta d'un fitxer estàtic de /public (conscient de la base). */
+export function assetHref(path: string): string {
+  return BASE === "/" ? path : `${BASE}${path}`;
+}

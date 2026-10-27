@@ -1,0 +1,119 @@
+---
+// Panell abans/després: esquema neutre d'un PDF vs. un web viu (SVG estàtic).
+// El «abans» és un esquema genèric: no reprodueix cap pàgina del dossier real.
+import { tr, type Lang } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const L = {
+    beforeTitle: t({ ca: "Dossier en PDF", en: "PDF dossier" }),
+    afterTitle: t({
+        ca: "Web viu, amb fonts i bilingüe",
+        en: "Live, sourced, bilingual site",
+    }),
+    beforeList: t({
+        ca: ["Un fitxer estàtic", "Difícil d'actualitzar", "Cada idioma, un document"],
+        en: ["One static file", "Hard to keep current", "Each language, a separate file"],
+    }),
+    afterList: t({
+        ca: ["Es corregeix i es publica en minuts", "Cada xifra amb la seva font", "CA i EN al mateix lloc"],
+        en: ["Fix and republish in minutes", "Every figure with its source", "CA and EN in one place"],
+    }),
+    beforeDesc: t({
+        ca: "Esquema genèric d'un document PDF: blocs de text gris i una imatge.",
+        en: "Generic schematic of a PDF document: grey text blocks and one image.",
+    }),
+    afterDesc: t({
+        ca: "Esquema d'un web: gràfic de barres, línia del temps i una etiqueta de font.",
+        en: "Schematic of a website: bar chart, timeline and a source tag.",
+    }),
+    src: t({ ca: "font", en: "source" }),
+};
+---
+
+<div class="ba">
+    <div class="ba__side">
+        <svg viewBox="0 0 160 190" role="img" aria-labelledby="ba-b-t ba-b-d">
+            <title id="ba-b-t">{L.beforeTitle}</title>
+            <desc id="ba-b-d">{L.beforeDesc}</desc>
+            <rect x="20" y="8" width="120" height="174" rx="6" fill="#fff" stroke="#000" stroke-width="2.4" />
+            <rect x="34" y="22" width="60" height="9" rx="2" fill="#555" />
+            {[44, 54, 64, 74].map((y) => <rect x="34" y={y} width={y % 20 === 4 ? 90 : 92} height="4" rx="2" fill="#bbb" />)}
+            <rect x="34" y="90" width="92" height="34" rx="3" fill="#ddd" stroke="#888" />
+            {[134, 144, 154, 164].map((y) => <rect x="34" y={y} width={y === 164 ? 60 : 92} height="4" rx="2" fill="#bbb" />)}
+        </svg>
+        <h4>{L.beforeTitle}</h4>
+        <ul>{L.beforeList.map((s) => <li>{s}</li>)}</ul>
+    </div>
+    <div class="ba__arrow" aria-hidden="true">→</div>
+    <div class="ba__side ba__side--after">
+        <svg viewBox="0 0 160 190" role="img" aria-labelledby="ba-a-t ba-a-d">
+            <title id="ba-a-t">{L.afterTitle}</title>
+            <desc id="ba-a-d">{L.afterDesc}</desc>
+            <rect x="8" y="8" width="144" height="174" rx="12" fill="#fff" stroke="#000" stroke-width="2.4" />
+            <rect x="8" y="8" width="144" height="22" rx="12" fill="var(--sky)" stroke="#000" stroke-width="2.4" />
+            <circle cx="22" cy="19" r="4" fill="#000" />
+            <rect x="36" y="14" width="60" height="10" rx="5" fill="#fff" stroke="#000" />
+            <rect x="20" y="42" width="70" height="9" rx="2" fill="#000" />
+            <rect x="20" y="62" width="100" height="14" rx="5" fill="var(--sky)" stroke="#000" stroke-width="1.6" />
+            <rect x="20" y="82" width="64" height="14" rx="5" fill="var(--red-bright)" stroke="#000" stroke-width="1.6" />
+            <rect x="20" y="102" width="82" height="14" rx="5" fill="var(--sky)" stroke="#000" stroke-width="1.6" />
+            <rect x="106" y="62" width="40" height="18" rx="9" fill="var(--red-soft)" />
+            <text x="126" y="75" font-size="10" font-weight="800" text-anchor="middle" font-family="inherit">{L.src}</text>
+            <line x1="22" y1="146" x2="138" y2="146" stroke="#000" stroke-width="2.4" />
+            {[34, 70, 98, 124].map((x) => <circle cx={x} cy="146" r="6" fill="#fff" stroke="#000" stroke-width="2.4" />)}
+            <rect x="20" y="160" width="40" height="5" rx="2" fill="#555" />
+            <rect x="90" y="160" width="40" height="5" rx="2" fill="#555" />
+        </svg>
+        <h4>{L.afterTitle}</h4>
+        <ul>{L.afterList.map((s) => <li>{s}</li>)}</ul>
+    </div>
+</div>
+
+<style>
+    .ba {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: var(--space-2);
+        align-items: center;
+    }
+    .ba__side {
+        background: var(--paper-2);
+        border-radius: var(--radius-md);
+        padding: 1.1rem 1.2rem;
+        text-align: center;
+        height: 100%;
+    }
+    .ba__side--after {
+        background: var(--sky);
+    }
+    .ba__side svg {
+        width: 120px;
+        height: auto;
+    }
+    .ba__side h4 {
+        margin: 0.4em 0 0.3em;
+        font-size: 1rem;
+    }
+    .ba__side ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0.88rem;
+    }
+    .ba__arrow {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 800;
+    }
+    @media (max-width: 560px) {
+        .ba {
+            grid-template-columns: 1fr;
+        }
+        .ba__arrow {
+            transform: rotate(90deg);
+            text-align: center;
+        }
+    }
+</style>

@@ -1,0 +1,162 @@
+---
+// Diagrama del sistema (SVG estàtic, sense JS). Dues versions: horitzontal
+// (escriptori/impressió) i vertical (mòbil), alternades amb CSS.
+import { tr, type Lang } from "../../i18n/utils";
+
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const t = tr(lang);
+
+const L = {
+    title: t({
+        ca: "Com funciona el sistema",
+        en: "How the system works",
+    }),
+    desc: t({
+        ca: "Un dossier (PDF i notes) passa a estructura amb fonts. D'aquí surten dues capes, el kit públic i la capa interna (demo avui). Tot es documenta en un playbook obert, que serveix per a la propera lluita.",
+        en: "One dossier (PDFs and notes) becomes structure with sources. From there come two layers, the public kit and the internal layer (demo today). All of it is documented in an open playbook, which serves the next struggle.",
+    }),
+    dossier: t({ ca: "Un dossier", en: "One dossier" }),
+    dossierSub: t({ ca: "PDF i notes", en: "PDFs, notes" }),
+    structure: t({ ca: "Estructura", en: "Structure" }),
+    structureSub: t({ ca: "+ fonts", en: "+ sources" }),
+    pub: t({ ca: "Kit públic", en: "Public kit" }),
+    pubSub: t({ ca: "web, gràfics, recerca", en: "site, charts, library" }),
+    int: t({ ca: "Capa interna", en: "Internal layer" }),
+    intSub: t({ ca: "demo avui", en: "demo today" }),
+    play: t({ ca: "Playbook obert", en: "Open playbook" }),
+    playSub: t({ ca: "passos i plantilles", en: "steps, templates" }),
+    next: t({ ca: "Propera lluita", en: "Next struggle" }),
+    nextSub: t({ ca: "per definir", en: "to define" }),
+};
+---
+
+<figure class="sysdiag">
+    <svg
+        class="sysdiag__h"
+        viewBox="0 0 960 290"
+        role="img"
+        aria-labelledby="sd-h-t sd-h-d"
+    >
+        <title id="sd-h-t">{L.title}</title>
+        <desc id="sd-h-d">{L.desc}</desc>
+        <defs>
+            <marker id="sd-arrow-h" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#000" />
+            </marker>
+        </defs>
+        <g font-family="inherit" text-anchor="middle">
+            <rect x="8" y="95" width="140" height="100" rx="18" fill="var(--paper)" stroke="#000" stroke-width="2.4" />
+            <text x="78" y="138" font-size="18" font-weight="800">{L.dossier}</text>
+            <text x="78" y="164" font-size="14" fill="#333">{L.dossierSub}</text>
+
+            <rect x="198" y="95" width="150" height="100" rx="18" fill="var(--sky)" stroke="#000" stroke-width="2.4" />
+            <text x="273" y="138" font-size="18" font-weight="800">{L.structure}</text>
+            <text x="273" y="164" font-size="14" fill="#222">{L.structureSub}</text>
+
+            <rect x="398" y="14" width="200" height="110" rx="18" fill="var(--navy)" stroke="#000" stroke-width="2.4" />
+            <text x="498" y="64" font-size="19" font-weight="800" fill="#fff">{L.pub}</text>
+            <text x="498" y="92" font-size="14" fill="#fff">{L.pubSub}</text>
+
+            <rect x="398" y="166" width="200" height="110" rx="18" fill="var(--paper)" stroke="#000" stroke-width="2.4" stroke-dasharray="7 5" />
+            <text x="498" y="204" font-size="19" font-weight="800">{L.int}</text>
+            <rect x="443" y="220" width="110" height="28" rx="14" fill="#c40000" />
+            <text x="498" y="240" font-size="14" font-weight="800" fill="#fff">{L.intSub}</text>
+
+            <rect x="648" y="95" width="150" height="100" rx="18" fill="var(--red-soft)" stroke="#000" stroke-width="2.4" />
+            <text x="723" y="138" font-size="18" font-weight="800">{L.play}</text>
+            <text x="723" y="164" font-size="14" fill="#000">{L.playSub}</text>
+
+            <rect x="838" y="95" width="114" height="100" rx="18" fill="none" stroke="#000" stroke-width="2.4" stroke-dasharray="7 5" />
+            <text x="895" y="138" font-size="17" font-weight="800">{L.next}</text>
+            <text x="895" y="164" font-size="14" fill="#222">{L.nextSub}</text>
+        </g>
+        <g stroke="#000" stroke-width="2.4" fill="none" marker-end="url(#sd-arrow-h)">
+            <path d="M150 145 H194" />
+            <path d="M350 145 H372 V69 H394" />
+            <path d="M350 145 H372 V221 H394" />
+            <path d="M600 69 H624 V145 H644" />
+            <path d="M600 221 H624 V145 H644" />
+            <path d="M800 145 H834" />
+        </g>
+    </svg>
+
+    <svg
+        class="sysdiag__v"
+        viewBox="0 0 340 600"
+        role="img"
+        aria-labelledby="sd-v-t sd-v-d"
+    >
+        <title id="sd-v-t">{L.title}</title>
+        <desc id="sd-v-d">{L.desc}</desc>
+        <defs>
+            <marker id="sd-arrow-v" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#000" />
+            </marker>
+        </defs>
+        <g font-family="inherit" text-anchor="middle">
+            <rect x="40" y="6" width="260" height="70" rx="16" fill="var(--paper)" stroke="#000" stroke-width="2.4" />
+            <text x="170" y="38" font-size="17" font-weight="800">{L.dossier}</text>
+            <text x="170" y="60" font-size="14" fill="#333">{L.dossierSub}</text>
+
+            <rect x="40" y="118" width="260" height="70" rx="16" fill="var(--sky)" stroke="#000" stroke-width="2.4" />
+            <text x="170" y="150" font-size="17" font-weight="800">{L.structure} {L.structureSub}</text>
+
+            <rect x="6" y="236" width="156" height="120" rx="16" fill="var(--navy)" stroke="#000" stroke-width="2.4" />
+            <text x="84" y="284" font-size="17" font-weight="800" fill="#fff">{L.pub}</text>
+            <text x="84" y="310" font-size="13" fill="#fff">{L.pubSub}</text>
+
+            <rect x="178" y="236" width="156" height="120" rx="16" fill="var(--paper)" stroke="#000" stroke-width="2.4" stroke-dasharray="7 5" />
+            <text x="256" y="276" font-size="17" font-weight="800">{L.int}</text>
+            <rect x="206" y="294" width="100" height="26" rx="13" fill="#c40000" />
+            <text x="256" y="312" font-size="13" font-weight="800" fill="#fff">{L.intSub}</text>
+
+            <rect x="40" y="404" width="260" height="70" rx="16" fill="var(--red-soft)" stroke="#000" stroke-width="2.4" />
+            <text x="170" y="436" font-size="17" font-weight="800">{L.play}</text>
+            <text x="170" y="458" font-size="14">{L.playSub}</text>
+
+            <rect x="40" y="524" width="260" height="66" rx="16" fill="none" stroke="#000" stroke-width="2.4" stroke-dasharray="7 5" />
+            <text x="170" y="554" font-size="17" font-weight="800">{L.next}</text>
+            <text x="170" y="576" font-size="14" fill="#222">{L.nextSub}</text>
+        </g>
+        <g stroke="#000" stroke-width="2.4" fill="none" marker-end="url(#sd-arrow-v)">
+            <path d="M170 78 V114" />
+            <path d="M170 190 V206 H84 V232" />
+            <path d="M170 190 V206 H256 V232" />
+            <path d="M84 358 V380 H170 V400" />
+            <path d="M256 358 V380 H170 V400" />
+            <path d="M170 476 V520" />
+        </g>
+    </svg>
+</figure>
+
+<style>
+    .sysdiag {
+        margin: 0;
+    }
+    .sysdiag svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .sysdiag__v {
+        display: none;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+    @media (max-width: 720px) {
+        .sysdiag__h {
+            display: none;
+        }
+        .sysdiag__v {
+            display: block;
+        }
+    }
+    @media print {
+        .sysdiag__h {
+            display: block !important;
+        }
+        .sysdiag__v {
+            display: none !important;
+        }
+    }
+</style>

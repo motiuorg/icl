@@ -21,6 +21,11 @@ const links = [
 
 const current = Astro.url.pathname;
 const demoLabel = t({ ca: "prototip · Motiu", en: "prototype · Motiu" });
+const demoTitle = t({
+    ca: "Proposta de sistema: què hi ha darrere d'aquest prototip",
+    en: "System proposal: the idea behind this prototype",
+});
+const systemHref = localizeHref(lang, "/sistema/");
 ---
 
 <style>
@@ -96,7 +101,14 @@ const demoLabel = t({ ca: "prototip · Motiu", en: "prototype · Motiu" });
     .menu a.is-lock {
         color: var(--navy);
     }
+    .brandwrap {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+    }
     .demo-chip {
+        text-decoration: none;
+        white-space: nowrap;
         font-size: 0.68rem;
         font-weight: 800;
         background: var(--red-bright);
@@ -105,6 +117,10 @@ const demoLabel = t({ ca: "prototip · Motiu", en: "prototype · Motiu" });
         padding: 0.2em 0.7em;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+    }
+    .demo-chip:hover,
+    .demo-chip[aria-current="page"] {
+        background: var(--ink);
     }
     .right {
         display: flex;
@@ -115,10 +131,20 @@ const demoLabel = t({ ca: "prototip · Motiu", en: "prototype · Motiu" });
 
 <div class="nav-wrap">
     <nav class="nav" aria-label="Principal">
-        <a class="brand" href={localizeHref(lang, "/")}>
-            <span class="logo">✊</span>
-            Boicot ICL <span class="demo-chip">{demoLabel}</span>
-        </a>
+        <div class="brandwrap">
+            <a class="brand" href={localizeHref(lang, "/")}>
+                <span class="logo">✊</span>
+                Boicot ICL
+            </a>
+            <a
+                class="demo-chip"
+                href={systemHref}
+                title={demoTitle}
+                aria-current={current === systemHref ? "page" : undefined}
+            >
+                {demoLabel}
+            </a>
+        </div>
         <div class="right">
             <ul class="menu">
                 {links.map((l) => {

@@ -20,6 +20,10 @@ const madeByText = t({
 });
 const motiuSite = t({ ca: "motiu.org", en: "motiu.org" });
 const motiuContact = t({ ca: "Contacte amb Motiu", en: "Contact Motiu" });
+const systemLink = t({
+    ca: "Proposta de sistema obert",
+    en: "Open system proposal",
+});
 const linksTitle = t({ ca: "Enllaços", en: "Links" });
 const researchLink = t({
     ca: "Investigació (web de la campanya)",
@@ -128,6 +132,9 @@ const meta = t({
                 </li>
                 <li>
                     ✉️ <a href="https://motiu.org/contact">{motiuContact}</a>
+                </li>
+                <li>
+                    💡 <a href={localizeHref(lang, "/sistema/")}>{systemLink}</a>
                 </li>
             </ul>
         </div>
