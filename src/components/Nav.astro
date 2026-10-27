@@ -1,6 +1,7 @@
 ---
 import { localizeHref, tr, type Lang } from "../i18n/utils";
 import LangToggle from "./LangToggle.astro";
+import { PROJECT_NAME } from "../config/project";
 
 const lang = (Astro.currentLocale ?? "ca") as Lang;
 const t = tr(lang);
@@ -134,7 +135,7 @@ const systemHref = localizeHref(lang, "/sistema/");
         <div class="brandwrap">
             <a class="brand" href={localizeHref(lang, "/")}>
                 <span class="logo">✊</span>
-                Boicot ICL
+                {PROJECT_NAME}
             </a>
             <a
                 class="demo-chip"

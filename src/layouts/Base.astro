@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { PROJECT_NAME } from "../config/project";
+import { localizeHref, type Lang } from "../i18n/utils";
 
 interface Props {
     title?: string;
@@ -9,12 +11,18 @@ interface Props {
 }
 
 const {
-    title = "Boicot ICL — Estat de la lluita",
-    desc = "Prototip experimental de Motiu (motiu.org): sistema de coneixement i coordinació per a la campanya Boicot ICL. Complement de boicoticl.org.",
+    title = `${PROJECT_NAME} — Estat de la lluita`,
+    desc = "Prototip experimental de Motiu (motiu.org), inspirat en la campanya Boicot ICL i fet amb materials del seu web i dossier (boicoticl.org). No és un espai oficial de la campanya.",
 } = Astro.props;
-const pageTitle = title.includes("Boicot ICL")
+const pageTitle = title.includes(PROJECT_NAME)
     ? title
-    : `${title} · Boicot ICL`;
+    : `${title} · ${PROJECT_NAME}`;
+const lang = (Astro.currentLocale ?? "ca") as Lang;
+const credit =
+    lang === "en"
+        ? 'Experimental prototype by <a href="https://motiu.org">Motiu</a>, inspired by the <strong>Boicot ICL</strong> campaign and built with materials from its dossier and website (<a href="https://boicoticl.org">boicoticl.org</a>). Not an official campaign space.'
+        : 'Prototip experimental de <a href="https://motiu.org">Motiu</a>, inspirat en la campanya <strong>Boicot ICL</strong> i fet amb materials del seu dossier i web (<a href="https://boicoticl.org">boicoticl.org</a>). No és un espai oficial de la campanya.';
+
 ---
 
 <!doctype html>
@@ -32,6 +40,7 @@ const pageTitle = title.includes("Boicot ICL")
     </head>
     <body>
         <Nav />
+        <p class="credit-strip" set:html={credit} />
         <main class="page">
             <slot />
         </main>
@@ -70,5 +79,24 @@ const pageTitle = title.includes("Boicot ICL")
                 }
             }
         </script>
+        <style is:global>
+            .credit-strip {
+                max-width: var(--content);
+                margin: -10px auto 18px;
+                padding: 0 clamp(1rem, 4vw, 2.5rem);
+                color: #fff;
+                font-size: 0.82rem;
+                line-height: 1.4;
+            }
+            .credit-strip a {
+                color: #fff;
+                font-weight: 700;
+            }
+            @media print {
+                .credit-strip {
+                    display: none;
+                }
+            }
+        </style>
     </body>
 </html>

@@ -9,8 +9,8 @@ const slogan = t({
     en: "Stop the genocide, stop the ecocide",
 });
 const about = t({
-    ca: "Prototip experimental de Motiu per a la campanya Boicot ICL. Complement del web oficial de la campanya:",
-    en: "Experimental prototype by Motiu for the Boicot ICL campaign. Complement to the campaign's official website:",
+    ca: "Aquest prototip està inspirat en el grup Boicot ICL i utilitza materials del seu dossier i del seu web. La campanya és seva; el web oficial és:",
+    en: "This prototype is inspired by the Boicot ICL group and uses materials from its dossier and website. The campaign is theirs; the official site is:",
 });
 const aboutLink = t({ ca: "boicoticl.org", en: "boicoticl.org" });
 const madeByTitle = t({ ca: "Fet per Motiu", en: "Made by Motiu" });
@@ -38,8 +38,8 @@ const internalLink = t({
     en: "Internal layer (demo)",
 });
 const meta = t({
-    ca: "Prototip experimental de Motiu — versió per discutir amb la campanya Boicot ICL.",
-    en: "Experimental prototype by Motiu — version to discuss with the Boicot ICL campaign.",
+    ca: "Prototip experimental de Motiu, inspirat en Boicot ICL — no és un espai oficial de la campanya.",
+    en: "Experimental prototype by Motiu, inspired by Boicot ICL — not an official campaign space.",
 });
 ---
 
@@ -118,7 +118,7 @@ const meta = t({
 <footer class="foot">
     <div class="foot-grid">
         <div>
-            <h3>Boicot ICL</h3>
+            <h3>{t({ ca: "Inspirat en Boicot ICL", en: "Inspired by Boicot ICL" })}</h3>
             <p style="font-size: 0.92rem; margin: 0">
                 {about} <a href="https://boicoticl.org">{aboutLink}</a>.
             </p>

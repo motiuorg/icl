@@ -39,8 +39,8 @@ const h1: Bilingual = {
     en: "From one struggle's dossier to a campaign kit any territory can reuse.",
 };
 const sub: Bilingual = {
-    ca: "Una proposta per convertir el prototip de Boicot ICL en un sistema obert i reutilitzable per a comunitats que planten cara a multinacionals que fan mal al seu territori. La compartim d'hora, per saber què en penseu abans de construir res.",
-    en: "A proposal to turn the Boicot ICL prototype into an open, reusable system for communities fighting multinationals that damage their land. Shared early, to get your feedback before anything is built.",
+    ca: "Una proposta de Motiu per convertir aquest prototip, inspirat en la campanya Boicot ICL, en un sistema obert i reutilitzable per a comunitats que planten cara a multinacionals que fan mal al seu territori. La compartim d'hora, per saber què en penseu abans de construir res.",
+    en: "A proposal by Motiu to turn this prototype, inspired by the Boicot ICL campaign, into an open, reusable system for communities fighting multinationals that damage their land. Shared early, to get your feedback before anything is built.",
 };
 const ctaRead: Bilingual = {
     ca: "Llegeix el resum de dues pàgines",
@@ -53,8 +53,8 @@ const workingName: Bilingual = {
 };
 
 const honesty: Bilingual = {
-    ca: `<strong>Llegiu això primer.</strong> És una proposta experimental de ${MOTIU}. No és un espai oficial de la campanya i Boicot ICL no l'ha avalada. El web propi de la campanya és ${BOICOT}. Fem servir IA per redactar i muntar; res no es publica sense font i una persona revisa cada xifra. No sabem si ja existeix una eina equivalent: una fase de recerca forma part de la proposta.`,
-    en: `<strong>Read this first.</strong> This is an experimental proposal by ${MOTIU}. It is not an official campaign space and Boicot ICL has not endorsed it. The campaign's own site is ${BOICOT}. AI is used for drafting and assembly; nothing is published without a source, and a person checks every figure. We do not know whether an equivalent tool already exists: a research phase is part of the proposal.`,
+    ca: `<strong>Llegiu això primer.</strong> La idea del sistema és de ${MOTIU}. El prototip està <strong>inspirat en el grup Boicot ICL</strong> i fet amb materials del seu dossier públic i del seu web (${BOICOT}): sense la seva feina no existiria. No és un espai oficial de la campanya i Boicot ICL no l'ha avalat. Fem servir IA per redactar i muntar; res no es publica sense font i una persona revisa cada xifra. No sabem si ja existeix una eina equivalent: una fase de recerca forma part de la proposta.`,
+    en: `<strong>Read this first.</strong> The idea for the system is ${MOTIU}'s. The prototype is <strong>inspired by the Boicot ICL group</strong> and built with materials from its public dossier and website (${BOICOT}): it would not exist without their work. It is not an official campaign space and Boicot ICL has not endorsed it. AI is used for drafting and assembly; nothing is published without a source, and a person checks every figure. We do not know whether an equivalent tool already exists: a research phase is part of the proposal.`,
 };
 
 // ---------- 1. Problema ----------
@@ -72,8 +72,8 @@ const proofTitle: Bilingual = {
 };
 const proofEyebrow: Bilingual = { ca: "El prototip d'ICL", en: "The ICL prototype" };
 const proofIntro: Bilingual = {
-    ca: `El prototip de Boicot ICL, fet per ${MOTIU} a partir del dossier públic de la campanya. És el que esteu mirant.`,
-    en: `The Boicot ICL prototype, built by ${MOTIU} on top of the campaign's public dossier. It is what you are looking at.`,
+    ca: `Aquest prototip, fet per ${MOTIU}, inspirat en la campanya Boicot ICL i construït amb materials del seu dossier públic i del seu web. És el que esteu mirant.`,
+    en: `This prototype, built by ${MOTIU}, inspired by the Boicot ICL campaign and made with materials from its public dossier and website. It is what you are looking at.`,
 };
 const proofList: Bilingual<string[]> = {
     ca: [
@@ -808,7 +808,7 @@ const pdfHref = assetHref(`/downloads/sistema-${lang}.pdf`);
             max-width: none;
         }
         .hero__lede {
-            font-size: 8.4pt;
+            font-size: 8pt;
             margin: 0 0 0.3em;
         }
         .hero__name {
@@ -851,7 +851,8 @@ const pdfHref = assetHref(`/downloads/sistema-${lang}.pdf`);
         .honesty {
             border: 0.75pt solid var(--navy);
             border-left: 3pt solid var(--red-bright);
-            font-size: 7.6pt;
+            font-size: 7.2pt;
+            line-height: 1.25;
             border-radius: 4px;
             margin: 0;
         }
@@ -872,7 +873,7 @@ const pdfHref = assetHref(`/downloads/sistema-${lang}.pdf`);
         }
         .shots :global(img) {
             border-width: 1pt;
-            aspect-ratio: 2 / 1;
+            aspect-ratio: 2.5 / 1;
             object-fit: cover;
             object-position: top;
         }

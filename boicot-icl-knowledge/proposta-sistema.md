@@ -21,6 +21,7 @@ Full de ruta: Catalunya / Vall del Bages = primera instància i prova → punt d
 ## 2. Decisions preses
 
 - Pàgina `sistema` (CA `/sistema/`, EN `/en/sistema/`), component `src/components/pages/Sistema.astro`.
+- **Atribució (2026-10-27, a petició de Giulio):** el prototip ja no es diu «Boicot ICL». La marca del nav és `PROJECT_NAME`; una franja a totes les pàgines (`Base.astro`), el peu, el hero d'Inici, la banda de context i la pàgina `sistema` diuen que la idea és de Motiu i que el prototip està **inspirat en el grup Boicot ICL i fet amb materials del seu dossier i web**, sense avalar-ho la campanya.
 - Nom en una sola constant: `src/config/project.ts` (`PROJECT_NAME`, `PROJECT_TAGLINE`). Cap nom *hardcoded* a la còpia ni als noms de fitxer.
 - **Nav:** no s'afegeix un 8è ítem (el menú ja ocupa gairebé tot l'ample de 1120 px i a 390 px passaria a 5 files). L'insígnia «prototip · Motiu» és ara un enllaç a la pàgina (queda negra quan s'hi és).
 - Banda «Aquest prototip, en context» després del hero a Inici; enllaç al peu (columna Motiu); una línia a la capa interna (capa 2, només dades de demo), visible un cop desbloquejada la demo.
