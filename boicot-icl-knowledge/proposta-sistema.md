@@ -33,6 +33,15 @@ Full de ruta: Catalunya / Vall del Bages = primera instància i prova → punt d
 - Captures reals del build a `src/assets/proof/` (CA i EN, generades amb `screens/proof.cjs`). La de la capa interna es fa amb la demo desbloquejada via `sessionStorage`; no hi apareix cap contrasenya.
 - **PDF retirat (2026-10-27, a petició de Giulio):** no hi ha botó ni fitxers a `public/downloads/`; es comparteix la pàgina web. L'estil d'impressió (`@media print`, 2 pàgines A4) i `screens/pdf.cjs` es mantenen per si es vol regenerar. Detall tècnic anterior: `public/downloads/sistema-{ca,en}.pdf`, 2 pàgines A4 cadascun (verificat amb `screens/pdfcheck.py`; PyMuPDF no instal·lat, s'usa pypdf). `screens/pdf.cjs` usa el Chromium de Playwright perquè puppeteer no hi és (mateixa API `page.pdf`).
 
+### Decisions 2026-10-29 (petició de Giulio)
+
+- Nom provisional **«corpo-fight toolkit»** (abans «Arrel»); es diu a la pàgina que és provisional.
+- Tot és un **mockup en fase de brainstorming**, no un prototip ni una demo; la pàgina no vol semblar un pitch. S'ha canviat el llenguatge a tot el web, inclosa la franja d'atribució de totes les pàgines.
+- Afegida la **capa 4: serveis i formació** (organitzacions com Motiu acompanyen perquè els grups locals facin servir els fluxos i repos oberts al seu territori, sense dependència).
+- **Tech4Palestine** com a possible soci; la proposta també vol recollir-ne feedback específic.
+- «Segona lluita per definir» substituït per «ICL com a primer cas de prova; reutilitzable en altres lluites».
+- Subtítol de l'Inici: «L'estat de la lluita, visualitzat» (vegeu opcions a la conversa).
+
 ## 3. Opcions de nom
 
 Pendents: **comprovacions de domini i marca** (no fetes) i que la comunitat hi doni el seu parer.
@@ -85,7 +94,7 @@ Les frases «no cobreix…» de la pàgina són **judici propi** («que sapiguem
 
 ## 5. Preguntes obertes (no bloquegen)
 
-1. Quina segona lluita concreta? (Giulio l'afegirà; la pàgina té un espai marcat.)
+1. ~~Quina segona lluita concreta?~~ Ja no cal definir-la: ICL és el primer cas de prova i el toolkit pot servir a altres lluites territorials (decisió 2026-10-29).
 2. Nom definitiu (+ comprovacions de domini i marca).
 3. Qui custodia els fons i quin és el desglossament real del pressupost.
 4. Les organitzadores del Bages han vist el prototip? **El seu vistiplau va abans de qualsevol difusió més àmplia**, i un esforç internacional de recaptació no ha de competir amb el de la campanya.

@@ -12,7 +12,7 @@ interface Props {
 
 const {
     title = `${PROJECT_NAME} — Estat de la lluita`,
-    desc = "Prototip experimental de Motiu (motiu.org), inspirat en la campanya Boicot ICL i fet amb materials del seu web i dossier (boicoticl.org). No és un espai oficial de la campanya.",
+    desc = "Mockup experimental de Motiu (motiu.org), inspirat en la campanya Boicot ICL i fet amb materials del seu web i dossier (boicoticl.org). No és un espai oficial de la campanya.",
 } = Astro.props;
 const pageTitle = title.includes(PROJECT_NAME)
     ? title
@@ -20,8 +20,8 @@ const pageTitle = title.includes(PROJECT_NAME)
 const lang = (Astro.currentLocale ?? "ca") as Lang;
 const credit =
     lang === "en"
-        ? 'Experimental prototype by <a href="https://motiu.org">Motiu</a>, inspired by the <strong>Boicot ICL</strong> campaign and built with materials from its dossier and website (<a href="https://boicoticl.org">boicoticl.org</a>). Not an official campaign space.'
-        : 'Prototip experimental de <a href="https://motiu.org">Motiu</a>, inspirat en la campanya <strong>Boicot ICL</strong> i fet amb materials del seu dossier i web (<a href="https://boicoticl.org">boicoticl.org</a>). No és un espai oficial de la campanya.';
+        ? 'Experimental mockup by <a href="https://motiu.org">Motiu</a>, inspired by the <strong>Boicot ICL</strong> campaign and built with materials from its dossier and website (<a href="https://boicoticl.org">boicoticl.org</a>). Not an official campaign space.'
+        : 'Mockup experimental de <a href="https://motiu.org">Motiu</a>, inspirat en la campanya <strong>Boicot ICL</strong> i fet amb materials del seu dossier i web (<a href="https://boicoticl.org">boicoticl.org</a>). No és un espai oficial de la campanya.';
 
 ---
 

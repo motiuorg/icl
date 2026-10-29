@@ -1,6 +1,6 @@
 # corpo-fight toolkit (nom provisional) — estat de la lluita contra ICL: proposta experimental de Motiu
 
-**Prototip experimental de [Motiu](https://motiu.org)** (cooperativa d'infraestructura per
+**Mockup experimental de [Motiu](https://motiu.org)** (cooperativa d'infraestructura per
 la regeneració territorial), **inspirat en el grup Boicot ICL** i fet amb materials del seu dossier i del seu web. La campanya és seva; això és una proposta de Motiu per discutir-hi.
 No és un espai oficial de la campanya: complementa [boicoticl.org](https://boicoticl.org)
 amb una eina visual de l'estat de la lluita (aigua, runams, trens FGC, laboral,
@@ -27,9 +27,9 @@ npm run build      # build estàtic → dist/
 
 ## Estat
 
-Prototip v1: 7 seccions × 2 llengües, gràfics SVG estàtics, porta interna de
+Mockup v1: 7 seccions × 2 llengües, gràfics SVG estàtics, porta interna de
 demo (contrasenya `icl-2026` — autenticació real pendent de decisió).
-Pàgina nova `/sistema/` (CA) i `/en/sistema/` (EN): proposta de sistema obert, amb PDF de dues pàgines a `public/downloads/`. Proposta experimental; no desplegar sense el vistiplau de la campanya (vegeu `boicot-icl-knowledge/`).
+Pàgina nova `/sistema/` (CA) i `/en/sistema/` (EN): proposta de sistema obert. Proposta experimental; no desplegar sense el vistiplau de la campanya (vegeu `boicot-icl-knowledge/`).
 Contingut integrat (2026-10-29): les transcripcions completes del dossier i de les
 dues tesis d'Iona Crusat són a `boicot-icl-knowledge/sources/` (Markdown) i la seva
 informació s'ha incorporat a les parts que descriuen la lluita actual (danys,
