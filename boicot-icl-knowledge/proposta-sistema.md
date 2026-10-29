@@ -42,6 +42,15 @@ Full de ruta: Catalunya / Vall del Bages = primera instància i prova → punt d
 - «Segona lluita per definir» substituït per «ICL com a primer cas de prova; reutilitzable en altres lluites».
 - Subtítol de l'Inici: «L'estat de la lluita, visualitzat» (vegeu opcions a la conversa).
 
+### Decisions 2026-10-29 (segona tanda)
+
+- Subtítol d'Inici: «L'estat de la lluita, en un sol lloc» / «The state of the fight, in one place».
+- «Capes» passa a **«components»** (el suport i la formació poden anar abans de la implementació; no és una seqüència). Al diagrama, «Suport» és una caixa discontínua amb fletxa bidireccional («en qualsevol moment»).
+- Secció de prova: «Un esbós per recollir un primer feedback»; s'han afegit 2 captures (actors, recerca) → 6 en total. «No demo» eliminat de la pàgina `sistema`.
+- Bilingüe: ja no és un argument; es diu que traduir el web a altres idiomes és ara ràpid i fàcil.
+- Eliminat «El Salto» de la llista d'actors (continua esmentat al crèdit del documental a Recerca).
+- Maquetació d'Inici: etiquetes de les targetes, xifres clau alineades, banda de context i línia del temps (alternada a dalt/baix per evitar solapaments).
+
 ## 3. Opcions de nom
 
 Pendents: **comprovacions de domini i marca** (no fetes) i que la comunitat hi doni el seu parer.

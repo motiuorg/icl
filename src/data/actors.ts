@@ -82,12 +82,6 @@ export const lluita: Actor[] = [
     source: "D refs",
   },
   {
-    name: "El Salto",
-    type: { ca: "Mitjà", en: "Media outlet" },
-    role: { ca: "Suport al documental «Sal a la ferida»", en: "Support for the documentary 'Salt in the wound'" },
-    source: "W /documental/",
-  },
-  {
     name: "L'Alzina (Col·lectiu Ecologista)",
     type: { ca: "Col·lectiu ecologista", en: "Ecologist collective" },
     role: {

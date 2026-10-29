@@ -19,12 +19,12 @@ const h1a: Bilingual = {
     en: "The state of the fight,",
 };
 const h1b: Bilingual = {
-    ca: "visualitzat",
-    en: "visualized",
+    ca: "en un sol lloc",
+    en: "in one place",
 };
 const lede: Bilingual = {
-    ca: 'Des del Bages, dècades de lluita contra la mineria de potassa d\'ICL: el riu Llobregat salinitzat, les muntanyes de sal que creixen, una comarca que es defensa. Aquest mockup experimental de <a href="https://motiu.org">Motiu</a>, <strong>inspirat en la campanya Boicot ICL</strong> i fet amb materials del seu dossier i del seu web (<a href="https://boicoticl.org">boicoticl.org</a>), serveix per imaginar com es podria explicar l\'estat de la lluita i com es podria coordinar. No és una demo acabada ni un espai oficial de la campanya.',
-    en: 'From Bages, decades of struggle against ICL\'s potash mining: a salinised Llobregat river, salt mountains that keep growing, a region that defends itself. This experimental mockup by <a href="https://motiu.org">Motiu</a>, <strong>inspired by the Boicot ICL campaign</strong> and built with materials from its dossier and website (<a href="https://boicoticl.org">boicoticl.org</a>), sketches how the state of the fight could be explained and coordinated. It is not a finished demo or an official campaign space.',
+    ca: 'Des del Bages, dècades de lluita contra la mineria de potassa d\'ICL: el riu Llobregat salinitzat, les muntanyes de sal que creixen, una comarca que es defensa. Aquest mockup experimental de <a href="https://motiu.org">Motiu</a>, <strong>inspirat en la campanya Boicot ICL</strong> i fet amb materials del seu dossier i del seu web (<a href="https://boicoticl.org">boicoticl.org</a>), serveix per imaginar com es podria explicar l\'estat de la lluita i com es podria coordinar. No és un producte acabat ni un espai oficial de la campanya.',
+    en: 'From Bages, decades of struggle against ICL\'s potash mining: a salinised Llobregat river, salt mountains that keep growing, a region that defends itself. This experimental mockup by <a href="https://motiu.org">Motiu</a>, <strong>inspired by the Boicot ICL campaign</strong> and built with materials from its dossier and website (<a href="https://boicoticl.org">boicoticl.org</a>), sketches how the state of the fight could be explained and coordinated. It is not a finished product or an official campaign space.',
 };
 const cta: Bilingual = {
     ca: ["Veure els danys", "La recerca", "🔒 Capa interna"],
@@ -383,17 +383,41 @@ const pageTitle: Bilingual = {
     .ctx {
         background: var(--sky);
         border-radius: var(--radius-md);
-        padding: 1rem 1.3rem;
+        padding: 1.3rem 1.6rem;
         margin-top: var(--space-3);
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "pill btn"
+            "text btn";
         align-items: center;
-        gap: 1rem 1.2rem;
-        flex-wrap: wrap;
+        gap: 0.6rem 2rem;
+    }
+    .ctx .pill {
+        grid-area: pill;
+        justify-self: start;
     }
     .ctx p {
-        flex: 1 1 24rem;
+        grid-area: text;
         margin: 0;
         font-size: 0.95rem;
+        max-width: 46rem;
+    }
+    .ctx .btn {
+        grid-area: btn;
+        white-space: nowrap;
+    }
+    @media (max-width: 700px) {
+        .ctx {
+            grid-template-columns: 1fr;
+            grid-template-areas: "pill" "text" "btn";
+        }
+        .ctx .btn {
+            justify-self: start;
+        }
+    }
+    .front .tag {
+        align-self: flex-start;
     }
     .front {
         display: flex;

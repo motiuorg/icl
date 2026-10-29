@@ -132,8 +132,11 @@ small { font-size: 0.82em; }
 .stat__value {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.9rem, 4vw, 2.7rem);
-  line-height: 1;
+  font-size: clamp(1.7rem, 2.9vw, 2.3rem);
+  line-height: 1.05;
+  min-height: 2.4rem;
+  display: flex;
+  align-items: flex-end;
   letter-spacing: -0.02em;
 }
 .stat__label { font-size: 0.95rem; font-weight: 600; }

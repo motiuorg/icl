@@ -13,6 +13,10 @@ import timelineCa from "../../assets/proof/timeline-ca.png";
 import timelineEn from "../../assets/proof/timeline-en.png";
 import internalCa from "../../assets/proof/internal-ca.png";
 import internalEn from "../../assets/proof/internal-en.png";
+import researchCa from "../../assets/proof/research-ca.png";
+import researchEn from "../../assets/proof/research-en.png";
+import actorsCa from "../../assets/proof/actors-ca.png";
+import actorsEn from "../../assets/proof/actors-en.png";
 
 const lang = (Astro.currentLocale ?? "ca") as Lang;
 const t = tr(lang);
@@ -52,8 +56,8 @@ const workingName: Bilingual = {
 };
 
 const honesty: Bilingual = {
-    ca: `<strong>Llegiu això primer.</strong> La idea del toolkit és de ${MOTIU}. Aquest mockup està <strong>inspirat en el grup Boicot ICL</strong> i fet amb materials del seu dossier públic i del seu web (${BOICOT}): sense la seva feina no existiria. És una primera exploració petita, no una demo acabada ni un producte llest per presentar. No és un espai oficial de la campanya i Boicot ICL no l'ha avalat. Hem fet servir IA per redactar i muntar; no sabem si ja existeix una eina equivalent: això també forma part de la recerca oberta.`,
-    en: `<strong>Read this first.</strong> The toolkit idea is ${MOTIU}'s. This mockup is <strong>inspired by the Boicot ICL group</strong> and built with materials from its public dossier and website (${BOICOT}): it would not exist without their work. It is a small early exploration, not a finished demo or a product ready to pitch. It is not an official campaign space and Boicot ICL has not endorsed it. AI was used for drafting and assembly; we do not know whether an equivalent tool already exists: that is also part of the open research.`,
+    ca: `<strong>Llegiu això primer.</strong> La idea del toolkit és de ${MOTIU}. Aquest mockup està <strong>inspirat en el grup Boicot ICL</strong> i fet amb materials del seu dossier públic i del seu web (${BOICOT}): sense la seva feina no existiria. És una primera exploració petita, no un producte acabat ni un pitch. No és un espai oficial de la campanya i Boicot ICL no l'ha avalat. Hem fet servir IA per redactar i muntar; no sabem si ja existeix una eina equivalent: això també forma part de la recerca oberta.`,
+    en: `<strong>Read this first.</strong> The toolkit idea is ${MOTIU}'s. This mockup is <strong>inspired by the Boicot ICL group</strong> and built with materials from its public dossier and website (${BOICOT}): it would not exist without their work. It is a small early exploration, not a finished product and not a pitch. It is not an official campaign space and Boicot ICL has not endorsed it. AI was used for drafting and assembly; we do not know whether an equivalent tool already exists: that is also part of the open research.`,
 };
 
 // ---------- 1. Problema ----------
@@ -66,16 +70,16 @@ const problemText: Bilingual = {
 
 // ---------- 2. Prova ----------
 const proofTitle: Bilingual = {
-    ca: "Un primer esboss per pensar-ho en veu alta",
-    en: "An early sketch to think out loud",
+    ca: "Un esbós per recollir un primer feedback",
+    en: "A sketch to gather initial feedback",
 };
 const proofEyebrow: Bilingual = {
     ca: "Un mockup inspirat en ICL",
     en: "An ICL-inspired mockup",
 };
 const proofIntro: Bilingual = {
-    ca: `Aquest mockup, fet per ${MOTIU}, no és una demo ni un prototip acabat. És només una primera exploració petita, amb materials públics del dossier i del web de la campanya Boicot ICL. Serveix per imaginar com podria funcionar un toolkit futur, no per presentar un producte existent.`,
-    en: `This mockup, made by ${MOTIU}, is not a demo or a finished prototype. It is only a small early exploration using public materials from the Boicot ICL campaign's dossier and website. It is here to help imagine what a future toolkit could look like, not to present an existing product.`,
+    ca: `Aquest mockup, fet per ${MOTIU}, no és un producte acabat. És només una primera exploració petita, amb materials públics del dossier i del web de la campanya Boicot ICL. Serveix per imaginar com podria funcionar un toolkit futur, no per presentar un producte existent.`,
+    en: `This mockup, made by ${MOTIU}, is not a finished product. It is only a small early exploration using public materials from the Boicot ICL campaign's dossier and website. It is here to help imagine what a future toolkit could look like, not to present an existing product.`,
 };
 const proofList: Bilingual<string[]> = {
     ca: [
@@ -99,12 +103,12 @@ const shots = [
     {
         img: { ca: homeCa, en: homeEn },
         alt: {
-            ca: "Primera maqueta de la pàgina d'inici: l'estat de la lluita, visualitzat.",
-            en: "First sketch of the home page: the state of the fight, visualized.",
+            ca: "Primera maqueta de la pàgina d'inici: l'estat de la lluita, en un sol lloc.",
+            en: "First sketch of the home page: the state of the fight, in one place.",
         },
         cap: {
-            ca: "Una primera maqueta de l'inici: l'estat de la lluita, visualitzat.",
-            en: "A first sketch of the home page: the state of the fight, visualized.",
+            ca: "Una primera maqueta de l'inici: l'estat de la lluita, en un sol lloc.",
+            en: "A first sketch of the home page: the state of the fight, in one place.",
         },
     },
     {
@@ -130,22 +134,44 @@ const shots = [
         },
     },
     {
+        img: { ca: actorsCa, en: actorsEn },
+        alt: {
+            ca: "Pàgina d'actors amb fitxes de col·lectius i institucions.",
+            en: "Actors page with profiles of groups and institutions.",
+        },
+        cap: {
+            ca: "Fitxes d'actors, encara incompletes.",
+            en: "Actor profiles, still incomplete.",
+        },
+    },
+    {
+        img: { ca: researchCa, en: researchEn },
+        alt: {
+            ca: "Pàgina de recerca amb la llista de documents i el seu estat.",
+            en: "Research page listing documents and their status.",
+        },
+        cap: {
+            ca: "Una primera idea de biblioteca de recerca.",
+            en: "A first sketch of a research library.",
+        },
+    },
+    {
         img: { ca: internalCa, en: internalEn },
         alt: {
             ca: "Maqueta d'un espai intern amb l'agenda i el tauler d'accions, amb dades fictícies.",
             en: "Mock internal space showing an agenda and action board, with fake data.",
         },
         cap: {
-            ca: "Una maqueta d'espai intern amb dades fictícies; no és una demo.",
-            en: "A mock internal space with fake data; not a demo.",
+            ca: "Una maqueta d'espai intern amb dades fictícies.",
+            en: "A mock internal space with fake data.",
         },
     },
 ];
 
 // ---------- 3. Sistema ----------
 const sysTitle: Bilingual = {
-    ca: "La idea: quatre capes possibles",
-    en: "The idea: four possible layers",
+    ca: "La idea: quatre components possibles",
+    en: "The idea: four possible components",
 };
 const sysEyebrow: Bilingual = { ca: "La idea", en: "The idea" };
 const sysIntro: Bilingual = {
@@ -159,25 +185,25 @@ const layers: {
     status: Bilingual;
 }[] = [
     {
-        tag: { ca: "Capa 1 · frontend", en: "Layer 1 · frontend" },
+        tag: { ca: "Component 1 · frontend", en: "Component 1 · frontend" },
         title: { ca: "Kit públic", en: "Public kit" },
         text: {
-            ca: "Un web de campanya a mida, ràpid i barat de muntar, que posa l'accent en el que vol cada grup. Visualitzacions de dades, biblioteca de recerca, cronologia de la lluita i mapa d'actors. El mockup d'ICL és només un exemple inicial.",
-            en: "A custom campaign website, quick and cheap to set up, that emphasises what each group wants. Data visualisations, a research library, a struggle timeline and actor mapping. The ICL mockup is just an early example.",
+            ca: "Un web de campanya a mida, ràpid i barat de muntar, que posa l'accent en el que vol cada grup. Visualitzacions de dades, biblioteca de recerca, cronologia de la lluita i mapa d'actors. Traduir-lo a altres idiomes és ara molt ràpid i fàcil. El mockup d'ICL és només un exemple inicial.",
+            en: "A custom campaign website, quick and cheap to set up, that emphasises what each group wants. Data visualisations, a research library, a struggle timeline and actor mapping. Translating it into other languages is now quick and easy. The ICL mockup is just an early example.",
         },
         status: { ca: "Esbossada al mockup", en: "Sketched in the mockup" },
     },
     {
-        tag: { ca: "Capa 2 · backend", en: "Layer 2 · backend" },
+        tag: { ca: "Component 2 · backend", en: "Component 2 · backend" },
         title: { ca: "Capa interna", en: "Internal layer" },
         text: {
-            ca: "Una possible plataforma privada de coordinació: tauler d'accions, cua de revisió d'evidències, agenda i contactes. Al mockup hi ha una maqueta amb dades fictícies; no és una demo operativa. L'accés real encara s'hauria de decidir amb cada campanya.",
-            en: "A possible private coordination platform: action board, evidence review queue, agenda and contacts. The mockup includes a mock space with fake data; it is not a working demo. Real access control would still be decided with each campaign.",
+            ca: "Una possible plataforma privada de coordinació: tauler d'accions, cua de revisió d'evidències, agenda i contactes. Al mockup hi ha una maqueta amb dades fictícies. L'accés real encara s'hauria de decidir amb cada campanya.",
+            en: "A possible private coordination platform: action board, evidence review queue, agenda and contacts. The mockup includes a mock space with fake data. Real access control would still be decided with each campaign.",
         },
-        status: { ca: "Maqueta, no demo", en: "Mockup, not demo" },
+        status: { ca: "Maqueta", en: "Mockup" },
     },
     {
-        tag: { ca: "Capa 3 · obert", en: "Layer 3 · open" },
+        tag: { ca: "Component 3 · obert", en: "Component 3 · open" },
         title: { ca: "Playbook obert", en: "Open playbook" },
         text: {
             ca: "Un possible playbook obert: el procés, les plantilles i els prompts, documentats i publicats perquè altres grups ho puguin reproduir sense Motiu. És una de les vies perquè el toolkit pugui servir més enllà d'ICL.",
@@ -186,15 +212,15 @@ const layers: {
         status: { ca: "Per imaginar", en: "To imagine" },
     },
     {
-        tag: { ca: "Capa 4 · suport", en: "Layer 4 · support" },
+        tag: { ca: "Component 4 · suport", en: "Component 4 · support" },
         title: { ca: "Serveis i formació", en: "Services & training" },
         text: {
-            ca: "Organitzacions com Motiu podrien oferir acompanyament, formació i suport tècnic perquè grups locals aprenguin a agafar aquests fluxos de treball i repositoris oberts i els facin servir al seu territori. L'objectiu és empoderar-los perquè treballin de manera autònoma, no crear dependència.",
-            en: "Organisations such as Motiu could offer facilitation, training and technical support so local groups can take these workflows and open-source repositories and use them in their own territory. The aim is to build local capacity and autonomy, not dependency.",
+            ca: "Organitzacions com Motiu podrien oferir acompanyament, formació i suport tècnic perquè grups locals aprenguin a agafar aquests fluxos de treball i repositoris oberts i els facin servir al seu territori. No cal que vingui al final: la formació pot començar abans de qualsevol implementació. L'objectiu és empoderar-los perquè treballin de manera autònoma, no crear dependència.",
+            en: "Organisations such as Motiu could offer facilitation, training and technical support so local groups can take these workflows and open-source repositories and use them in their own territory. It does not have to come last: training can start before anything is implemented. The aim is to build local capacity and autonomy, not dependency.",
         },
         status: {
-            ca: "Possibilitat a explorar",
-            en: "A possibility to explore",
+            ca: "Pot anar abans que la resta",
+            en: "Can come before the rest",
         },
     },
 ];
@@ -464,14 +490,14 @@ const questions: Bilingual<string[]> = {
     ca: [
         "Us ajudaria això en la vostra lluita? Què hi falta?",
         "Què us en faria refiar, o no?",
-        "Quina capa primer: kit públic, capa interna o playbook?",
+        "Quin component primer: kit públic, capa interna, playbook o formació?",
         "On teniu les línies vermelles sobre IA, allotjament i dades?",
         "Qui més ho hauria de veure?",
     ],
     en: [
         "Would this help your struggle? What is missing?",
         "What would make you trust it, or not?",
-        "Which layer first: public kit, internal layer or playbook?",
+        "Which component first: public kit, internal layer, playbook or training?",
         "Where do your red lines sit on AI, hosting and data?",
         "Who else should see this?",
     ],

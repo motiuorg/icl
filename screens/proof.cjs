@@ -4,7 +4,8 @@ const BASE = process.env.BASE || 'http://localhost:4321';
 const shots = [];
 for (const [lang, pre] of [['ca', ''], ['en', '/en']]) {
   shots.push([`home-${lang}`, `${pre}/`, null], [`impacts-${lang}`, `${pre}/danys/`, 'runams'],
-    [`timeline-${lang}`, `${pre}/cronologia/`, null], [`internal-${lang}`, `${pre}/intern/`, 'unlock']);
+    [`timeline-${lang}`, `${pre}/cronologia/`, null], [`internal-${lang}`, `${pre}/intern/`, 'unlock'],
+    [`actors-${lang}`, `${pre}/actors/`, null], [`research-${lang}`, `${pre}/recerca/`, null]);
 }
 (async () => {
   const b = await chromium.launch();
