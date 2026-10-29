@@ -38,8 +38,14 @@ export const campaigns: Campaign[] = [
       },
     ],
     data: [
-      { ca: "332 M€ facturats a l'estat espanyol (2023)", en: "€332M billed in Spain (2023)" },
-      { ca: "879 treballadors (2024)", en: "879 workers (2024)" },
+      {
+        ca: "332 M€ facturats a l'estat espanyol (2023, dossier; la premsa en dona 322 M€ — La Vanguardia, 25.03.2024)",
+        en: "€332M billed in Spain (2023, dossier; the press gives €322M — La Vanguardia, 25 March 2024)",
+      },
+      {
+        ca: "879 treballadors (informe d'ICL 2024); 758 al Bages el 2023 segons la tesi — l'abast difereix",
+        en: "879 workers (ICL 2024 report); 758 in Bages in 2023 per the thesis — the scope differs",
+      },
       {
         ca: "Informe financer d'ICL 2022: admet risc pel boicot",
         en: "ICL's 2022 financial report admits boycott risk",
@@ -87,12 +93,16 @@ export const campaigns: Campaign[] = [
     ],
     data: [
       {
-        ca: "Un barri de Sallent esfondrat i 800 persones desallotjades (xifra del web; el dossier diu 110 habitants — a reconciliar)",
-        en: "A collapsed Sallent neighbourhood and 800 evacuees (website figure; the dossier says 110 inhabitants — to reconcile)",
+        ca: "Barri de l'Estació de Sallent evacuat per risc d'esfondrament: el web parla de 800 persones i el dossier de 110; la xifra verificable és de 46 famílies / 121 persones (2008–09) — vegeu discrepàncies",
+        en: "Sallent's Estació neighbourhood evacuated over collapse risk: the website says 800 people and the dossier 110; the verifiable figure is 46 families / 121 people (2008–09) — see discrepancies",
       },
       {
-        ca: "Sentència del runam de Sallent: deu anys després segueix creixent",
-        en: "Sallent dump ruling: ten years later it keeps growing",
+        ca: "L'abocament al runam del Cogulló (Sallent) s'atura el 2019 per ordre del TSJC, però el 2024 el tribunal constata que no se n'ha retirat «cap metre cúbic»; el Fusteret (Súria) continua creixent",
+        en: "Dumping at the Cogulló dump (Sallent) stops in 2019 by TSJC order, but in 2024 the court notes not 'a single cubic metre' has been removed; the Fusteret (Súria) keeps growing",
+      },
+      {
+        ca: "Una tradició de lluita de gairebé 30 anys: Montsalat (1997) → Prou Sal! (2007) → Boicot ICL (2024)",
+        en: "A near-30-year tradition of struggle: Montsalat (1997) → Prou Sal! (2007) → Boicot ICL (2024)",
       },
     ],
     actions: [
@@ -107,7 +117,7 @@ export const campaigns: Campaign[] = [
       { ca: "Manifest «Germinació 2026»", en: "'Germinació 2026' manifesto" },
       { ca: "Cançó «Boicot ICL» (INCENDI KIF)", en: "'Boicot ICL' song (INCENDI KIF)" },
     ],
-    source: "W /revoltes-de-la-terra/",
+    source: "W /revoltes-de-la-terra/ · T1 annex 3 · T2 annex 8 · Nació Digital 26.04.2012",
   },
   {
     slug: "fgc",
@@ -228,8 +238,8 @@ export const talks: {
       en: "The working class against the multinationals",
     },
     speakers: {
-      ca: "Júlia (ODG) · Albert (Prou Sal) · Jep (MontSalat) · Uri (Boicot ICL)",
-      en: "Júlia (ODG) · Albert (Prou Sal) · Jep (MontSalat) · Uri (Boicot ICL)",
+      ca: "Júlia (ODG) · Albert (Prou Sal!) · Jep (Montsalat) · Uri (Boicot ICL)",
+      en: "Júlia (ODG) · Albert (Prou Sal!) · Jep (Montsalat) · Uri (Boicot ICL)",
     },
     topics: {
       ca: "Complicitat institucional, cooptació, flexibilització legal",

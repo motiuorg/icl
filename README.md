@@ -30,5 +30,10 @@ npm run build      # build estàtic → dist/
 Prototip v1: 7 seccions × 2 llengües, gràfics SVG estàtics, porta interna de
 demo (contrasenya `icl-2026` — autenticació real pendent de decisió).
 Pàgina nova `/sistema/` (CA) i `/en/sistema/` (EN): proposta de sistema obert, amb PDF de dues pàgines a `public/downloads/`. Proposta experimental; no desplegar sense el vistiplau de la campanya (vegeu `boicot-icl-knowledge/`).
-Pendents: text sencer dels estudis d'Iona Crusat (PDF amb codificació
-corrupta), lector del dossier, mapa de relacions d'actors, desplegament.
+Contingut integrat (2026-10-29): les transcripcions completes del dossier i de les
+dues tesis d'Iona Crusat són a `boicot-icl-knowledge/sources/` (Markdown) i la seva
+informació s'ha incorporat a les parts que descriuen la lluita actual (danys,
+cronologia, actors, recerca, campanyes). Les discrepàncies entre fonts i el que
+s'ha corregit són a `boicot-icl-knowledge/auditoria-web-vs-fonts.md`.
+Pendents: lector en línia del dossier, mapa de relacions d'actors (graf),
+verificar les xifres marcades a «Xifres a reconciliar», desplegament.

@@ -51,8 +51,8 @@ const kpiEyebrow: Bilingual = {
     en: "6 key indicators",
 };
 const kpiSrc: Bilingual = {
-    ca: "Dades: dossier de la campanya (nov. 2025) i boicoticl.org.",
-    en: "Data: campaign dossier (Nov 2025) and boicoticl.org.",
+    ca: "Dades: dossier de la campanya (nov. 2025), boicoticl.org i les dues tesis d'Iona Crusat (UAB, 2025). Les xifres que no quadren entre fonts van marcades a «Transparència de dades».",
+    en: "Data: campaign dossier (Nov 2025), boicoticl.org and Iona Crusat's two theses (UAB, 2025). Figures that differ between sources are flagged under 'Data transparency'.",
 };
 const frontsTitle: Bilingual = {
     ca: "Els fronts de la lluita",
@@ -73,8 +73,8 @@ const fronts: {
         tag: { ca: "Territori", en: "Territory" },
         title: { ca: "Rius i runams", en: "Rivers & salt dumps" },
         text: {
-            ca: "4 runams salins, >80 milions de tones exposades. El Fusteret creix malgrat l'ordre penal. El Llobregat abeura Barcelona: la salinització és un problema de país.",
-            en: "4 salt dumps, over 80 million tonnes exposed. Fusteret keeps growing despite the criminal order. The Llobregat supplies Barcelona: salinisation is a country-scale problem.",
+            ca: "4 runams salins pendents, >80 milions de tones exposades. El Cogulló va deixar de rebre residus el 2019 per ordre del TSJC, però no se n'ha retirat res; el Fusteret continua creixent. El Llobregat abeura Barcelona: la salinització és un problema de país.",
+            en: "4 salt dumps pending, over 80 million tonnes exposed. The Cogulló stopped receiving waste in 2019 by TSJC order, but nothing has been removed; the Fusteret keeps growing. The Llobregat supplies Barcelona: salinisation is a country-scale problem.",
         },
         link: { ca: "Les dades →", en: "The data →" },
         href: "/danys/#runams",
@@ -93,8 +93,8 @@ const fronts: {
         tag: { ca: "Laboral", en: "Labour" },
         title: { ca: "Morts i precarietat", en: "Deaths & precarity" },
         text: {
-            ca: "10 morts laborals en 8 anys. Subcontractació i primes de productivitat com a xantatge: les treballadores, ostatges del model.",
-            en: "10 workplace deaths in 8 years. Subcontracting and productivity bonuses used as blackmail: workers held hostage by the model.",
+            ca: "10 morts laborals en 8 anys (xifra del web, pendent de font). Subcontractació i primes de productivitat com a xantatge: les treballadores, ostatges del model.",
+            en: "10 workplace deaths in 8 years (website figure, source pending). Subcontracting and productivity bonuses used as blackmail: workers held hostage by the model.",
         },
         link: { ca: "Les dades →", en: "The data →" },
         href: "/danys/#laboral",
@@ -115,8 +115,8 @@ const winsTitle: Bilingual = {
     en: "The fight is advancing",
 };
 const winsEyebrow: Bilingual = {
-    ca: "Victòries documentades (2024–2025)",
-    en: "Documented wins (2024–2025)",
+    ca: "Victòries documentades (dossier, 2025)",
+    en: "Documented wins (dossier, 2025)",
 };
 const wins: Bilingual[] = [
     {
@@ -141,12 +141,12 @@ const wins: Bilingual[] = [
     },
 ];
 const winsMuted: Bilingual = {
-    ca: "Manifestació a Manresa, setembre 2025 · Concentració davant el Kursaal, març 2025.",
-    en: "Demonstration in Manresa, September 2025 · Rally outside the Kursaal, March 2025.",
+    ca: "Manifestació a Manresa, setembre 2025 · Concentració davant el Kursaal, març 2025. Les dues primeres victòries són locals i recents; les altres són del moviment BDS en general.",
+    en: "Demonstration in Manresa, September 2025 · Rally outside the Kursaal, March 2025. The first two wins are local and recent; the others belong to the wider BDS movement.",
 };
 const winsSrc: Bilingual = {
-    ca: "Font: Dossier informatiu Boicot ICL (nov. 2025)",
-    en: "Source: Boicot ICL info dossier (Nov 2025)",
+    ca: "Font: Dossier informatiu Boicot ICL (nov. 2025) · Kursaal: T2 annex 8",
+    en: "Source: Boicot ICL info dossier (Nov 2025) · Kursaal: T2 annex 8",
 };
 const timelineCta: Bilingual = {
     ca: "Cronologia completa",
@@ -160,6 +160,17 @@ const discEyebrow: Bilingual = {
     ca: "Xifres a reconciliar amb la campanya",
     en: "Figures to reconcile with the campaign",
 };
+const discMore: Bilingual = {
+    ca: `Totes les xifres a reconciliar (${discrepancies.length}) →`,
+    en: `All figures to reconcile (${discrepancies.length}) →`,
+};
+const gensEyebrow: Bilingual = { ca: "Una lluita de gairebé trenta anys", en: "A struggle of almost thirty years" };
+const gensTitle: Bilingual = { ca: "Montsalat → Prou Sal! → Boicot ICL", en: "Montsalat → Prou Sal! → Boicot ICL" };
+const gensText: Bilingual = {
+    ca: "La denúncia de 1997 va acabar en una condemna penal el 2014 i en cinc victòries judicials. Boicot ICL (2024) agafa el relleu amb un enfocament anticapitalista i de solidaritat amb Palestina. La cronologia i el mapa d'actors, a partir de les tesis d'Iona Crusat.",
+    en: "The 1997 complaint ended in a criminal conviction in 2014 and five court wins. Boicot ICL (2024) takes over with an anti-capitalist, Palestine-solidarity approach. The timeline and the actor map draw on Iona Crusat's theses.",
+};
+const gensCta: Bilingual = { ca: "Veure els actors →", en: "See the actors →" };
 const campTitle: Bilingual = {
     ca: "Campanyes en curs",
     en: "Ongoing campaigns",
@@ -282,7 +293,7 @@ const pageTitle: Bilingual = {
             <span class="eyebrow">{t(discEyebrow)}</span>
         </div>
         <div class="grid grid--2">
-            {discrepancies.map((d) => (
+            {discrepancies.slice(0, 4).map((d) => (
                 <Discrepancy
                     title={t(d.topic)}
                     versions={d.versions.map((v) => ({
@@ -292,6 +303,19 @@ const pageTitle: Bilingual = {
                     action={t(d.action)}
                 />
             ))}
+        </div>
+        <p style="margin-top:var(--space-3)">
+            <a href={localizeHref(lang, "/danys/#xifres")}>{t(discMore)}</a>
+        </p>
+    </section>
+
+    <!-- Tres generacions -->
+    <section class="section">
+        <div class="card gens">
+            <span class="eyebrow">{t(gensEyebrow)}</span>
+            <h2 style="margin:.2em 0 .4em">{t(gensTitle)}</h2>
+            <p>{t(gensText)}</p>
+            <a class="btn btn--soft" href={localizeHref(lang, "/actors/")}>{t(gensCta)}</a>
         </div>
     </section>
 
@@ -355,6 +379,7 @@ const pageTitle: Bilingual = {
         flex-wrap: wrap;
         margin-top: var(--space-3);
     }
+    .gens p { max-width: 46rem; }
     .ctx {
         background: var(--sky);
         border-radius: var(--radius-md);

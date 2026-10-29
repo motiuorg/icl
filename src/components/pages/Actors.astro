@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { lluita, objectiu } from "../../data/actors";
+import { lluita, objectiu, judicial, conflictMap, lineage, lineageNote } from "../../data/actors";
 import { tr, type Lang, type Bilingual } from "../../i18n/utils";
 
 const lang = (Astro.currentLocale ?? "ca") as Lang;
@@ -22,6 +22,30 @@ const note: Bilingual = {
   ca: "En una propera versió: un mapa de relacions (qui denuncia, qui finança, qui transporta) i la geolocalització de les instal·lacions denunciades.",
   en: "Next version: a relationship map (who denounces, who funds, who transports) and geolocation of the denounced facilities.",
 };
+const judicialTitle: Bilingual = { ca: "Qui jutja i qui regula", en: "Who judges and who regulates" };
+const mapTitle: Bilingual = { ca: "El mapa del conflicte al Bages", en: "The conflict map in Bages" };
+const mapLede: Bilingual = {
+  ca: "Qui té poder i quina posició pren davant la mineria, segons la tesi d'Iona Crusat (2025, fig. 2). És una classificació de l'autora, «extremadament reduccionista» en les seves paraules.",
+  en: "Who holds power and what position they take on mining, according to Iona Crusat's thesis (2025, fig. 2). It is the author's own classification, 'extremely reductionist' in her words.",
+};
+const mapCols: Bilingual[] = [
+  { ca: "Grup", en: "Group" },
+  { ca: "Actor", en: "Actor" },
+  { ca: "Afinitat amb el conflicte", en: "Affinity with the conflict" },
+  { ca: "Poder", en: "Power" },
+  { ca: "Posició", en: "Position" },
+];
+const lineageTitle: Bilingual = { ca: "Tres generacions d'oposició", en: "Three generations of opposition" };
+const lineageLede: Bilingual = {
+  ca: "Del 1997 al 2024: com ha canviat la lluita contra les mines del Bages (T2, fig. 4 i annex 8).",
+  en: "From 1997 to 2024: how the fight against the Bages mines has changed (T2, fig. 4 and annex 8).",
+};
+const lineageFields: { key: "form" | "aim" | "stance" | "strategy"; label: Bilingual }[] = [
+  { key: "form", label: { ca: "Forma", en: "Form" } },
+  { key: "aim", label: { ca: "Objectiu", en: "Aim" } },
+  { key: "stance", label: { ca: "Posició", en: "Stance" } },
+  { key: "strategy", label: { ca: "Estratègia", en: "Strategy" } },
+];
 ---
 
 <Base title={t(pageTitle)}>
@@ -65,10 +89,82 @@ const note: Bilingual = {
       {t(note)}
     </div>
   </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>{t(judicialTitle)}</h2>
+      <span class="eyebrow">{judicial.length} actors</span>
+    </div>
+    <div class="grid grid--2">
+      {judicial.map((a) => (
+        <div class="card actor">
+          <h3 style="margin:0 0 .15em">{a.name}</h3>
+          <span class="tag tag--green">{t(a.type)}</span>
+          <p style="margin:.7em 0 0;font-size:.93rem">{t(a.role)}</p>
+          <span class="src">{a.source}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>{t(mapTitle)}</h2>
+    </div>
+    <p class="lede">{t(mapLede)}</p>
+    <div class="card" style="overflow-x:auto">
+      <table class="map">
+        <thead>
+          <tr>{mapCols.map((c) => <th>{t(c)}</th>)}</tr>
+        </thead>
+        <tbody>
+          {conflictMap.map((r) => (
+            <tr>
+              <td>{t(r.group)}</td>
+              <td><strong>{t(r.actor)}</strong></td>
+              <td>{t(r.affinity)}</td>
+              <td>{t(r.power)}</td>
+              <td>{t(r.position)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>{t(lineageTitle)}</h2>
+    </div>
+    <p class="lede">{t(lineageLede)}</p>
+    <div class="grid grid--3">
+      {lineage.map((g) => (
+        <div class="card actor">
+          <span class="eyebrow">{g.born}</span>
+          <h3 style="margin:0 0 .5em">{g.name}</h3>
+          <dl class="gen">
+            {lineageFields.map((f) => (
+              <>
+                <dt>{t(f.label)}</dt>
+                <dd>{t(g[f.key])}</dd>
+              </>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+    <div class="note-box" style="margin-top:var(--space-3)">{t(lineageNote)}</div>
+  </section>
 </Base>
 
 <style>
   .lede { max-width: 52rem; font-size: 1.05rem; }
   .actor { display: flex; flex-direction: column; }
   .actor p { flex: 1; }
+  .map { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .map th, .map td { text-align: left; padding: 0.5em 0.7em; border-bottom: 1px solid rgba(0, 0, 0, 0.12); vertical-align: top; }
+  .map th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .gen { margin: 0; font-size: 0.9rem; }
+  .gen dt { font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.7em; }
+  .gen dd { margin: 0.1em 0 0; }
 </style>

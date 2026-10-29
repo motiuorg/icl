@@ -13,6 +13,18 @@ const chartW = 360;
 const x0 = 150;
 
 function barW(v: number) { return (v / max) * chartW; }
+
+// Etiqueta a l'esquerra: es parteix en línies de ≈ 19 caràcters perquè no es talli.
+function wrap(label: string, maxChars = 19): string[] {
+  const lines: string[] = [];
+  let cur = "";
+  for (const w of label.split(" ")) {
+    if (cur && (cur + " " + w).length > maxChars) { lines.push(cur); cur = w; }
+    else cur = cur ? cur + " " + w : w;
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
 ---
 
 <svg viewBox={`0 0 ${W} ${H}`} role="img" style="width:100%;height:auto" class="chart">
@@ -20,7 +32,9 @@ function barW(v: number) { return (v / max) * chartW; }
     const y = i * rowH + 10;
     return (
       <>
-        <text x={x0 - 10} y={y + 12} text-anchor="end" font-size="13" font-weight="700" font-family="inherit">{b.label}</text>
+        <text x={x0 - 10} y={y + 12 - (wrap(b.label).length - 1) * 7} text-anchor="end" font-size="13" font-weight="700" font-family="inherit">
+          {wrap(b.label).map((l, k) => <tspan x={x0 - 10} dy={k === 0 ? 0 : 14}>{l}</tspan>)}
+        </text>
         <rect x={x0} y={y} width={barW(b.value)} height={26} rx="7" fill={i === highlight ? "var(--red-bright)" : "var(--sky)"} stroke="var(--ink)" stroke-width="1.6" />
         <text x={x0 + barW(b.value) + 8} y={y + 19} font-size="13" font-weight="800" font-family="inherit">
           {b.display}{unit}

@@ -1,17 +1,27 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { timeline, timelineNote } from "../../data/timeline";
+import { timeline, timelineNote, eras } from "../../data/timeline";
 import { tr, type Lang, type Bilingual } from "../../i18n/utils";
 
 const lang = (Astro.currentLocale ?? "ca") as Lang;
 const t = tr(lang);
 
+// Cada esdeveniment porta l'etiqueta de l'etapa només quan n'inicia una de nova.
+let lastEra: number | undefined;
+const items = timeline.map((e) => {
+    const y = parseInt(e.year);
+    const idx = eras.reduce((acc, era, k) => (y >= era.from ? k : acc), 0);
+    const eraLabel = idx !== lastEra ? eras[idx].label : undefined;
+    lastEra = idx;
+    return { ...e, eraLabel };
+});
+
 const heroPill: Bilingual = { ca: "Fets documentats", en: "Documented facts" };
 const pageTitle: Bilingual = { ca: "Cronologia", en: "Timeline" };
 const h1: Bilingual = { ca: "La lluita, en dates", en: "The fight, in dates" };
 const lede: Bilingual = {
-    ca: 'Només fets documentats (dossier de novembre de 2025 i boicoticl.org). Colors: <span class="tag tag--red">lluita</span> <span class="tag">danys</span> <span class="tag tag--navy">corporatiu</span> <span class="tag tag--green">institucional</span>.',
-    en: 'Only documented facts (November 2025 dossier and boicoticl.org). Colours: <span class="tag tag--red">struggle</span> <span class="tag">damage</span> <span class="tag tag--navy">corporate</span> <span class="tag tag--green">institutional</span>.',
+    ca: 'Només fets documentats (dossier de novembre de 2025, boicoticl.org i els annexos de cronologia de les tesis d\'Iona Crusat, 2025). Colors: <span class="tag tag--red">lluita</span> <span class="tag">danys</span> <span class="tag tag--navy">corporatiu</span> <span class="tag tag--green">institucional</span>.',
+    en: 'Only documented facts (November 2025 dossier, boicoticl.org and the chronology annexes of Iona Crusat\'s 2025 theses). Colours: <span class="tag tag--red">struggle</span> <span class="tag">damage</span> <span class="tag tag--navy">corporate</span> <span class="tag tag--green">institutional</span>.',
 };
 ---
 
@@ -25,17 +35,20 @@ const lede: Bilingual = {
     <section class="section">
         <div class="card">
             <div class="tl">
-                {timeline.map((e) => (
-                    <div class={`tl__item tl__item--${e.cat}`}>
-                        <span class="tl__year">{e.year}</span>
-                        <h3 style="font-size:1.1rem;margin:.1em 0 .3em">
-                            {t(e.title)}
-                        </h3>
-                        <p style="margin:0 0 .2em">{t(e.text)}</p>
-                        <span class="src" style="display:inline">
-                            {e.source}
-                        </span>
-                    </div>
+                {items.map((e) => (
+                    <>
+                        {e.eraLabel && <h2 class="tl__era">{t(e.eraLabel)}</h2>}
+                        <div class={`tl__item tl__item--${e.cat}`}>
+                            <span class="tl__year">{e.year}</span>
+                            <h3 style="font-size:1.1rem;margin:.1em 0 .3em">
+                                {t(e.title)}
+                            </h3>
+                            <p style="margin:0 0 .2em">{t(e.text)}</p>
+                            <span class="src" style="display:inline">
+                                {e.source}
+                            </span>
+                        </div>
+                    </>
                 ))}
             </div>
         </div>
@@ -49,5 +62,19 @@ const lede: Bilingual = {
     .lede {
         max-width: 52rem;
         font-size: 1.05rem;
+    }
+    .tl__era {
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--navy, #003857);
+        margin: var(--space-3, 1.5rem) 0 var(--space-1, 0.5rem);
+        padding-top: var(--space-2, 1rem);
+        border-top: 1px solid rgba(0, 56, 87, 0.2);
+    }
+    .tl__era:first-child {
+        margin-top: 0;
+        border-top: 0;
+        padding-top: 0;
     }
 </style>
