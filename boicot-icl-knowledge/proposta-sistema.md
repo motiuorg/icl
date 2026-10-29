@@ -1,4 +1,4 @@
-# Proposta de sistema (nom de treball: Arrel)
+# Proposta de sistema (nom provisional: corpo-fight toolkit; abans «Arrel»)
 
 Última actualització: 2026-10-27. Estat: **esborrany per revisar per Giulio; no compartit amb cap organitzadora.**
 

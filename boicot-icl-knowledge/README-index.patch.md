@@ -2,7 +2,7 @@
 
 Afegir a l'índex:
 
-- `proposta-sistema.md` — proposta de sistema obert (nom de treball Arrel): marc, decisions, noms, llicències, investigació amb estat de verificació, preguntes obertes. Actualitzat 2026-10-27.
+- `proposta-sistema.md` — proposta de sistema obert (nom provisional «corpo-fight toolkit», abans «Arrel»): marc, decisions, noms, llicències, investigació amb estat de verificació, preguntes obertes. Actualitzat 2026-10-27.
 
 I a l'estat del repo: «Pàgina `/sistema/` (CA/EN) + PDF de dues pàgines a `public/downloads/`; branca de revisió, **sense desplegar**.»
 

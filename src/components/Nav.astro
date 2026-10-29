@@ -21,10 +21,10 @@ const links = [
 ];
 
 const current = Astro.url.pathname;
-const demoLabel = t({ ca: "prototip · Motiu", en: "prototype · Motiu" });
+const demoLabel = t({ ca: "mockup · Motiu", en: "mockup · Motiu" });
 const demoTitle = t({
-    ca: "Proposta de sistema: què hi ha darrere d'aquest prototip",
-    en: "System proposal: the idea behind this prototype",
+    ca: "Proposta de sistema: què hi ha darrere d'aquest mockup",
+    en: "System proposal: the idea behind this mockup",
 });
 const systemHref = localizeHref(lang, "/sistema/");
 ---
@@ -105,7 +105,14 @@ const systemHref = localizeHref(lang, "/sistema/");
     .brandwrap {
         display: inline-flex;
         align-items: center;
-        gap: 0.55rem;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.55rem;
+        max-width: 100%;
+    }
+    @media (max-width: 480px) {
+        .brand {
+            font-size: 1rem;
+        }
     }
     .demo-chip {
         text-decoration: none;
