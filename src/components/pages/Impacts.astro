@@ -8,6 +8,10 @@ import {
     runams,
     fgc,
     publicMoney,
+    publicMoneyDetail,
+    justice,
+    euActions,
+    otherImpacts,
     discrepancies,
 } from "../../data/indicators";
 import { tr, type Lang, type Bilingual } from "../../i18n/utils";
@@ -108,8 +112,8 @@ const runH3: Bilingual = {
     en: "80 million tonnes exposed",
 };
 const runP: Bilingual = {
-    ca: `ICL és responsable de <strong>${runams.count} runams</strong>. El Fusteret de Súria <strong>encara creix</strong>: rep permisos d'ampliació malgrat l'ordre penal de neutralitzar-lo. La sentència penal del <strong>${runams.sentence_year}</strong> va enviar a presó tres dirigents d'ICL i ordenava aturar l'abocament al Cogulló (Sallent) i restaurar-lo. Els runams continuen creixent.`,
-    en: `ICL is responsible for <strong>${runams.count} salt dumps</strong>. Súria's Fusteret <strong>still grows</strong>: it keeps receiving expansion permits despite the criminal order to neutralise it. The <strong>${runams.sentence_year}</strong> criminal ruling sent three ICL executives to prison and ordered dumping at Cogulló (Sallent) to stop and the dump to be restored. The dumps keep growing.`,
+    ca: `ICL té <strong>${runams.count} runams</strong> actius o pendents de restaurar: el Fusteret i el Cabanasses (Súria), el Cogulló i la Botjosa (Sallent). El de Vilafruns es va restaurar el 2009–10 amb diners públics. El Fusteret <strong>encara creix</strong> (≈ ${runams.fusteret_growth_mt} M t/any el 2024) i va rebre permís d'ampliació. La condemna penal del <strong>${runams.sentence_date}</strong> va quedar en una pena de ${runams.sentence_months} mesos i ${runams.sentence_fine_eur.toLocaleString("ca-ES")} € de multa; l'ordre d'aturar el Cogulló ve dels contenciosos del TSJC: l'abocament s'hi va aturar el <strong>${runams.cogullo_dumping_stopped}</strong>, però el 2024 el tribunal constatava que no se n'havia retirat «cap metre cúbic».`,
+    en: `ICL has <strong>${runams.count} salt dumps</strong> that are active or awaiting restoration: the Fusteret and Cabanasses (Súria), the Cogulló and the Botjosa (Sallent). Vilafruns was restored in 2009–10 with public money. The Fusteret <strong>still grows</strong> (≈ ${runams.fusteret_growth_mt} Mt/year in 2024) and received an expansion permit. The criminal conviction of <strong>${runams.sentence_date}</strong> ended in a sentence of ${runams.sentence_months} months and a €${runams.sentence_fine_eur.toLocaleString("en-GB")} fine; the order to stop the Cogulló comes from the TSJC administrative rulings: dumping there stopped in <strong>${runams.cogullo_dumping_stopped}</strong>, but in 2024 the court noted not 'a single cubic metre' had been removed.`,
 };
 const runH4: Bilingual = {
     ca: "Quant de temps falta per treure'ls?",
@@ -130,12 +134,12 @@ const runBarsB: Bilingual = {
     },
 };
 const runNote: Bilingual = {
-    ca: `La fiança de ${runams.fianca_meur} M€ si no restaura és una «petitíssima part» del cost públic de retirar-ho més endavant, diu el dossier.`,
-    en: `The €${runams.fianca_meur}M bond if it fails to restore is a 'tiny fraction' of the future public cost of removal, says the dossier.`,
+    ca: `Fiances: ${runams.fianca_sallent_meur} M€ (Sallent) + ${runams.fianca_suria_meur} M€ (Súria), un 50% per sota del cost; només el Cogulló costaria ≈ ${runams.restoration_cost_cogullo_meur} M€ de restaurar. El dossier la qualifica de «petitíssima part» del cost públic. <span class="derived">Els 180 anys són del dossier; la tesi (0,4 M t/any sobre 9,5 M t) en dona ≈ 24 per a la Botjosa sola: vegeu «Xifres a reconciliar».</span>`,
+    en: `Bonds: €${runams.fianca_sallent_meur}M (Sallent) + €${runams.fianca_suria_meur}M (Súria), 50% below cost; restoring the Cogulló alone would cost ≈ €${runams.restoration_cost_cogullo_meur}M. The dossier calls it a 'tiny fraction' of the public cost. <span class="derived">The 180 years come from the dossier; the thesis (0.4 Mt/year on 9.5 Mt) gives ≈ 24 for the Botjosa alone: see 'Figures to reconcile'.</span>`,
 };
 const runCostA: Bilingual = {
-    ca: "col·lector de salmorres (1988): portar la sal al mar",
-    en: "brine collector (1988): taking the salt to the sea",
+    ca: "col·lector de salmorres (1988–89): portar la sal al mar",
+    en: "brine collector (1988–89): taking the salt to the sea",
 };
 const runCostB: Bilingual = {
     ca: "nou col·lector previst funcional des del Cogulló, amb diners públics",
@@ -196,12 +200,12 @@ const labEyebrow: Bilingual = {
     en: "The workforce blackmail",
 };
 const labP: Bilingual = {
-    ca: "La campanya denuncia el sistema de <strong>primes de productivitat i subcontractacions</strong> com a eina de xantatge: la precarietat i la sinistralitat són el preu per mantenir els llocs de treball. Entre les demandes: preservació de la feina (plantilla i subcontractades) amb <strong>supervisió sindical</strong> de tot el procés de sortida d'ICL.",
-    en: "The campaign denounces the system of <strong>productivity bonuses and subcontracting</strong> as a tool of blackmail: precarity and injuries are the price of keeping the jobs. Among the demands: preserving employment (staff and subcontracted workers) with <strong>union oversight</strong> of the whole exit process.",
+    ca: "La campanya denuncia el sistema de <strong>primes de productivitat i subcontractacions</strong> com a eina de xantatge: la precarietat i la sinistralitat són el preu per mantenir els llocs de treball. Entre les demandes: preservació de la feina (plantilla i subcontractades) amb <strong>supervisió sindical</strong> de tot el procés de sortida d'ICL. La tesi de l'Iona Crusat hi afegeix que la por a les morts a la mina pesa més que la preocupació ambiental, i que la dependència econòmica fa difícil l'aliança amb les persones treballadores («mina igual a mort», diu un entrevistat).",
+    en: "The campaign denounces the system of <strong>productivity bonuses and subcontracting</strong> as a tool of blackmail: precarity and injuries are the price of keeping the jobs. Among the demands: preserving employment (staff and subcontracted workers) with <strong>union oversight</strong> of the whole exit process. Iona Crusat's thesis adds that fear of deaths in the mine weighs more than environmental concern, and that economic dependence makes alliance with workers difficult ('mine equals death', says one interviewee).",
 };
 const labSrc: Bilingual = {
-    ca: "Dossier §Demandes · Manifest de boicoticl.org",
-    en: "Dossier §Demands · boicoticl.org manifesto",
+    ca: "Dossier §Demandes · Manifest de boicoticl.org · T2 §Dimensió de salut i §Àrea d'estudi",
+    en: "Dossier §Demands · boicoticl.org manifesto · T2 §Health dimension and §Study area",
 };
 
 /* ---- DINERS ---- */
@@ -214,12 +218,42 @@ const moneyEyebrow: Bilingual = {
     en: "Who pays for ICL's waste",
 };
 const moneyNote: Bilingual = {
-    ca: "A aquests 523 M€ caldria sumar-hi la despesa recurrent de la salmorra i el cost futur de la restauració si ICL marxa sense complir. El dossier també documenta els <strong>18 M€ del PERTE</strong> (projecte de bateries a Sallent, abandonat el desembre de 2025).",
-    en: "To these €523M you'd add the recurring brine cost and the future restoration bill if ICL leaves without complying. The dossier also documents the <strong>€18M PERTE grant</strong> (Sallent battery project, abandoned in December 2025).",
+    ca: "Les cinc barres sumen ≈ 524 M€ (122,7 + 300 + 40 + 43 + 18), però <strong>no són additives</strong>: una de les barres és un any de manteniment, i el deute estimat de 300 M€ pot incloure els 122,7 M€ de les potabilitzadores (el dossier no ho detalla). Sense l'any de manteniment: ≈ 484 M€, d'on el «> 480 M€». Hi caldria sumar la despesa recurrent de la salmorra i el cost futur de restaurar si ICL marxa sense complir. Els <strong>18 M€ del PERTE</strong> corresponen al projecte de bateries de Sallent, abandonat el desembre de 2025; no consta que s'hagin desemborsat o retornat.",
+    en: "The five bars add up to ≈ €524M (122.7 + 300 + 40 + 43 + 18), but they are <strong>not additive</strong>: one bar is a single year of maintenance, and the estimated €300M debt may include the €122.7M for the treatment plants (the dossier does not say). Without the maintenance year: ≈ €484M, hence the '> €480M'. You would have to add recurring brine costs and the future restoration bill if ICL leaves without complying. The <strong>€18M PERTE grant</strong> belongs to the Sallent battery project, abandoned in December 2025; it is not recorded whether it was paid out or returned.",
 };
+const detailTitle: Bilingual = { ca: "Altres partides documentades a les tesis", en: "Other items documented in the theses" };
+const detailNote: Bilingual = {
+    ca: "Partides públiques citades a la tesi 1; es mostren per separat perquè poden solapar-se amb les del dossier i no s'han sumat.",
+    en: "Public items cited in thesis 1; shown separately because they may overlap with the dossier's and have not been summed.",
+};
+const detailCols: Bilingual[] = [
+    { ca: "Any", en: "Year" },
+    { ca: "Partida", en: "Item" },
+    { ca: "Import", en: "Amount" },
+    { ca: "Font", en: "Source" },
+];
+
+/* ---- JUSTÍCIA ---- */
+const justTitle: Bilingual = { ca: "Justícia: cinc causes, cap restauració", en: "Justice: five cases, no restoration" };
+const justEyebrow: Bilingual = { ca: "Sentències i expedients de la UE", en: "Rulings and EU files" };
+const justLede: Bilingual = {
+    ca: "Les sentències han reconegut el deure de restaurar però no han fet pagar l'empresa: dos runams segueixen pendents i el Fusteret creix. Segons la tesi, ICL ha convertit les obligacions de les sentències en negoci (venda de residus salins) i en imatge de «mineria sostenible».",
+    en: "The rulings recognised the duty to restore but did not make the company pay: two dumps remain pending and the Fusteret grows. According to the thesis, ICL turned the obligations of the rulings into business (selling salt waste) and a 'sustainable mining' image.",
+};
+const justSrc: Bilingual = {
+    ca: "T1 §Impunitat i annex 3 · T1/T2 annex de cronologia. Els processos es presenten tal com els resumeix la tesi; cal contrastar-los amb les sentències.",
+    en: "T1 §Impunity and annex 3 · T1/T2 chronology annex. The cases are presented as the thesis summarises them; check against the actual rulings.",
+};
+const justWho: Bilingual = { ca: "Promotors", en: "Brought by" };
+const justAfter: Bilingual = { ca: "Després", en: "Afterwards" };
+const euTitle: Bilingual = { ca: "Les actuacions de la UE", en: "EU actions" };
+
+/* ---- ALTRES IMPACTES ---- */
+const othTitle: Bilingual = { ca: "Salut, paisatge i territori", en: "Health, landscape and territory" };
+const othEyebrow: Bilingual = { ca: "Altres impactes documentats", en: "Other documented impacts" };
 const moneySrc: Bilingual = {
-    ca: "Dossier §Potabilitzadores, §Runams, §Bateries · Web /fgc/",
-    en: "Dossier §Treatment plants, §Salt dumps, §Batteries · Web /fgc/",
+    ca: "Dossier §Potabilitzadores, §Runams, §Bateries · Web /fgc/ · T1 §Dimensió 4",
+    en: "Dossier §Treatment plants, §Salt dumps, §Batteries · Web /fgc/ · T1 §Dimension 4",
 };
 
 /* ---- RECONCILE ---- */
@@ -236,24 +270,24 @@ const stat10: Bilingual = {
     en: "workplace deaths in 8 years",
 };
 const stat10note: Bilingual = {
-    ca: "Manifest de boicoticl.org — el dossier parla de «diversos accidents mortals en les últimes dècades»",
-    en: "boicoticl.org manifesto — the dossier speaks of 'several fatal accidents in recent decades'",
+    ca: "Manifest de boicoticl.org; el dossier parla de «diversos accidents mortals». Només un cas té font: el 2020, que atura Vilafruns",
+    en: "boicoticl.org manifesto; the dossier speaks of 'several fatal accidents'. Only one case has a source: 2020, which halts Vilafruns",
 };
 const stat879: Bilingual = {
     ca: "treballadors d'ICL Iberia (2024)",
     en: "ICL Iberia workers (2024)",
 };
 const stat879note: Bilingual = {
-    ca: "segons el seu propi informe de responsabilitat corporativa",
-    en: "per its own corporate responsibility report",
+    ca: "segons el seu propi informe corporatiu; les tesis citen 918 a l'Estat i 758 al Bages (2023)",
+    en: "per its own corporate report; the theses cite 918 in Spain and 758 in Bages (2023)",
 };
 const stat332: Bilingual = {
     ca: "facturació a l'estat espanyol (2023)",
     en: "billed in Spain (2023)",
 };
 const stat332note: Bilingual = {
-    ca: "l'empresa que més factura del Bages",
-    en: "the company billing the most in Bages",
+    ca: "dossier; La Vanguardia en dona 322 M€ (25.03.2024)",
+    en: "dossier; La Vanguardia gives €322M (25 March 2024)",
 };
 ---
 
@@ -458,12 +492,77 @@ const stat332note: Bilingual = {
                 }))}
             />
             <p class="muted" style="font-size:.88rem" set:html={t(moneyNote)} />
+            <h4>{t(detailTitle)}</h4>
+            <p class="muted" style="font-size:.85rem">{t(detailNote)}</p>
+            <div style="overflow-x:auto">
+                <table class="dt">
+                    <thead>
+                        <tr>{detailCols.map((c) => <th>{t(c)}</th>)}</tr>
+                    </thead>
+                    <tbody>
+                        {publicMoneyDetail.map((r) => (
+                            <tr>
+                                <td>{r.year}</td>
+                                <td>{t(r.label)}</td>
+                                <td class="num">{r.amount}</td>
+                                <td class="muted">{r.source}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <p class="src">{t(moneySrc)}</p>
         </div>
     </section>
 
+    <!-- JUSTÍCIA -->
+    <section class="section" id="justicia">
+        <div class="section-title">
+            <h2>{t(justTitle)}</h2>
+            <span class="eyebrow">{t(justEyebrow)}</span>
+        </div>
+        <p class="lede">{t(justLede)}</p>
+        <div class="grid grid--2">
+            {justice.map((c) => (
+                <div class="card case">
+                    <span class="eyebrow">{c.years} · {c.court}</span>
+                    <h3 style="font-size:1.05rem;margin:.3em 0 .5em">{t(c.name)}</h3>
+                    <p style="font-size:.92rem;margin:0 0 .5em">{t(c.outcome)}</p>
+                    <p style="font-size:.88rem;margin:0 0 .5em"><strong>{t(justAfter)}:</strong> {t(c.after)}</p>
+                    <p class="muted" style="font-size:.82rem;margin:0"><strong>{t(justWho)}:</strong> {t(c.who)}</p>
+                </div>
+            ))}
+        </div>
+        <div class="card" style="margin-top:var(--space-3)">
+            <h3 style="font-size:1.05rem">{t(euTitle)}</h3>
+            <ul>
+                {euActions.map((e) => (
+                    <li><strong>{e.date}</strong> — {t(e.text)}</li>
+                ))}
+            </ul>
+        </div>
+        <p class="src">{t(justSrc)}</p>
+    </section>
+
+    <!-- ALTRES IMPACTES -->
+    <section class="section" id="altres">
+        <div class="section-title">
+            <h2>{t(othTitle)}</h2>
+            <span class="eyebrow">{t(othEyebrow)}</span>
+        </div>
+        <div class="grid grid--2">
+            {otherImpacts.map((o) => (
+                <div class="card">
+                    <h3 style="font-size:1.05rem">{t(o.title)}</h3>
+                    <p style="font-size:.92rem">{t(o.text)}</p>
+                    <p class="src">{o.source}</p>
+                </div>
+            ))}
+        </div>
+    </section>
+
     <!-- DISCREPÀNCIES -->
-    <section class="section">
+    <section class="section" id="xifres">
         <div class="section-title">
             <h2>{t(recTitle)}</h2>
             <span class="eyebrow">{t(recEyebrow)}</span>
@@ -502,6 +601,10 @@ const stat332note: Bilingual = {
         font-family: var(--font-display);
         font-size: 1.4rem;
     }
+    .dt { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .dt th, .dt td { text-align: left; padding: 0.45em 0.6em; border-bottom: 1px solid rgba(0, 0, 0, 0.12); vertical-align: top; }
+    .dt th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .dt .num { white-space: nowrap; font-weight: 700; }
     .costs span {
         font-size: 0.85rem;
         color: rgba(0, 0, 0, 0.65);

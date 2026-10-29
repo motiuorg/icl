@@ -24,6 +24,10 @@ const fullTag: Bilingual = {
     en: "full text in the KB",
 };
 const pendingTag: Bilingual = { ca: "text pendent", en: "text pending" };
+const findingsTitle: Bilingual = {
+    ca: "Idees clau del document",
+    en: "Key points of the document",
+};
 const downloadCta: Bilingual = {
     ca: "Descarregar-lo des del web actual →",
     en: "Download it from the current website →",
@@ -51,8 +55,8 @@ const otherItems: Bilingual[] = [
     },
 ];
 const readerNote: Bilingual = {
-    ca: "El lector en línia del dossier (text complet cercable) arriba en una propera versió del prototip.",
-    en: "The online reader for the dossier (full searchable text) arrives in a future version of the prototype.",
+    ca: "Les transcripcions completes en Markdown del dossier (24 pàgines numerades) i de les dues tesis són a la base de coneixement (carpeta sources/). Un lector en línia cercable arribarà en una propera versió del prototip.",
+    en: "Full Markdown transcriptions of the dossier (24 numbered pages) and both theses are in the knowledge base (sources/ folder). A searchable online reader will arrive in a future version of the prototype.",
 };
 ---
 
@@ -86,6 +90,18 @@ const readerNote: Bilingual = {
                         {d.author} · {d.year} · {d.lang}
                     </p>
                     <p>{t(d.summary)}</p>
+                    {d.findings && (
+                        <>
+                            <h3 style="font-size:.95rem;margin:.9em 0 .3em">
+                                {t(findingsTitle)}
+                            </h3>
+                            <ul class="findings">
+                                {d.findings.map((f) => (
+                                    <li>{t(f)}</li>
+                                ))}
+                            </ul>
+                        </>
+                    )}
                     <div class="note-box">{t(d.statusNote)}</div>
                     <p style="margin-top:1em">
                         <a
@@ -131,5 +147,13 @@ const readerNote: Bilingual = {
     }
     .doc .note-box {
         font-size: 0.85rem;
+    }
+    .findings {
+        font-size: 0.9rem;
+        margin: 0 0 0.8em;
+        padding-left: 1.1rem;
+    }
+    .findings li {
+        margin-bottom: 0.35em;
     }
 </style>
