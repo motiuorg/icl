@@ -21,39 +21,39 @@ const MOTIU = '<a href="https://motiu.org">Motiu</a>';
 const BOICOT = '<a href="https://boicoticl.org">boicoticl.org</a>';
 
 const pageTitle: Bilingual = {
-    ca: "Proposta de sistema",
-    en: "System proposal",
+    ca: "corpo-fight toolkit · brainstorming",
+    en: "corpo-fight toolkit · brainstorming",
 };
 const pageDesc: Bilingual = {
-    ca: "Proposta experimental de Motiu: un kit de campanya obert i reutilitzable per a territoris que planten cara a multinacionals. Per recollir opinions.",
-    en: "Experimental proposal by Motiu: an open, reusable campaign kit for territories fighting multinationals. Shared to collect feedback.",
+    ca: "Mockup de brainstorming de Motiu: un possible toolkit obert i reutilitzable per a territoris que planten cara a multinacionals. Pensat per recollir aportacions i feedback.",
+    en: "Brainstorming mockup by Motiu: a possible open, reusable toolkit for territories fighting multinationals. Meant to collect input and feedback.",
 };
 
 // ---------- Hero ----------
 const badge: Bilingual = {
-    ca: "Proposta · de Motiu · no és un espai oficial de la campanya",
-    en: "Proposal · by Motiu · not an official campaign space",
+    ca: "Brainstorming · de Motiu · no és un espai oficial de la campanya",
+    en: "Brainstorming · by Motiu · not an official campaign space",
 };
 const h1: Bilingual = {
     ca: "Dels materials d'una lluita a un kit de campanya que qualsevol territori pot reutilitzar.",
     en: "From one struggle's existing material to a campaign kit any territory can reuse.",
 };
 const sub: Bilingual = {
-    ca: "Una proposta de Motiu per convertir aquest prototip, inspirat en la campanya Boicot ICL, en un sistema obert i reutilitzable per a comunitats que planten cara a multinacionals que fan mal al seu territori. La compartim d'hora, per saber què en penseu abans de construir res.",
-    en: "A proposal by Motiu to turn this prototype, inspired by the Boicot ICL campaign, into an open, reusable system for communities fighting multinationals that damage their land. Shared early, to get your feedback before anything is built.",
+    ca: "Una proposta de Motiu per imaginar, a partir d'aquest mockup inspirat en la campanya Boicot ICL, un sistema obert i reutilitzable per a comunitats que planten cara a multinacionals que fan mal al seu territori. Estem en fase de brainstorming: aquest web és un mockup pensat per recollir aportacions i feedback.",
+    en: "A proposal by Motiu to imagine, from this mockup inspired by the Boicot ICL campaign, an open, reusable system for communities fighting multinationals that damage their land. Brainstorming phase: this website is a mockup meant to collect input and feedback.",
 };
 const ctaRead: Bilingual = {
     ca: "Llegeix la proposta",
     en: "Read the proposal",
 };
 const workingName: Bilingual = {
-    ca: "Nom de treball",
-    en: "Working name",
+    ca: "Nom provisional",
+    en: "Temporary name",
 };
 
 const honesty: Bilingual = {
-    ca: `<strong>Llegiu això primer.</strong> La idea del sistema és de ${MOTIU}. El prototip està <strong>inspirat en el grup Boicot ICL</strong> i fet amb materials del seu dossier públic i del seu web (${BOICOT}): sense la seva feina no existiria. No és un espai oficial de la campanya i Boicot ICL no l'ha avalat. Fem servir IA per redactar i muntar; res no es publica sense font i una persona revisa cada xifra. No sabem si ja existeix una eina equivalent: una fase de recerca forma part de la proposta.`,
-    en: `<strong>Read this first.</strong> The idea for the system is ${MOTIU}'s. The prototype is <strong>inspired by the Boicot ICL group</strong> and built with materials from its public dossier and website (${BOICOT}): it would not exist without their work. It is not an official campaign space and Boicot ICL has not endorsed it. AI is used for drafting and assembly; nothing is published without a source, and a person checks every figure. We do not know whether an equivalent tool already exists: a research phase is part of the proposal.`,
+    ca: `<strong>Llegiu això primer.</strong> La idea del toolkit és de ${MOTIU}. Aquest mockup està <strong>inspirat en el grup Boicot ICL</strong> i fet amb materials del seu dossier públic i del seu web (${BOICOT}): sense la seva feina no existiria. És una primera exploració petita, no una demo acabada ni un producte llest per presentar. No és un espai oficial de la campanya i Boicot ICL no l'ha avalat. Hem fet servir IA per redactar i muntar; no sabem si ja existeix una eina equivalent: això també forma part de la recerca oberta.`,
+    en: `<strong>Read this first.</strong> The toolkit idea is ${MOTIU}'s. This mockup is <strong>inspired by the Boicot ICL group</strong> and built with materials from its public dossier and website (${BOICOT}): it would not exist without their work. It is a small early exploration, not a finished demo or a product ready to pitch. It is not an official campaign space and Boicot ICL has not endorsed it. AI was used for drafting and assembly; we do not know whether an equivalent tool already exists: that is also part of the open research.`,
 };
 
 // ---------- 1. Problema ----------
@@ -66,94 +66,136 @@ const problemText: Bilingual = {
 
 // ---------- 2. Prova ----------
 const proofTitle: Bilingual = {
-    ca: "La prova: què ja existeix",
-    en: "The proof: what already exists",
+    ca: "Un primer esboss per pensar-ho en veu alta",
+    en: "An early sketch to think out loud",
 };
-const proofEyebrow: Bilingual = { ca: "El prototip d'ICL", en: "The ICL prototype" };
+const proofEyebrow: Bilingual = {
+    ca: "Un mockup inspirat en ICL",
+    en: "An ICL-inspired mockup",
+};
 const proofIntro: Bilingual = {
-    ca: `Aquest prototip, fet per ${MOTIU}, inspirat en la campanya Boicot ICL i construït amb materials del seu dossier públic i del seu web. És el que esteu mirant.`,
-    en: `This prototype, built by ${MOTIU}, inspired by the Boicot ICL campaign and made with materials from its public dossier and website. It is what you are looking at.`,
+    ca: `Aquest mockup, fet per ${MOTIU}, no és una demo ni un prototip acabat. És només una primera exploració petita, amb materials públics del dossier i del web de la campanya Boicot ICL. Serveix per imaginar com podria funcionar un toolkit futur, no per presentar un producte existent.`,
+    en: `This mockup, made by ${MOTIU}, is not a demo or a finished prototype. It is only a small early exploration using public materials from the Boicot ICL campaign's dossier and website. It is here to help imagine what a future toolkit could look like, not to present an existing product.`,
 };
 const proofList: Bilingual<string[]> = {
     ca: [
-        "7 seccions en 2 llengües: 14 pàgines",
-        "Visualitzacions de dades amb font",
-        "Una biblioteca de recerca",
-        "Una cronologia de la lluita",
-        "Fitxes d'actors (el mapa de relacions encara està per fer)",
-        "Una capa interna de coordinació, de demostració i amb dades falses",
-        "Una regla: cada xifra cita la seva font i els càlculs propis es marquen com a derivats",
+        "Unes pàgines de prova amb gràfics i dades públiques",
+        "Una primera idea de biblioteca de recerca",
+        "Una cronologia esquemàtica",
+        "Fitxes d'actors encara incompletes",
+        "Una maqueta d'espai intern amb dades fictícies",
+        "Cap producte acabat, cap base de dades operativa i cap promesa de desplegament",
     ],
     en: [
-        "7 sections in 2 languages: 14 pages",
-        "Sourced data visualisations",
-        "A research library",
-        "A struggle timeline",
-        "Actor profiles (the relationship map is still to do)",
-        "A demo internal coordination layer, with fake data",
-        "One rule: every figure cites its source, and our own calculations are marked as derived",
+        "A few trial pages using public data and charts",
+        "A first sketch of a research library",
+        "A rough timeline",
+        "Incomplete actor profiles",
+        "A mock internal space using fake data",
+        "No finished product, no working database and no promise of deployment",
     ],
 };
 const shots = [
     {
         img: { ca: homeCa, en: homeEn },
-        alt: { ca: "Pàgina d'inici del prototip: «L'estat de la lluita, en dades».", en: "Prototype home page: “The state of the fight, in data”." },
-        cap: { ca: "Inici: l'estat de la lluita, en dades.", en: "Home: the state of the fight, in data." },
+        alt: {
+            ca: "Primera maqueta de la pàgina d'inici: l'estat de la lluita, visualitzat.",
+            en: "First sketch of the home page: the state of the fight, visualized.",
+        },
+        cap: {
+            ca: "Una primera maqueta de l'inici: l'estat de la lluita, visualitzat.",
+            en: "A first sketch of the home page: the state of the fight, visualized.",
+        },
     },
     {
         img: { ca: impactsCa, en: impactsEn },
-        alt: { ca: "Pàgina de gràfics amb la secció dels runams de sal i una barra comparativa.", en: "Chart page showing the salt dumps section with a comparison bar chart." },
-        cap: { ca: "Gràfics: runams de sal, amb la font sota cada xifra.", en: "Charts: the salt dumps, with the source under each figure." },
+        alt: {
+            ca: "Pàgina de gràfics amb la secció dels runams de sal i una barra comparativa.",
+            en: "Chart page showing the salt dumps section with a comparison bar chart.",
+        },
+        cap: {
+            ca: "Un exemple de com podrien explicar-se els danys amb gràfics.",
+            en: "One example of how impacts could be explained with charts.",
+        },
     },
     {
         img: { ca: timelineCa, en: timelineEn },
-        alt: { ca: "Pàgina de la cronologia amb esdeveniments per any.", en: "Timeline page listing events by year." },
-        cap: { ca: "Cronologia: només fets documentats.", en: "Timeline: documented facts only." },
+        alt: {
+            ca: "Pàgina de la cronologia amb esdeveniments per any.",
+            en: "Timeline page listing events by year.",
+        },
+        cap: {
+            ca: "Una primera aproximació a la cronologia.",
+            en: "An early sketch of the timeline.",
+        },
     },
     {
         img: { ca: internalCa, en: internalEn },
-        alt: { ca: "Capa interna de demostració amb l'agenda i el tauler d'accions.", en: "Demo internal layer showing the agenda and the action board." },
-        cap: { ca: "Capa interna: dades de demostració, no reals.", en: "Internal layer: demo data, not real." },
+        alt: {
+            ca: "Maqueta d'un espai intern amb l'agenda i el tauler d'accions, amb dades fictícies.",
+            en: "Mock internal space showing an agenda and action board, with fake data.",
+        },
+        cap: {
+            ca: "Una maqueta d'espai intern amb dades fictícies; no és una demo.",
+            en: "A mock internal space with fake data; not a demo.",
+        },
     },
 ];
 
 // ---------- 3. Sistema ----------
 const sysTitle: Bilingual = {
-    ca: "El sistema: tres capes",
-    en: "The system: three layers",
+    ca: "La idea: quatre capes possibles",
+    en: "The idea: four possible layers",
 };
 const sysEyebrow: Bilingual = { ca: "La idea", en: "The idea" };
 const sysIntro: Bilingual = {
-    ca: "Un kit obert i reutilitzable que permet a una comunitat passar de materials i dades escampats a un web públic, bilingüe i amb fonts, i a un espai de coordinació intern. Barat, repetible, amb la IA fent el muntatge lent i persones verificant cada afirmació. El més interessant és combinar les dues primeres capes.",
-    en: "A reusable, open kit that lets a community go from scattered materials and data to a sourced, bilingual public website and an internal coordination space. Cheap and repeatable, with AI doing the slow assembly and humans verifying every claim. The interesting part is combining the first two layers.",
+    ca: "De moment, només una idea de toolkit obert i reutilitzable: passar de materials i dades escampats a un web públic i a un espai de coordinació intern, amb suport perquè cada grup ho faci seu. Aquest esquema serveix per imaginar-ho i discutir-ho, no és un pla tancat.",
+    en: "For now, this is only an idea for an open, reusable toolkit: going from scattered materials and data to a public website and an internal coordination space, with support for each group to make it their own. This diagram is here to imagine and discuss, not a fixed plan.",
 };
-const layers: { tag: Bilingual; title: Bilingual; text: Bilingual; status: Bilingual }[] = [
+const layers: {
+    tag: Bilingual;
+    title: Bilingual;
+    text: Bilingual;
+    status: Bilingual;
+}[] = [
     {
         tag: { ca: "Capa 1 · frontend", en: "Layer 1 · frontend" },
         title: { ca: "Kit públic", en: "Public kit" },
         text: {
-            ca: "Un web de campanya a mida, ràpid i barat de muntar, que posa l'accent en el que vol cada grup. Visualitzacions de dades, biblioteca de recerca, cronologia de la lluita i mapa d'actors. El prototip d'ICL n'és la primera instància.",
-            en: "A custom campaign website, quick and cheap to set up, that emphasises what each group wants. Data visualisations, a research library, a struggle timeline and actor mapping. The ICL prototype is the first instance.",
+            ca: "Un web de campanya a mida, ràpid i barat de muntar, que posa l'accent en el que vol cada grup. Visualitzacions de dades, biblioteca de recerca, cronologia de la lluita i mapa d'actors. El mockup d'ICL és només un exemple inicial.",
+            en: "A custom campaign website, quick and cheap to set up, that emphasises what each group wants. Data visualisations, a research library, a struggle timeline and actor mapping. The ICL mockup is just an early example.",
         },
-        status: { ca: "Existeix com a prototip", en: "Exists as a prototype" },
+        status: { ca: "Esbossada al mockup", en: "Sketched in the mockup" },
     },
     {
         tag: { ca: "Capa 2 · backend", en: "Layer 2 · backend" },
         title: { ca: "Capa interna", en: "Internal layer" },
         text: {
-            ca: "Una plataforma privada de coordinació: tauler d'accions, cua de revisió d'evidències, agenda i contactes. Al prototip és una demo amb dades falses. L'accés real encara s'ha de decidir amb cada campanya.",
-            en: "A private coordination platform: action board, evidence review queue, agenda and contacts. In the prototype it is a demo with fake data. Real access control is still to be decided with each campaign.",
+            ca: "Una possible plataforma privada de coordinació: tauler d'accions, cua de revisió d'evidències, agenda i contactes. Al mockup hi ha una maqueta amb dades fictícies; no és una demo operativa. L'accés real encara s'hauria de decidir amb cada campanya.",
+            en: "A possible private coordination platform: action board, evidence review queue, agenda and contacts. The mockup includes a mock space with fake data; it is not a working demo. Real access control would still be decided with each campaign.",
         },
-        status: { ca: "Demo avui", en: "Demo today" },
+        status: { ca: "Maqueta, no demo", en: "Mockup, not demo" },
     },
     {
         tag: { ca: "Capa 3 · obert", en: "Layer 3 · open" },
         title: { ca: "Playbook obert", en: "Open playbook" },
         text: {
-            ca: "El procés, les plantilles i els prompts, documentats i publicats perquè altres grups el puguin reproduir sense Motiu. És el que fa que això sigui més gran que ICL.",
-            en: "The process, templates and prompts, documented and published so other groups can reproduce it without Motiu. This is what makes it bigger than ICL.",
+            ca: "Un possible playbook obert: el procés, les plantilles i els prompts, documentats i publicats perquè altres grups ho puguin reproduir sense Motiu. És una de les vies perquè el toolkit pugui servir més enllà d'ICL.",
+            en: "A possible open playbook: the process, templates and prompts, documented and published so other groups can reproduce it without Motiu. It is one way the toolkit could serve beyond ICL.",
         },
-        status: { ca: "Per escriure", en: "To be written" },
+        status: { ca: "Per imaginar", en: "To imagine" },
+    },
+    {
+        tag: { ca: "Capa 4 · suport", en: "Layer 4 · support" },
+        title: { ca: "Serveis i formació", en: "Services & training" },
+        text: {
+            ca: "Organitzacions com Motiu podrien oferir acompanyament, formació i suport tècnic perquè grups locals aprenguin a agafar aquests fluxos de treball i repositoris oberts i els facin servir al seu territori. L'objectiu és empoderar-los perquè treballin de manera autònoma, no crear dependència.",
+            en: "Organisations such as Motiu could offer facilitation, training and technical support so local groups can take these workflows and open-source repositories and use them in their own territory. The aim is to build local capacity and autonomy, not dependency.",
+        },
+        status: {
+            ca: "Possibilitat a explorar",
+            en: "A possibility to explore",
+        },
     },
 ];
 const aiTitle: Bilingual = { ca: "Com hi encaixa la IA", en: "How AI fits" };
@@ -165,7 +207,10 @@ const baTitle: Bilingual = { ca: "Abans i després", en: "Before and after" };
 
 // ---------- 4. Principis ----------
 const prinTitle: Bilingual = { ca: "Principis", en: "Principles" };
-const prinEyebrow: Bilingual = { ca: "Com volem treballar", en: "How we want to work" };
+const prinEyebrow: Bilingual = {
+    ca: "Com volem treballar",
+    en: "How we want to work",
+};
 const principles: { title: Bilingual; text: Bilingual }[] = [
     {
         title: { ca: "Obert per defecte", en: "Open by default" },
@@ -175,28 +220,40 @@ const principles: { title: Bilingual; text: Bilingual }[] = [
         },
     },
     {
-        title: { ca: "Fonts abans que afirmacions", en: "Sources before claims" },
+        title: {
+            ca: "Fonts abans que afirmacions",
+            en: "Sources before claims",
+        },
         text: {
             ca: "Res no es publica sense font. Els càlculs propis es marquen com a derivats.",
             en: "Nothing goes up without a source. Our own calculations are marked as derived.",
         },
     },
     {
-        title: { ca: "La campanya decideix què es diu en el seu nom", en: "The campaign decides what is said in its name" },
+        title: {
+            ca: "La campanya decideix què es diu en el seu nom",
+            en: "The campaign decides what is said in its name",
+        },
         text: {
             ca: "Nosaltres fem l'eina, no el missatge.",
             en: "We build the tool, not the message.",
         },
     },
     {
-        title: { ca: "Les dades es queden amb les campanyes", en: "Data stays with the campaigns" },
+        title: {
+            ca: "Les dades es queden amb les campanyes",
+            en: "Data stays with the campaigns",
+        },
         text: {
             ca: "Cada campanya és propietària de les seves dades i en controla l'ús i l'allotjament.",
             en: "Each campaign owns its data and controls its use and hosting.",
         },
     },
     {
-        title: { ca: "Primer pragmàtics, després oberts", en: "Pragmatic first, open later" },
+        title: {
+            ca: "Primer pragmàtics, després oberts",
+            en: "Pragmatic first, open later",
+        },
         text: {
             ca: "A la fase 1 provem amb el que funcioni i anotem cada eina triada. L'objectiu és una pila totalment oberta, amb models de pes obert inclosos, per a qui ho exigeixi.",
             en: "In phase 1 we test with whatever works and log each tooling choice. The goal is a fully open stack, including open-weight models, for those who require it.",
@@ -209,86 +266,94 @@ const landTitle: Bilingual = {
     ca: "Què existeix, i què creiem que és nou",
     en: "What exists, and what we think is new",
 };
-const landEyebrow: Bilingual = { ca: "Panorama honest", en: "An honest landscape" };
+const landEyebrow: Bilingual = {
+    ca: "Panorama d'eines existents",
+    en: "Landscape of existing tools",
+};
+const landIntro: Bilingual = {
+    ca: "Aquest toolkit es podria integrar amb qualsevol de les eines següents, depenent del context de cada grup:",
+    en: "This toolkit could of course be integrated with any of the following, depending on each group's context:",
+};
 const doesLabel: Bilingual = { ca: "Fa", en: "Does" };
 const notLabel: Bilingual = { ca: "No cobreix", en: "Doesn't cover" };
-const land: { name: string; href: string; does: Bilingual; not: Bilingual }[] = [
-    {
-        name: "EJAtlas",
-        href: "https://ejatlas.org",
-        does: {
-            ca: "Un atles col·laboratiu que documenta i cartografia conflictes ambientals a tot el món.",
-            en: "A collaborative atlas that documents and maps environmental conflicts worldwide.",
+const land: { name: string; href: string; does: Bilingual; not: Bilingual }[] =
+    [
+        {
+            name: "EJAtlas",
+            href: "https://ejatlas.org",
+            does: {
+                ca: "Un atles col·laboratiu que documenta i cartografia conflictes ambientals a tot el món.",
+                en: "A collaborative atlas that documents and maps environmental conflicts worldwide.",
+            },
+            not: {
+                ca: "Que sapiguem, no dóna a cada campanya el seu web ni un espai de coordinació.",
+                en: "As far as we know, it gives a campaign neither its own site nor a coordination space.",
+            },
         },
-        not: {
-            ca: "Que sapiguem, no dóna a cada campanya el seu web ni un espai de coordinació.",
-            en: "As far as we know, it gives a campaign neither its own site nor a coordination space.",
+        {
+            name: "CiviCRM",
+            href: "https://civicrm.org",
+            does: {
+                ca: "CRM de codi obert (AGPL-3.0) per a grups d'incidència i entitats sense ànim de lucre: contactes, esdeveniments, campanyes, peticions, enviaments.",
+                en: "Open-source (AGPL-3.0) CRM for advocacy and non-profit groups: contacts, events, campaigns, petitions, mailings.",
+            },
+            not: {
+                ca: "No és una biblioteca d'evidències ni un web públic de dades.",
+                en: "Not an evidence library or a public data site.",
+            },
         },
-    },
-    {
-        name: "CiviCRM",
-        href: "https://civicrm.org",
-        does: {
-            ca: "CRM de codi obert (AGPL-3.0) per a grups d'incidència i entitats sense ànim de lucre: contactes, esdeveniments, campanyes, peticions, enviaments.",
-            en: "Open-source (AGPL-3.0) CRM for advocacy and non-profit groups: contacts, events, campaigns, petitions, mailings.",
+        {
+            name: "Mobilizon",
+            href: "https://joinmobilizon.org",
+            does: {
+                ca: "Plataforma federada (AGPL) per organitzar esdeveniments i grups.",
+                en: "Federated platform (AGPL) for organising events and groups.",
+            },
+            not: {
+                ca: "Serveix per trobar-se, no per documentar un conflicte amb fonts.",
+                en: "Built for gathering people, not for documenting a conflict with sources.",
+            },
         },
-        not: {
-            ca: "No és una biblioteca d'evidències ni un web públic de dades.",
-            en: "Not an evidence library or a public data site.",
+        {
+            name: "Action Network",
+            href: "https://actionnetwork.org",
+            does: {
+                ca: "Eines per correu per a peticions, esdeveniments, recaptació i contacte amb càrrecs electes.",
+                en: "Email-driven tools for petitions, events, fundraising and contacting legislators.",
+            },
+            not: {
+                ca: "Organitza accions; no és un registre públic amb fonts ni una biblioteca de recerca.",
+                en: "Organises actions; not a sourced public record or research library.",
+            },
         },
-    },
-    {
-        name: "Mobilizon",
-        href: "https://joinmobilizon.org",
-        does: {
-            ca: "Plataforma federada (AGPL) per organitzar esdeveniments i grups.",
-            en: "Federated platform (AGPL) for organising events and groups.",
+        {
+            name: "Mobilize",
+            href: "https://www.mobilize.us",
+            does: {
+                ca: "Gestió de voluntariat i esdeveniments, feta servir per campanyes polítiques i entitats.",
+                en: "Volunteer and event management used by political campaigns and non-profits.",
+            },
+            not: {
+                ca: "Capta voluntariat; no construeix el relat ni les proves d'una lluita.",
+                en: "Recruits volunteers; does not build a struggle's story or evidence base.",
+            },
         },
-        not: {
-            ca: "Serveix per trobar-se, no per documentar un conflicte amb fonts.",
-            en: "Built for gathering people, not for documenting a conflict with sources.",
+        {
+            name: "Tech4Palestine",
+            href: "https://techforpalestine.org",
+            does: {
+                ca: "Una coalició que incuba projectes i eines de codi obert per a la solidaritat amb Palestina.",
+                en: "A coalition that incubates open-source projects and tools for Palestine solidarity.",
+            },
+            not: {
+                ca: "Que sapiguem, no és un kit reutilitzable per a una campanya territorial.",
+                en: "As far as we know, not a reusable kit for a territorial campaign.",
+            },
         },
-    },
-    {
-        name: "Action Network",
-        href: "https://actionnetwork.org",
-        does: {
-            ca: "Eines per correu per a peticions, esdeveniments, recaptació i contacte amb càrrecs electes.",
-            en: "Email-driven tools for petitions, events, fundraising and contacting legislators.",
-        },
-        not: {
-            ca: "Organitza accions; no és un registre públic amb fonts ni una biblioteca de recerca.",
-            en: "Organises actions; not a sourced public record or research library.",
-        },
-    },
-    {
-        name: "Mobilize",
-        href: "https://www.mobilize.us",
-        does: {
-            ca: "Gestió de voluntariat i esdeveniments, feta servir per campanyes polítiques i entitats.",
-            en: "Volunteer and event management used by political campaigns and non-profits.",
-        },
-        not: {
-            ca: "Capta voluntariat; no construeix el relat ni les proves d'una lluita.",
-            en: "Recruits volunteers; does not build a struggle's story or evidence base.",
-        },
-    },
-    {
-        name: "Tech for Palestine",
-        href: "https://techforpalestine.org",
-        does: {
-            ca: "Una coalició que incuba projectes i eines de codi obert per a la solidaritat amb Palestina.",
-            en: "A coalition that incubates open-source projects and tools for Palestine solidarity.",
-        },
-        not: {
-            ca: "Que sapiguem, no és un kit reutilitzable per a una campanya territorial.",
-            en: "As far as we know, not a reusable kit for a territorial campaign.",
-        },
-    },
-];
+    ];
 const landNote: Bilingual = {
-    ca: "Ho hem revisat només a partir de descripcions públiques; si us hi fixeu, corregiu-nos.",
-    en: "We checked these from public descriptions only. If we got one wrong, tell us.",
+    ca: "Ho hem revisat només a partir de descripcions públiques; si us hi fixeu, corregiu-nos. <strong>Tech4Palestine és un possible soci per a aquesta idea.</strong> Aquest document també està pensat per recollir feedback específicament d'ells.",
+    en: "We checked these from public descriptions only. If we got one wrong, tell us. <strong>Tech4Palestine is a potential partner for this project.</strong> This brief is also meant to get feedback specifically from them.",
 };
 const newText: Bilingual = {
     ca: "<strong>Què creiem que és nou:</strong> no cap peça sola, sinó la cadena sencera. Un muntatge de punta a punta, assistit per IA, barat i repetible, a mida d'una lluita cada vegada, amb un playbook obert. No sabem si ja existeix res d'equivalent. <strong>Una fase de recerca provaria aquesta creença.</strong>",
@@ -296,8 +361,14 @@ const newText: Bilingual = {
 };
 
 // ---------- 6. Fase 1 ----------
-const phaseTitle: Bilingual = { ca: "Fase 1: abast i demanda", en: "Phase 1: scope and ask" };
-const phaseEyebrow: Bilingual = { ca: "Indicatiu, per discutir", en: "Indicative, for discussion" };
+const phaseTitle: Bilingual = {
+    ca: "Fase 1: abast i demanda",
+    en: "Phase 1: scope and ask",
+};
+const phaseEyebrow: Bilingual = {
+    ca: "Indicatiu, per discutir",
+    en: "Indicative, for discussion",
+};
 const budget: Bilingual = {
     ca: "Uns 5–10 mil €, per discutir",
     en: "About €5–10k, for discussion",
@@ -328,18 +399,35 @@ const noFunds: Bilingual = {
 };
 
 // ---------- 7. Fronts ----------
-const frontsTitle: Bilingual = { ca: "Possibles fronts següents", en: "Possible next fronts" };
-const frontsEyebrow: Bilingual = { ca: "Sense confirmar", en: "Unconfirmed" };
-const fronts: { place: Bilingual; text: Bilingual; link?: string; linkLabel?: Bilingual }[] = [
+const frontsTitle: Bilingual = {
+    ca: "Possibles fronts següents",
+    en: "Possible next fronts",
+};
+const frontsEyebrow: Bilingual = {
+    ca: "Només possibilitats",
+    en: "Possibilities only",
+};
+const fronts: {
+    place: Bilingual;
+    text: Bilingual;
+    link?: string;
+    linkLabel?: Bilingual;
+}[] = [
     {
-        place: { ca: "Catalunya · Vall del Bages", en: "Catalonia · Vall del Bages" },
+        place: {
+            ca: "Catalunya · Vall del Bages",
+            en: "Catalonia · Vall del Bages",
+        },
         text: {
             ca: "La primera instància i la prova.",
             en: "The first instance and the test.",
         },
     },
     {
-        place: { ca: "Boulby, North York Moors (Regne Unit)", en: "Boulby, North York Moors (UK)" },
+        place: {
+            ca: "Boulby, North York Moors (Regne Unit)",
+            en: "Boulby, North York Moors (UK)",
+        },
         text: {
             ca: "La mina de Boulby, que opera Cleveland Potash, filial d'ICL.",
             en: "The Boulby mine, run by Cleveland Potash, an ICL subsidiary.",
@@ -358,16 +446,19 @@ const fronts: { place: Bilingual; text: Bilingual; link?: string; linkLabel?: Bi
     },
 ];
 const frontSlot: Bilingual = {
-    ca: "Segona lluita per definir entre tots",
-    en: "Second struggle to define together",
+    ca: "ICL pot ser el primer cas de prova del toolkit, però aquest es podria reutilitzar en altres lluites territorials",
+    en: "ICL can be the first test case for this toolkit, but it could also be reused in other territorial struggles",
 };
 const frontsNote: Bilingual = {
-    ca: "No s'impliquen compromisos. Són les persones que hi són sobre el terreny qui ho han de decidir.",
-    en: "No commitments are implied. These are for the people on the ground to decide.",
+    ca: "No cal definir ara cap segona lluita. Si el toolkit funciona, s'adaptaria a altres conflictes territorials juntament amb la gent que hi és sobre el terreny.",
+    en: "There is no second struggle to define now. If the toolkit proves useful, it would be adapted to other territorial struggles together with the people on the ground.",
 };
 
 // ---------- 8. Preguntes ----------
-const askTitle: Bilingual = { ca: "Què necessitem de vosaltres", en: "What we need from you" };
+const askTitle: Bilingual = {
+    ca: "Què necessitem de vosaltres",
+    en: "What we need from you",
+};
 const askEyebrow: Bilingual = { ca: "Cinc preguntes", en: "Five questions" };
 const questions: Bilingual<string[]> = {
     ca: [
@@ -405,16 +496,24 @@ const printFoot: Bilingual = {
         <h1>{t(h1)}</h1>
         <p class="hero__lede">{t(sub)}</p>
         <p class="hero__name">
-            <strong>{t(workingName)}: {PROJECT_NAME}</strong> · {t(PROJECT_TAGLINE)}
+            <strong>
+                {t(workingName)}: {PROJECT_NAME}
+            </strong>{" "}
+            · {t(PROJECT_TAGLINE)}
         </p>
         <div class="hero__cta no-print">
-            <a class="btn btn--soft" href="#two-pager">{t(ctaRead)}</a>
+            <a class="btn btn--soft" href="#two-pager">
+                {t(ctaRead)}
+            </a>
         </div>
     </section>
 
     <div id="two-pager">
         <div class="sp sp-p1">
-            <div class="note-box note-box--warn honesty" set:html={t(honesty)} />
+            <div
+                class="note-box note-box--warn honesty"
+                set:html={t(honesty)}
+            />
 
             <section class="section" id="problema">
                 <div class="section-title">
@@ -434,7 +533,9 @@ const printFoot: Bilingual = {
                 <div class="card">
                     <p set:html={t(proofIntro)} />
                     <ul class="ticks">
-                        {t(proofList).map((s) => <li>{s}</li>)}
+                        {t(proofList).map((s) => (
+                            <li>{s}</li>
+                        ))}
                     </ul>
                     <div class="shots">
                         {shots.map((s) => (
@@ -510,12 +611,19 @@ const printFoot: Bilingual = {
                     <span class="eyebrow">{t(landEyebrow)}</span>
                 </div>
                 <div class="card">
+                    <p>{t(landIntro)}</p>
                     <div class="land">
                         {land.map((e) => (
                             <div class="land__item">
-                                <h4><a href={e.href}>{e.name}</a></h4>
-                                <p><strong>{t(doesLabel)}:</strong> {t(e.does)}</p>
-                                <p><strong>{t(notLabel)}:</strong> {t(e.not)}</p>
+                                <h4>
+                                    <a href={e.href}>{e.name}</a>
+                                </h4>
+                                <p>
+                                    <strong>{t(doesLabel)}:</strong> {t(e.does)}
+                                </p>
+                                <p>
+                                    <strong>{t(notLabel)}:</strong> {t(e.not)}
+                                </p>
                             </div>
                         ))}
                     </div>
@@ -533,10 +641,14 @@ const printFoot: Bilingual = {
                     <div>
                         <p class="budget">{t(budget)}</p>
                         <p>{t(budgetNote)}</p>
-                        <p class="mb-0"><strong>{t(noFunds)}</strong></p>
+                        <p class="mb-0">
+                            <strong>{t(noFunds)}</strong>
+                        </p>
                     </div>
                     <ul class="ticks">
-                        {t(deliverables).map((s) => <li>{s}</li>)}
+                        {t(deliverables).map((s) => (
+                            <li>{s}</li>
+                        ))}
                     </ul>
                 </div>
             </section>
@@ -551,10 +663,17 @@ const printFoot: Bilingual = {
                         {fronts.map((f) => (
                             <li>
                                 <strong>{t(f.place)}.</strong> {t(f.text)}
-                                {f.link && <> <a href={f.link}>({t(f.linkLabel!)})</a></>}
+                                {f.link && (
+                                    <>
+                                        {" "}
+                                        <a href={f.link}>({t(f.linkLabel!)})</a>
+                                    </>
+                                )}
                             </li>
                         ))}
-                        <li class="slot"><strong>{t(frontSlot)}</strong></li>
+                        <li class="slot">
+                            <strong>{t(frontSlot)}</strong>
+                        </li>
                     </ul>
                     <p class="muted small-note mb-0">{t(frontsNote)}</p>
                 </div>
@@ -567,7 +686,9 @@ const printFoot: Bilingual = {
                 </div>
                 <div class="card ask">
                     <ol>
-                        {t(questions).map((q) => <li>{q}</li>)}
+                        {t(questions).map((q) => (
+                            <li>{q}</li>
+                        ))}
                     </ol>
                     <p class="mb-0">
                         <span set:html={t(contact)} /> {t(nameNote)}

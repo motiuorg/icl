@@ -1,4 +1,4 @@
-# Arrel (nom de treball) — estat de la lluita contra ICL: prototip experimental de Motiu
+# corpo-fight toolkit (nom provisional) — estat de la lluita contra ICL: proposta experimental de Motiu
 
 **Prototip experimental de [Motiu](https://motiu.org)** (cooperativa d'infraestructura per
 la regeneració territorial), **inspirat en el grup Boicot ICL** i fet amb materials del seu dossier i del seu web. La campanya és seva; això és una proposta de Motiu per discutir-hi.
